@@ -43,6 +43,7 @@ model Store {
   id                  String      @id @unique @default(uuid())
   name                String
   Address             Address[]
+  Car                 Car[]
 }
 
 model Category {
@@ -67,4 +68,6 @@ model Car {
   Brand               Brand       @relation(fields: [brandId], references: [id])
   categoryId          String
   Category            Category    @relation(fields: [categoryId], references: [id])
+  storeId             String
+  Store               Store       @relation(fields: [storeId], references: [id])
 }
