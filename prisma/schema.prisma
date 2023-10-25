@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String      @id @unique @default(uuid())
+  name                String
+  surname             String
+  email               String      @unique
+  cpf                 String      @unique
+  phoneNumber         String
+  age                 String
+  password            String
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt()
+  Address             Address[]
+}
+
+model Address {
+  id                  String      @id @unique @default(uuid())
+  cep                 String
+  street              String
+  city                String
+  state               String
+  number              String
+  neighborhood        String
+  complement          String
+  Store               Store       @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  storeId             String
+  User                User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String
+}
+
+model Store {
+  id                  String      @id @unique @default(uuid())
+  name                String
+  Address             Address[]
+  Car                 Car[]
+}
+
+model Category {
+  id                  String      @id @unique @default(uuid())
+  qualification       String
+  description         String
+  Car                 Car[]
+}
+
+model Brand {
+  id                  String      @id @unique @default(uuid())
+  name                String
+  Car                 Car[]
+}
+
+model Car {
+  id                  String      @id @unique @default(uuid())
+  name                String
+  color               String
+  imageUrl            String
+  brandId             String
+  Brand               Brand       @relation(fields: [brandId], references: [id])
+  categoryId          String
+  Category            Category    @relation(fields: [categoryId], references: [id])
+  storeId             String
+  Store               Store       @relation(fields: [storeId], references: [id])
+}
