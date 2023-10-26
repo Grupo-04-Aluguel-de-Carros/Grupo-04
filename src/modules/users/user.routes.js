@@ -1,8 +1,13 @@
 import { Router } from 'express';
-// import { create } from './users.controller.js';
+import { exclude, findById, findMany, update } from './users.controller.js';
+import { validate } from '../../middleware/validate.js';
+import { updateUserSchema } from './user.schema.js';
 
 const userRoutes = Router();
 
-// userRoutes.post('/', create);
+userRoutes.get('/', findMany);
+userRoutes.get('/:id', findById);
+userRoutes.put('/edit/:id', validate(updateUserSchema), update);
+userRoutes.delete('/delete/:id', exclude);
 
 export default userRoutes;

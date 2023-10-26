@@ -1,3 +1,4 @@
+import { HttpStatusCode } from 'axios';
 import { createUser } from '../users/user.service.js';
 
 export const create = async (req, res) => {
@@ -14,8 +15,8 @@ export const create = async (req, res) => {
       password
     );
 
-    return res.json({ message: -password, result });
+    return res.status(HttpStatusCode.Created).json({ message: result });
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(HttpStatusCode.BadRequest).json({ error: error.message });
   }
 };

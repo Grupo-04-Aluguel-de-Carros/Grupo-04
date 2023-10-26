@@ -1,15 +1,34 @@
 import { object, string } from 'zod';
+import {
+  emailRegex,
+  onlyLettersRegex,
+  onlyNumbersRegex,
+  phoneRegex,
+} from '../../utils/regex.js';
 
 export const registerUserSchema = object({
   body: object({
-    email: string({
-      required_error: 'email is required',
-    }).email(),
-    name: string({
-      required_error: 'name is required',
-    }),
-    password: string({
-      required_error: 'password is required',
-    }).min(6, 'must be at least 6 character'),
+    name: string()
+      .trim()
+      .min(3, { message: 'O nome deve ter ao menos 2 digitos' })
+      .regex(onlyLettersRegex, { message: 'Apenas letras são aceitas' }),
+    surname: string()
+      .trim()
+      .min(3, { message: 'O sobrenome deve ter ao menos 2 digitos' })
+      .regex(onlyLettersRegex, { message: 'Apenas letras são aceitas' }),
+    email: string()
+      .trim()
+      .regex(emailRegex, { message: 'Email inválido' })
+      .email(),
+    cpf: string().trim(),
+    phoneNumber: string()
+      .trim()
+      .regex(phoneRegex, { message: 'Telefone inválido' }),
+    age: string()
+      .trim()
+      .regex(onlyNumbersRegex, { message: 'Apenas números são aceitos' }),
+    password: string()
+      .trim()
+      .min(6, { message: 'A senha deve ter ao menos 6 digitos' }),
   }),
 });
