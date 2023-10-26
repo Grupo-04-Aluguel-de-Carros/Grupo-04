@@ -1,9 +1,12 @@
-// import { db } from '../../config/db.js';
-const { PrismaClient } = require('@prisma/client');
-
-const db = new PrismaClient();
-export const createBrand = async ({ name, car }) => {
+export const validateBrandBeforeCreate = async ({ name }) => {
   try {
-    const brand = await db({});
-  } catch (error) {}
+    const brand = await db.brand.create({
+      data: {
+        name: name,
+      },
+    });
+    return brand;
+  } catch (error) {
+    throwError('Error creating table car');
+  }
 };

@@ -1,12 +1,20 @@
-export const createBrand = async (req, res) => {
-  const { name, car } = req.body;
-  const result = await createBrand({ name, car });
+import { HttpStatusCode } from 'axios';
+import validateBrandBeforeCreate from './brand.service';
 
-  return res.status(201).json({
-    data: result,
-    message: 'Brand sucefull created !',
-  });
+export const create = async (req, res) => {
+  const sucess = res.status(HttpStatusCode.Ok);
+  const badRequest = res.status(HttpStatusCode.BadRequest);
+  try {
+    const { name } = req.body;
+    const result = await validateBrandBeforeCreate({ name });
+    return sucess.json({
+      data: result,
+      message: 'Marca registrada com sucesso !',
+    });
+  } catch (error) {
+    return badRequest.json({ error: error.message });
+  }
 };
-export const excludeBrand = async (req, res) => {};
-export const readBrand = async (req, res) => {};
-export const updateBrand = async (req, res) => {};
+export const exclude = async (req, res) => {};
+export const read = async (req, res) => {};
+export const update = async (req, res) => {};
