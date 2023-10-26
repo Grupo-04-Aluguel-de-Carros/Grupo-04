@@ -63,6 +63,7 @@ model Car {
   id         String   @id @unique @default(uuid())
   name       String
   year       String
+  value      Float
   color      String
   imageUrl   String
   brandId    String
