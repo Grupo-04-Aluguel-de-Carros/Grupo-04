@@ -1,3 +1,3 @@
-const { PrismaClient } = require('@prisma/client/edge');
+import { PrismaClient } from '@prisma/client';
 
 export const db = new PrismaClient();
