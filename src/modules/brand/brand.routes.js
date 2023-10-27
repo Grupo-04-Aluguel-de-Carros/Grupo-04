@@ -1,10 +1,10 @@
 import { Router } from 'express';
-const brandRoute = Router();
+const brandRoutes = Router();
 
-brandRoute.get('/', getAll);
-brandRoute.get('/:name', getByName);
-brandRoute.post('/createBrand', create);
-brandRoute.put('/updateBrand/:id', updateById);
-brandRoute.delete('/deleteBrand/:id', deleteById);
+brandRoutes.get('/' /* getAll */);
+brandRoutes.get('/:name' /* getByName */);
+brandRoutes.post('/createBrand' /* create */);
+brandRoutes.put('/updateBrand/:id' /* updateById */);
+brandRoutes.delete('/deleteBrand/:id' /* deleteById */);
 
-export default brandRoute;
+export default brandRoutes;

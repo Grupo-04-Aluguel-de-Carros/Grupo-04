@@ -1,6 +1,6 @@
-export const validateBrandBeforeCreate = async ({ name }) => {
+export const validateBrandBeforeCreate = ({ name }) => {
   try {
-    const brand = await db.brand.create({
+    const brand = db.brand.create({
       data: {
         name: name,
       },

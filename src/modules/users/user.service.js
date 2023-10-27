@@ -82,7 +82,10 @@ export const updateUser = async (id, updateBody) => {
 
     if (email) {
       const existsEmail = await findUserByEmailRepo(email);
-      if (existsEmail && existUser.email !== email) {
+      if (existsEmail.email && existUser.email !== email) {
+        console.log(existsEmail.email);
+        console.log(email);
+        console.log(existUser.email);
         throw new Error('Email já cadastrado', HttpStatusCode.BadRequest);
       }
     }
