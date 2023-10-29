@@ -4,36 +4,31 @@ import {
   onlyLettersRegex,
   onlyNumbersRegex,
   phoneRegex,
-} from '../../utils/regex.js';
+} from '../../../utils/regex.js';
 
-export const updateUserSchema = object({
+export const registerUserSchema = object({
   body: object({
     name: string()
       .trim()
       .min(3, { message: 'O nome deve ter ao menos 2 digitos' })
-      .regex(onlyLettersRegex, { message: 'Apenas letras são aceitas' })
-      .optional(),
+      .regex(onlyLettersRegex, { message: 'Apenas letras são aceitas' }),
     surname: string()
       .trim()
       .min(3, { message: 'O sobrenome deve ter ao menos 2 digitos' })
-      .regex(onlyLettersRegex, { message: 'Apenas letras são aceitas' })
-      .optional(),
+      .regex(onlyLettersRegex, { message: 'Apenas letras são aceitas' }),
     email: string()
       .trim()
       .regex(emailRegex, { message: 'Email inválido' })
       .email(),
-    cpf: string().trim().optional(),
+    cpf: string().trim(),
     phoneNumber: string()
       .trim()
-      .regex(phoneRegex, { message: 'Telefone inválido' })
-      .optional(),
+      .regex(phoneRegex, { message: 'Telefone inválido' }),
     age: string()
       .trim()
-      .regex(onlyNumbersRegex, { message: 'Apenas números são aceitos' })
-      .optional(),
+      .regex(onlyNumbersRegex, { message: 'Apenas números são aceitos' }),
     password: string()
       .trim()
-      .min(6, { message: 'A senha deve ter ao menos 6 digitos' })
-      .optional(),
+      .min(6, { message: 'A senha deve ter ao menos 6 digitos' }),
   }),
 });

@@ -124,3 +124,4 @@ export const findManyUsers = async () => {
     throw new Error(error.message, HttpStatusCode.NotFound);
   }
 };
+
