@@ -1,0 +1,1 @@
+A camada controller fica com toda a responsabilidade entre as requisições e respostas. Ela sempre vai puxar uma validação entre elas para outra camada.

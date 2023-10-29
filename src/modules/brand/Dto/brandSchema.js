@@ -6,10 +6,6 @@ export const brandSchema = object({
       required_error: 'Nome da marca é obrigatório',
     })
       .trim()
-      .min(3, 'O nome deve ter mais de 3 caracteres'),
+      .min(3, 'O nome deve ter mais de 3 caracteres')
   }),
-});
-
-export const createType = brandSchema.safeParse({
-  name: 'Chevrolet',
 });
