@@ -3,6 +3,7 @@ import { createUser } from '../../users/Service/index.js';
 
 export const create = async (req, res) => {
   const { name, surname, email, cpf, phoneNumber, age, password } = req.body;
+  console.log('req.body', req.body);
 
   try {
     const result = await createUser(
