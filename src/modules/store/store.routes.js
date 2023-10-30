@@ -14,7 +14,7 @@ const storeRoutes = Router();
 storeRoutes.post('/', validate(createStoreSchema), create);
 storeRoutes.get('/:id', findByid);
 storeRoutes.get('/', findMany);
-storeRoutes.put('/:id', update);
+storeRoutes.put('/:id', validate(createStoreSchema), update);
 storeRoutes.delete('/:id', exclude);
 
 export default storeRoutes;
