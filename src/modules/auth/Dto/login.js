@@ -1,5 +1,5 @@
 import { object, string } from 'zod';
-import { emailRegex } from '../../../utils';
+import { emailRegex } from '../../../utils/index.js';
 
 export const loginSchema = object({
   body: object({
