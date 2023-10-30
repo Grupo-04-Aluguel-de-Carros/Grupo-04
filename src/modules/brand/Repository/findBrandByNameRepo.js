@@ -1,9 +1,9 @@
 import { db } from '../../../config/db.js';
 
-export const createBrandRepo = async name => {
+export const findBrandByNameRepo = async name => {
   try {
-    const brand = await db.brand.create({
-      data: {
+    const brand = await db.brand.findFirst({
+      where: {
         name: name,
       },
       select: {

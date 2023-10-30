@@ -1,18 +1,21 @@
 import { HttpStatusCode } from 'axios';
-import { createBrandService } from '../Service/createBrandService.js'
-import { db } from '../../../config/db.js';
+import { createBrandService } from '../Service/createBrandService.js';
+import { validateReqSchema } from '../Dto/brandSchema.js';
 
 export const create = async (req, res) => {
-    const sucess = res.status(HttpStatusCode.Ok);
-    const badRequest = res.status(HttpStatusCode.BadRequest);
-    try {
-      const { name } = req.body;
-      const result = await createBrandService( {name} );
-      return sucess.json({
+  try {
+    const { name } = req.body;
+    validateReqSchema(name, req.body);
+    const result = await createBrandService({ name });
+
+    return res.status(HttpStatusCode.Ok).json({
+      status: true,
+      result: {
         data: result,
         message: 'Marca registrada com sucesso !',
-      });
-    } catch (error) {
-      return badRequest.json({ error: error.message });
-    }
-  };
+      },
+    });
+  } catch (error) {
+    return res.status(HttpStatusCode.BadRequest);
+  }
+};

@@ -1,5 +1,6 @@
-import { createBrandRepo } from "../Repository/createBrandRepo.js";
+import { createBrandRepo } from '../Repository/createBrandRepo.js';
 
-export const createBrandService = async ({ name }) => { 
-  await createBrandRepo(name)
+export const createBrandService = async ({ name }) => {
+  const result = await createBrandRepo(name);
+  return result.name;
 };
