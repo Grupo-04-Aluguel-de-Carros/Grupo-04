@@ -33,10 +33,10 @@ model Address {
   number              String
   neighborhood        String
   complement          String
-  Store               Store       @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  storeId             String
-  User                User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId              String
+  Store               Store?       @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  storeId             String?
+  User                User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String?
 }
 
 model Store {
