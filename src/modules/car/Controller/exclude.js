@@ -1,11 +1,10 @@
 import { HttpStatusCode } from 'axios';
-import { deleteUser } from '../Service/index.js';
+import { deleteCar } from '../Service/index.js';
 
 export const exclude = async (req, res) => {
   try {
     const { id } = req.params;
-
-    await deleteUser(id);
+    await deleteCar(id);
 
     return res.status(HttpStatusCode.NoContent).end();
   } catch (error) {

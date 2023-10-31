@@ -6,8 +6,8 @@ export const findStoreByIdRepo = id => {
     return db.store.findUnique({ where: { id } });
   } catch (error) {
     throw new Error(
-      'Não foi possivel achar a loja pelo id',
-      HttpStatusCode.NotFound
+      'Não foi possivel buscar a loja pelo id',
+      HttpStatusCode.InternalServerError
     );
   }
 };
