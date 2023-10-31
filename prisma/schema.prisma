@@ -64,10 +64,10 @@ model Car {
   name                String
   color               String
   imageUrl            String
-  brandId             String
-  Brand               Brand       @relation(fields: [brandId], references: [id])
-  categoryId          String
-  Category            Category    @relation(fields: [categoryId], references: [id])
-  storeId             String
-  Store               Store       @relation(fields: [storeId], references: [id])
+  brandId             String?
+  Brand               Brand?       @relation(fields: [brandId], references: [id])
+  categoryId          String?
+  Category            Category?    @relation(fields: [categoryId], references: [id])
+  storeId             String?
+  Store               Store?       @relation(fields: [storeId], references: [id])
 }

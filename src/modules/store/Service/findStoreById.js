@@ -3,8 +3,18 @@ import { findStoreByIdRepo } from '../Repository/index.js';
 
 export const findStoreById = async id => {
   try {
-    return await findStoreByIdRepo(id);
+    const existsStore = await findStoreByIdRepo(id);
+    if (!existsStore) {
+      throw {
+        message: 'Não foi possivel encontrar a loja pelo id',
+        status: HttpStatusCode.NotFound,
+      };
+    }
+    return existsStore;
   } catch (error) {
-    throw new Error(error.message, HttpStatusCode.BadRequest);
+    throw {
+      message: error.message,
+      status: error.status,
+    };
   }
 };

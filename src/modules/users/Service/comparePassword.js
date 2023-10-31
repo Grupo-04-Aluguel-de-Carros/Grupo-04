@@ -7,26 +7,29 @@ export const comparePassword = async ({ email, password }) => {
     const existsUser = await findUserByEmailRepo(email);
 
     if (!existsUser) {
-      throw new Error(
-        'Usuário ou senha incorreta, verifique os dados e tente novamente.',
-        HttpStatusCode.Unauthorized
-      );
+      throw {
+        message:
+          'Usuário ou senha incorreta, verifique os dados e tente novamente.',
+        status: HttpStatusCode.Unauthorized,
+      };
     }
 
     const validPassword = await compare(password, existsUser.password);
 
     if (!validPassword) {
-      throw new Error(
-        HttpStatusCode.Unauthorized,
-        'Usuário ou senha incorreta, verifique os dados e tente novamente.'
-      );
+      throw {
+        message:
+          'Usuário ou senha incorreta, verifique os dados e tente novamente.',
+        status: HttpStatusCode.Unauthorized,
+      };
     }
 
     return existsUser;
   } catch (error) {
-    throw new Error(
-      'Usuário ou senha incorreta, verifique os dados e tente novamente.',
-      HttpStatusCode.Unauthorized
-    );
+    throw {
+      message:
+        'Usuário ou senha incorreta, verifique os dados e tente novamente.',
+      status: HttpStatusCode.Unauthorized,
+    };
   }
 };
