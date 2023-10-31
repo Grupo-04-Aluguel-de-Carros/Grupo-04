@@ -13,6 +13,6 @@ export const login = async (req, res) => {
   } catch (error) {
     return res
       .status(HttpStatusCode.Unauthorized)
-      .json({ message: error.message });
+      .json({ error: error.message });
   }
 };

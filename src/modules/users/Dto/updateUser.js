@@ -10,7 +10,7 @@ export const updateUserSchema = object({
   body: object({
     name: string()
       .trim()
-      .min(3, { message: 'O nome deve ter ao menos 2 digitos' })
+      .min(3, { message: 'O nome deve ter ao menos 3 digitos' })
       .regex(onlyLettersRegex, { message: 'Apenas letras são aceitas' })
       .optional(),
     surname: string()
