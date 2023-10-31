@@ -11,10 +11,7 @@ export const brandSchema = object({
 });
 
 export const validateReqSchema = (name, req) => {
-  console.log(typeof brandSchema);
   const reqBodyModel = { name: name };
-  console.log(reqBodyModel.length);
-  console.log(req);
   if (reqBodyModel == req) {
     console.log('validado');
   } else {

@@ -1,10 +1,10 @@
 import { HttpStatusCode } from 'axios';
-import { updateBrandService } from '../Service/updateBrandService.js';
+import { updateBrandByIdService } from '../Service/updateBrandByIdService.js';
 
 export const update = async (req, res) => {
   try {
     const { name, id } = req.body;
-    const result = await updateBrandService(name, id);
+    const result = await updateBrandByIdService(name, id);
     return res.status(HttpStatusCode.Ok).json({
       status: true,
       result: {

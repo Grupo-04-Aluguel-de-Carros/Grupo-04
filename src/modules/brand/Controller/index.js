@@ -1,4 +1,4 @@
-export * from './findById.js';
+export * from './findByName.js';
 export * from './findAll.js';
 export * from './excludeById.js';
 export * from './create.js';
