@@ -25,7 +25,7 @@ model User {
 }
 
 model Address {
-  id           String @id @unique @default(uuid())
+  id           String  @id @unique @default(uuid())
   cep          String
   street       String
   city         String
@@ -33,10 +33,10 @@ model Address {
   number       String
   neighborhood String
   complement   String
-  Store        Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  storeId      String
-  User         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId       String
+  Store        Store?  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  storeId      String?
+  User         User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String?
 }
 
 model Store {
