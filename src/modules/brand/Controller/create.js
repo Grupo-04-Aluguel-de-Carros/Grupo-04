@@ -6,6 +6,7 @@ export const create = async (req, res) => {
     const { name } = req.body;
 
     const result = await createBrandService({ name });
+
     switch (result.message) {
       case 'Marca já registrada no sistema !':
         return res.status(HttpStatusCode.Unauthorized).json({
