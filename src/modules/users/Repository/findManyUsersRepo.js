@@ -17,9 +17,9 @@ export const findManyUsersRepo = async () => {
       },
     });
   } catch (error) {
-    throw new Error(
-      'Não foi possível procurar os usuários.',
-      HttpStatusCode.BadRequest
-    );
+    throw {
+      message: 'Não foi possível procurar os usuários.',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

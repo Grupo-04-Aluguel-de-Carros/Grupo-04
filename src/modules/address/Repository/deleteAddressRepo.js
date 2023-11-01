@@ -1,12 +1,12 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findStoreByNameRepo = async name => {
+export const deleteAddressRepo = async id => {
   try {
-    return await db.store.findFirst({ where: { name } });
+    return await db.address.delete({ where: { id } });
   } catch (error) {
     throw {
-      message: 'Não foi possivel buscar a loja pelo nome',
+      message: 'Não foi possivel deletar o endereço',
       status: HttpStatusCode.InternalServerError,
     };
   }

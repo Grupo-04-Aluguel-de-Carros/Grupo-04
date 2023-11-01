@@ -34,9 +34,9 @@ export const createUserRepo = (
       },
     });
   } catch (error) {
-    throw new Error(
-      'Não foi possível criar o usuário.',
-      HttpStatusCode.BadRequest
-    );
+    throw {
+      message: 'Não foi possível criar o usuário.',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

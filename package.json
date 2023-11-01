@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon --exec sucrase-node ./src/index.js",
     "migrate:create": "npx prisma migrate dev --name",
-    "lint": "eslint \"{src,public,prisma}/**/*.js\" --fix"
+    "lint": "eslint \"{src,public,prisma}/**/*.js\" --fix",
+    "seed:run": "npx prisma db seed"
   },
   "keywords": [],
   "author": "",
@@ -35,5 +36,8 @@
     "prettier": "^2.8.8",
     "prisma": "^4.16.2",
     "sucrase": "^3.32.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

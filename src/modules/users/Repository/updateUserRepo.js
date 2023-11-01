@@ -19,9 +19,9 @@ export const updateUserRepo = async (id, updateBody) => {
       },
     });
   } catch (error) {
-    throw new Error(
-      'Não foi possível atualizar o usuário.',
-      HttpStatusCode.BadRequest
-    );
+    throw {
+      message: 'Não foi possível fazer o update do usuário.',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

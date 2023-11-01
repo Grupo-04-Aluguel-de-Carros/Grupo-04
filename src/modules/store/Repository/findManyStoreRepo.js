@@ -5,9 +5,9 @@ export const findManyStoreRepo = () => {
   try {
     return db.store.findMany();
   } catch (error) {
-    throw new Error(
-      'Não foi possivel buscar as lojas',
-      HttpStatusCode.BadRequest
-    );
+    throw {
+      message: 'Não foi possivel buscar aa lojas',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

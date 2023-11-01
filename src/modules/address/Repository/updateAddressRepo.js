@@ -1,15 +1,15 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findStoreByIdRepo = id => {
+export const updateAddressRepo = async (id, updateBody) => {
   try {
-    return db.store.findUnique({
+    return db.address.update({
       where: { id },
-      select: { id: true, name: true, Address: { select: { id: true } } },
+      data: updateBody,
     });
   } catch (error) {
     throw {
-      message: 'Não foi possivel buscar a loja pelo id',
+      message: 'Não foi possivel atualizar o endereço',
       status: HttpStatusCode.InternalServerError,
     };
   }

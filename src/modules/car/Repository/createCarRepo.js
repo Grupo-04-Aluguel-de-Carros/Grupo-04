@@ -11,7 +11,14 @@ export const createCarRepo = async (
 ) => {
   try {
     return await db.car.create({
-      data: { name, color, imageUrl, storeId, categoryId, brandId },
+      data: {
+        name,
+        color,
+        imageUrl,
+        Category: { connect: { id: categoryId } },
+        Brand: { connect: { id: brandId } },
+        Store: { connect: { id: storeId } },
+      },
     });
   } catch (error) {
     throw {

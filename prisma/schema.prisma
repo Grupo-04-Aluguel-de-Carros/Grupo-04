@@ -10,8 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  USER
+  CLIENT
+}
+
 model User {
   id          String    @id @unique @default(uuid())
+  name        String
+  surname     String
+  email       String    @unique
+  cpf         String    @unique
+  phoneNumber String
+  age         String
+  password    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt()
+  Address     Address[]
+  id          String    @id @unique @default(uuid())
+  role        Role      @default(CLIENT)
   name        String
   surname     String
   email       String    @unique
@@ -25,7 +43,7 @@ model User {
 }
 
 model Address {
-  id           String  @id @unique @default(uuid())
+  id           String   @id @unique @default(uuid())
   cep          String
   street       String
   city         String
@@ -33,30 +51,55 @@ model Address {
   number       String
   neighborhood String
   complement   String
-  Store        Store?  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  Store        Store?   @relation(fields: [storeId], references: [id], onDelete: Cascade)
   storeId      String?
-  User         User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       String?
+  id           String   @id @unique @default(uuid())
+  cep          String
+  street       String
+  city         String
+  state        String
+  number       String
+  neighborhood String
+  complement   String
+  Store        Store?   @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  storeId      String?
+  User         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt()
 }
 
 model Store {
-  id      String    @id @unique @default(uuid())
-  name    String
-  Address Address[]
-  Car     Car[]
+  id        String    @id @unique @default(uuid())
+  name      String
+  Address   Address[]
+  Car       Car[]
+  id        String    @id @unique @default(uuid())
+  name      String
+  Address   Address[]
+  Car       Car[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt()
 }
 
 model Category {
-  id          String @id @unique @default(uuid())
-  name        String
-  description String
-  Car         Car[]
+  id            String @id @unique @default(uuid())
+  qualification String
+  description   String
+  Car           Car[]
 }
 
 model Brand {
-  id   String @id @unique @default(uuid())
-  name String
-  Car  Car[]
+  id        String   @id @unique @default(uuid())
+  name      String
+  Car       Car[]
+  id        String   @id @unique @default(uuid())
+  name      String
+  Car       Car[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
 }
 
 model Car {
@@ -65,9 +108,9 @@ model Car {
   color      String
   imageUrl   String
   brandId    String?
-  Brand      Brand?    @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  Brand      Brand?    @relation(fields: [brandId], references: [id])
   categoryId String?
-  Category   Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  Category   Category? @relation(fields: [categoryId], references: [id])
   storeId    String?
   Store      Store?    @relation(fields: [storeId], references: [id])
 }
