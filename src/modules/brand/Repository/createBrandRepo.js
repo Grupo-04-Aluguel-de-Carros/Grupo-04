@@ -1,6 +1,7 @@
 import { db } from '../../../config/db.js';
 
 export const createBrandRepo = async name => {
+  console.log(name);
   try {
     const brand = await db.brand.create({
       data: {

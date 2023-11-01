@@ -10,13 +10,20 @@ export const update = async (req, res) => {
       name,
       id
     );
-    return res.status(HttpStatusCode.Ok).json({
-      status: true,
-      result: {
-        data: resultFromService,
-        message: `A marca de id ${id} foi atualizada`,
-      },
-    });
+    switch (resultFromService.data === null) {
+      case true:
+        return res.status(HttpStatusCode.BadRequest).json({
+          message: `A Categoria de ${id} não existe !`,
+        });
+      case false:
+        return res.status(HttpStatusCode.Ok).json({
+          status: true,
+          result: {
+            data: resultFromService,
+            message: `A marca de id ${id} foi atualizada`,
+          },
+        });
+    }
   } catch (error) {
     return res.status(HttpStatusCode.BadRequest);
   }
