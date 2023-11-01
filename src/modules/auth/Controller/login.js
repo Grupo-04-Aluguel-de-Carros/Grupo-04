@@ -1,4 +1,3 @@
-import { HttpStatusCode } from 'axios';
 import { authenticatedUserByEmailAndPassword } from '../Service/index.js';
 
 export const login = async (req, res) => {
@@ -11,8 +10,6 @@ export const login = async (req, res) => {
 
     return res.json(result);
   } catch (error) {
-    return res
-      .status(HttpStatusCode.Unauthorized)
-      .json({ error: error.message });
+    return res.status(error.status).json({ error: error.message });
   }
 };

@@ -62,6 +62,6 @@ export const createUser = async (
       password
     );
   } catch (error) {
-    throw new Error(error.message, HttpStatusCode.BadRequest);
+    throw { message: error.message, status: HttpStatusCode.BadRequest };
   }
 };

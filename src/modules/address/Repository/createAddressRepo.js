@@ -27,9 +27,9 @@ export const createAddressRepo = (
       },
     });
   } catch (error) {
-    throw new Error(
-      'Não foi possível criar o endereço.',
-      HttpStatusCode.BadRequest
-    );
+    throw {
+      message: 'Não foi possivel criar o endereço',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

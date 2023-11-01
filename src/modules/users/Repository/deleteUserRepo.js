@@ -7,9 +7,9 @@ export const deleteUserRepo = async id => {
       where: { id },
     });
   } catch (error) {
-    throw new Error(
-      'Não foi possível deletetar o usuário.',
-      HttpStatusCode.BadRequest
-    );
+    throw {
+      message: 'Não foi possível deletetar o usuário.',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

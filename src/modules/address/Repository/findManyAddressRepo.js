@@ -1,12 +1,12 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findStoreByNameRepo = async name => {
+export const findManyAddressRepo = async () => {
   try {
-    return await db.store.findFirst({ where: { name } });
+    return await db.address.findMany();
   } catch (error) {
     throw {
-      message: 'Não foi possivel buscar a loja pelo nome',
+      message: 'Não foi possivel buscar os endereços',
       status: HttpStatusCode.InternalServerError,
     };
   }

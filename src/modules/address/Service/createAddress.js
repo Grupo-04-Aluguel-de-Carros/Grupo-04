@@ -1,6 +1,7 @@
 import { HttpStatusCode } from 'axios';
 import { createAddressRepo } from '../Repository/index.js';
 import { findUserById } from '../../users/Service/index.js';
+import { findStoreById } from '../../store/Service/index.js';
 
 export const createAddress = async (
   cep,
@@ -15,14 +16,29 @@ export const createAddress = async (
 ) => {
   try {
     if (!storeId && !userId) {
-      throw new Error(
-        'É necessário vincular o endereço à uma loja ou usuário',
-        HttpStatusCode.NotFound
-      );
+      throw {
+        message: 'É necessário vincular o endereço à uma loja ou usuário',
+        status: HttpStatusCode.NotFound,
+      };
+    }
+    if (storeId) {
+      const existsStore = await findStoreById(storeId);
+      if (!existsStore) {
+        throw {
+          message: 'loja não encontrada',
+          status: HttpStatusCode.NotFound,
+        };
+      }
     }
 
     if (userId) {
-      await findUserById(userId);
+      const existsUser = await findUserById(userId);
+      if (!existsUser) {
+        throw {
+          message: 'Usuário não encontrado',
+          status: HttpStatusCode.NotFound,
+        };
+      }
     }
 
     return await createAddressRepo(
@@ -37,7 +53,9 @@ export const createAddress = async (
       userId
     );
   } catch (error) {
-    console.log('error', error);
-    throw new Error(error.message, HttpStatusCode.BadRequest);
+    throw {
+      message: error.message,
+      status: error.status,
+    };
   }
 };

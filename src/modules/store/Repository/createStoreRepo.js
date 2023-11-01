@@ -9,6 +9,9 @@ export const createStoreRepo = name => {
       },
     });
   } catch (error) {
-    throw new Error('Não foi possivel criar a loja', HttpStatusCode.BadRequest);
+    throw {
+      message: 'Não foi possivel criar a loja',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

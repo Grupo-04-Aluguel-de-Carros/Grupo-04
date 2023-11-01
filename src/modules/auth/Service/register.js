@@ -1,5 +1,4 @@
-import { HttpStatusCode } from 'axios';
-import { createUser } from '../users/user.service';
+import { createUser } from '../users/user.service.js';
 
 export const register = async ({
   name,
@@ -23,6 +22,6 @@ export const register = async ({
 
     return user;
   } catch (error) {
-    throw new Error(HttpStatusCode.BadRequest, error.message);
+    throw { message: error.message, status: error.status };
   }
 };

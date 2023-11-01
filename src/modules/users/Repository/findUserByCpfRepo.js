@@ -18,9 +18,9 @@ export const findUserByCpfRepo = async cpf => {
       },
     });
   } catch (error) {
-    throw new Error(
-      'Não foi possível buscar o usuário pelo cpf.',
-      HttpStatusCode.BadRequest
-    );
+    throw {
+      message: 'Não foi possível buscar o usuário pelo cpf.',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };
