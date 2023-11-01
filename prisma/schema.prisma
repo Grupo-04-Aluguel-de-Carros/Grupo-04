@@ -60,16 +60,14 @@ model Brand {
 }
 
 model Car {
-  id         String   @id @unique @default(uuid())
+  id         String    @id @unique @default(uuid())
   name       String
-  year       String
-  value      Float
   color      String
   imageUrl   String
-  brandId    String
-  Brand      Brand    @relation(fields: [brandId], references: [id])
-  categoryId String
-  Category   Category @relation(fields: [categoryId], references: [id])
-  storeId    String
-  Store      Store    @relation(fields: [storeId], references: [id])
+  brandId    String?
+  Brand      Brand?    @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  categoryId String?
+  Category   Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  storeId    String?
+  Store      Store?    @relation(fields: [storeId], references: [id])
 }

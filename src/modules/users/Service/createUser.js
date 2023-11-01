@@ -21,25 +21,34 @@ export const createUser = async (
     cpf = removeSpecialCharacters(cpf);
 
     if (!validateCPF(cpf)) {
-      throw new Error('Cpf inválido.', HttpStatusCode.BadRequest);
+      throw {
+        message: 'CPF inválido.',
+        status: HttpStatusCode.BadRequest,
+      };
     }
 
     const cpfExists = await findUserByCpfRepo(cpf);
     if (cpfExists) {
-      throw new Error('Cpf já cadastrado.', HttpStatusCode.BadRequest);
+      throw {
+        message: 'CPF já cadastrado.',
+        status: HttpStatusCode.BadRequest,
+      };
     }
 
     const emailExists = await findUserByEmailRepo(email);
 
     if (emailExists) {
-      throw new Error('Email já cadastrado.', HttpStatusCode.BadRequest);
+      throw {
+        message: 'Email já cadastrado.',
+        status: HttpStatusCode.BadRequest,
+      };
     }
 
     if (Number(age) < 18) {
-      throw new Error(
-        'Aplicação proibida para menores de 18 anos',
-        HttpStatusCode.BadRequest
-      );
+      throw {
+        message: 'Aplicação proibida para menores de 18 anos.',
+        status: HttpStatusCode.BadRequest,
+      };
     }
 
     phoneNumber = removeSpecialCharacters(phoneNumber);
