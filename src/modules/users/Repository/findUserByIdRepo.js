@@ -18,9 +18,9 @@ export const findUserByIdRepo = async id => {
       },
     });
   } catch (error) {
-    throw new Error(
-      'Não foi possível buscar o usuário pelo id.',
-      HttpStatusCode.BadRequest
-    );
+    throw {
+      message: 'Não foi possível buscar o usuário pelo id.',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

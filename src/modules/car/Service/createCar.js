@@ -27,6 +27,9 @@ export const createCar = async (
       brandId
     );
   } catch (error) {
-    throw new Error(error.message, error.status);
+    throw {
+      message: error.message,
+      status: error.status,
+    };
   }
 };

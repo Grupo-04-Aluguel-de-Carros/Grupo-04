@@ -1,4 +1,3 @@
-import { HttpStatusCode } from 'axios';
 import { findManyStore } from '../Service/index.js';
 
 export const findMany = async (req, res) => {
@@ -7,6 +6,6 @@ export const findMany = async (req, res) => {
 
     return res.json(result);
   } catch (error) {
-    return res.status(HttpStatusCode.BadRequest).json({ error: error.message });
+    return res.status(error.status).json({ error: error.message });
   }
 };

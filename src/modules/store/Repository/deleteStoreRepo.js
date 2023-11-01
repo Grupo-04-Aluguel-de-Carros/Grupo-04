@@ -1,3 +1,4 @@
+import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
 export const deleteStoreRepo = async id => {
@@ -6,6 +7,9 @@ export const deleteStoreRepo = async id => {
       where: { id },
     });
   } catch (error) {
-    throw new Error('Não foi possivel deletar a loja');
+    throw {
+      message: 'Não foi possivel deletar a loja',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

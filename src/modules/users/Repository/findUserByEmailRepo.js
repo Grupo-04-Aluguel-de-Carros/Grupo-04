@@ -19,9 +19,9 @@ export const findUserByEmailRepo = async email => {
       },
     });
   } catch (error) {
-    throw new Error(
-      'Não foi possível buscar o usuário pelo email.',
-      HttpStatusCode.BadRequest
-    );
+    throw {
+      message: 'Não foi possível buscar o usuário pelo email.',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

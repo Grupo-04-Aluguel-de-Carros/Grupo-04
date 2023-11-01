@@ -1,4 +1,3 @@
-import { HttpStatusCode } from 'axios';
 import { updateStore } from '../Service/index.js';
 
 export const update = async (req, res) => {
@@ -10,6 +9,6 @@ export const update = async (req, res) => {
 
     return res.json(result);
   } catch (error) {
-    return res.status(HttpStatusCode.BadRequest).json({ error: error.message });
+    return res.status(error.style).json({ error: error.message });
   }
 };
