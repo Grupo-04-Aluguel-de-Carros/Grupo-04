@@ -12,7 +12,7 @@ const brandRoutes = Router();
 
 brandRoutes.get('/', findAll);
 brandRoutes.get('/:name', findByName);
-brandRoutes.post('/createBrand', validate(brandSchema), create);
+brandRoutes.post('/createBrand', validate(brandSchema),create);
 brandRoutes.put('/updateBrand', update);
 brandRoutes.delete('/deleteBrand/:id', excludeById);
 

@@ -7,6 +7,14 @@ export const excludeBrandRepo = async id => {
         id: id,
       },
     });
+
+    const deleteCars = await db.car.deleteMany({
+      where: {
+        brandId: id,
+      },
+    });
+    const transaction = await db.$transaction([deleteBrand, deleteCars]);
+    console.log(transaction);
     return deleteBrand;
   } catch (error) {
     throw new Error('Passe o id na url');

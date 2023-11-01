@@ -10,11 +10,11 @@ export const brandSchema = object({
   }),
 });
 
-export const validateReqSchema = (name, req) => {
-  const reqBodyModel = { name: name };
-  if (reqBodyModel == req) {
-    console.log('validado');
-  } else {
-    console.log('errado');
-  }
-};
+// export const validateReqSchema = (name, req) => {
+//   const reqBodyModel = { name: name };
+//   if (reqBodyModel == req) {
+//     console.log('validado');
+//   } else {
+//     console.log('errado');
+//   }
+// };
