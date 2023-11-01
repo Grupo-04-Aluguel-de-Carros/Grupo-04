@@ -1,12 +1,13 @@
 import { object, string } from 'zod';
 
-export const categorySchema = object({
+export const createCategorySchema = object({
   body: object({
     name: string({
       required_error: 'Campo name é necessário',
     })
       .min(3, 'Necessário pelo menos 3 caracteres')
-      .trim(),
+      .trim()
+      .toUpperCase(),
     description: string({
       required_error: 'Campo description é necessário',
     })

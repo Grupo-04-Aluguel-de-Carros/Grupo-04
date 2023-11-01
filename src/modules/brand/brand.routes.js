@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { brandSchema } from './Dto/brandSchema.js';
+import { createBrandSchema } from './Dto/createBrandSchema.js';
 import { validate } from '../../middleware/validate.js';
 import {
   create,
@@ -12,7 +12,7 @@ const brandRoutes = Router();
 
 brandRoutes.get('/', findAll);
 brandRoutes.get('/:name', findByName);
-brandRoutes.post('/createBrand', validate(brandSchema),create);
+brandRoutes.post('/createBrand', validate(createBrandSchema), create);
 brandRoutes.put('/updateBrand', update);
 brandRoutes.delete('/deleteBrand/:id', excludeById);
 

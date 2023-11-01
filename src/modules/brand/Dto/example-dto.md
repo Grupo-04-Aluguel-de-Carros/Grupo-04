@@ -1,1 +1,0 @@
-A camada DTO serve para serialização de algum objeto, exemplo seria uma serialização de um objeto JSON para o client e sua deserialização quando chegar no client.
