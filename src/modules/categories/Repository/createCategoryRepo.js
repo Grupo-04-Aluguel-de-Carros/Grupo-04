@@ -1,21 +1,19 @@
 import { db } from '../../../config/db.js';
 
-export const createCategoryRepo = async (qualification, description) => {
+export const createCategoryRepo = async (name, description) => {
   try {
     const category = await db.category.create({
       data: {
-        qualification: qualification,
+        name: name,
         description: description,
       },
       select: {
-        qualification: true,
+        name: true,
         description: true,
       },
     });
     return category;
   } catch (error) {
-    throw new Error(
-      'É necessário o preenchimento do campo qualification e description'
-    );
+    throw new Error('É necessário o preenchimento do campo name e description');
   }
 };

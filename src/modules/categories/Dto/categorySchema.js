@@ -2,8 +2,8 @@ import { object, string } from 'zod';
 
 export const categorySchema = object({
   body: object({
-    qualification: string({
-      required_error: 'Campo qualification é necessário',
+    name: string({
+      required_error: 'Campo name é necessário',
     })
       .min(3, 'Necessário pelo menos 3 caracteres')
       .trim(),

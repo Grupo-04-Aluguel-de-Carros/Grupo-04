@@ -1,13 +1,13 @@
 import { db } from '../../../config/db.js';
 
-export const findCategoryByQualificationRepo = async qualification => {
+export const findCategoryByNameRepo = async name => {
   try {
     const category = await db.category.findFirst({
       where: {
-        qualification: qualification,
+        name: name,
       },
       select: {
-        qualification: true,
+        name: true,
       },
     });
     return category;

@@ -4,10 +4,10 @@ import { updateCategoryByIdService } from '../Service/updateCategoryByIdService.
 export const update = async (req, res) => {
   try {
     const { id } = req.params;
-    const { description, qualification } = req.body;
+    const { description, name } = req.body;
     const resultFromService = await updateCategoryByIdService(
       description,
-      qualification,
+      name,
       id
     );
     return res.status(HttpStatusCode.Ok).json({

@@ -2,10 +2,10 @@ import { HttpStatusCode } from 'axios';
 import { createCategoryService } from '../Service/createCategoryService.js';
 export const create = async (req, res) => {
   try {
-    const { qualification, description } = req.body;
+    const { name, description } = req.body;
 
     const resultFromService = await createCategoryService(
-      qualification,
+      name,
       description
     );
 
@@ -18,7 +18,7 @@ export const create = async (req, res) => {
         return res.status(HttpStatusCode.Ok).json({
           status: true,
           result: {
-            data: resultFromService.qualification,
+            data: resultFromService.name,
             message: 'Categoria registrada com sucesso !',
           },
         });
