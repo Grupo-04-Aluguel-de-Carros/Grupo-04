@@ -4,7 +4,6 @@ import authRoutes from './modules/auth/auth.routes.js';
 import brandRoutes from './modules/brand/brand.routes.js';
 import storeRoutes from './modules/store/store.routes.js';
 import carRoutes from './modules/car/car.routes.js';
-import categoryRoutes from './modules/categories/categories.routes.js';
 import addressRoutes from './modules/address/address.routes.js';
 
 const routes = Router();
@@ -12,7 +11,6 @@ const routes = Router();
 routes.use('/user', userRoutes);
 routes.use('/auth', authRoutes);
 routes.use('/brand', brandRoutes);
-routes.use('/category', categoryRoutes);
 routes.use('/store', storeRoutes);
 routes.use('/car', carRoutes);
 routes.use('/address', addressRoutes);

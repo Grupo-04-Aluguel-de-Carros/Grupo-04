@@ -6,7 +6,6 @@ export const createCarRepo = async (
   color,
   imageUrl,
   storeId,
-  categoryId,
   brandId
 ) => {
   try {
@@ -15,7 +14,6 @@ export const createCarRepo = async (
         name,
         color,
         imageUrl,
-        Category: { connect: { id: categoryId } },
         Brand: { connect: { id: brandId } },
         Store: { connect: { id: storeId } },
       },
