@@ -9,8 +9,9 @@ export const updateCategoryByIdService = async (description, name, id) => {
       return {
         data: null,
       };
-    case false:
+    case false: {
       const result = await updateCategoryByIdRepo(description, name, id);
       return result;
+    }
   }
 };
