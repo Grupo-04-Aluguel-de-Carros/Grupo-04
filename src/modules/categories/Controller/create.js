@@ -4,10 +4,7 @@ export const create = async (req, res) => {
   try {
     const { name, description } = req.body;
 
-    const resultFromService = await createCategoryService(
-      name,
-      description
-    );
+    const resultFromService = await createCategoryService(name, description);
 
     switch (resultFromService.message) {
       case 'Categoria já registrada no sistema':

@@ -5,10 +5,16 @@ export const createStore = async name => {
   try {
     const existsStore = await findStoreByNameRepo(name);
     if (existsStore) {
-      throw new Error('Nome já cadastrado');
+      throw {
+        message: 'Nome já cadastrado',
+        status: HttpStatusCode.BadRequest,
+      };
     }
     return await createStoreRepo(name);
   } catch (error) {
-    throw new Error(error.message, HttpStatusCode.BadRequest);
+    throw {
+      message: error.message,
+      status: error.status,
+    };
   }
 };
