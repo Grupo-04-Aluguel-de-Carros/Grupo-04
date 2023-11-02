@@ -75,6 +75,7 @@ model Car {
   value       Int
   color       String
   year        String
+  available   Boolean
   description String?
   imageUrl    String
   brandId     String?
