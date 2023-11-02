@@ -8,12 +8,12 @@ export const excludeById = async (req, res) => {
     console.log(resultFromService.message);
     switch (resultFromService.message) {
       case 'Marca não existente no sistema':
-        return res.status(HttpStatusCode.Unauthorized).json({
+        return res.status(HttpStatusCode.NotFound).json({
           message:
             'Marca já está excluida ou nunca foi registrada no sistema !',
         });
       case 'Excluindo marca...':
-        return res.status(HttpStatusCode.Ok).json({
+        return res.status(HttpStatusCode.NoContent).json({
           status: true,
           result: {
             data: resultFromService.name,

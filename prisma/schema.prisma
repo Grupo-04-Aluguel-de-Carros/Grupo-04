@@ -49,23 +49,36 @@ model Address {
 }
 
 model Store {
-  id        String    @id @unique @default(uuid())
+  id        String          @id @unique @default(uuid())
   name      String
   Address   Address[]
   Car       Car[]
   Brand     Brand[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt()
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt()
+  brands    BrandOnStores[]
 }
 
 model Brand {
-  id        String   @id @unique @default(uuid())
+  id        String          @id @unique @default(uuid())
   name      String
   storeId   String
   Store     Store[]
   Car       Car[]
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt()
+  stores    BrandOnStores[]
+}
+
+model BrandOnStores {
+  store     Store    @relation(fields: [storeId], references: [id])
+  storeId   String
+  brand     Brand    @relation(fields: [brandId], references: [id])
+  brandId   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
+
+  @@id([storeId, brandId])
 }
 
 model Car {

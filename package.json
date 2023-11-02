@@ -39,7 +39,7 @@
     "sucrase": "^3.32.0"
   },
   "prisma": {
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seedUserAdmin.js"
   },
   "compilerOptions": {
     "strict": true
