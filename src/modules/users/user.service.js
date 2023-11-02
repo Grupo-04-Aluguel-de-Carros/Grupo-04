@@ -58,7 +58,6 @@ export const createUser = async (
       password
     );
   } catch (error) {
-    console.log('error', error);
     throw new Error(error.message, HttpStatusCode.BadRequest);
   }
 };
@@ -83,9 +82,6 @@ export const updateUser = async (id, updateBody) => {
     if (email) {
       const existsEmail = await findUserByEmailRepo(email);
       if (existsEmail.email && existUser.email !== email) {
-        console.log(existsEmail.email);
-        console.log(email);
-        console.log(existUser.email);
         throw new Error('Email já cadastrado', HttpStatusCode.BadRequest);
       }
     }
@@ -99,7 +95,6 @@ export const updateUser = async (id, updateBody) => {
 
     return await updateUserRepo(id, updateBody);
   } catch (error) {
-    console.log('error', error);
     throw new Error(error.message, HttpStatusCode.BadRequest);
   }
 };

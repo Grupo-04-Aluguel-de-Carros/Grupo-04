@@ -14,9 +14,6 @@ export const createCarSchema = object({
     storeId: string()
       .trim()
       .min(1, { message: 'O id da loja é umm campo obrigatório' }),
-    categoryId: string()
-      .trim()
-      .min(1, { message: 'O id da categoria é umm campo obrigatório' }),
     brandId: string()
       .trim()
       .min(1, { message: 'O id da marca é umm campo obrigatório' }),

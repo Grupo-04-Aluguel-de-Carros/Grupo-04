@@ -4,16 +4,16 @@ import { findBrandByIdRepo } from '../Repository/findBrandByIdRepo.js';
 export const excludeBrandService = async id => {
   const verifyBrandById = await findBrandByIdRepo(id);
   console.log(verifyBrandById);
-  if (verifyBrandById === null) {
+  if (!verifyBrandById) {
     return {
       message: 'Marca não existente no sistema',
       name: verifyBrandById,
     };
-  } else {
-    const resultFromRepository = await excludeBrandRepo(id);
-    return {
-      message: 'Excluindo marca...',
-      name: resultFromRepository,
-    };
   }
+
+  const resultFromRepository = await excludeBrandRepo(id);
+  return {
+    message: 'Excluindo marca...',
+    name: resultFromRepository,
+  };
 };

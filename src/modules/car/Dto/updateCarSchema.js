@@ -18,10 +18,6 @@ export const updateCarSchema = object({
       .trim()
       .min(1, { message: 'O id da loja é umm campo obrigatório' })
       .optional(),
-    categoryId: string()
-      .trim()
-      .min(1, { message: 'O id da categoria é umm campo obrigatório' })
-      .optional(),
     brandId: string()
       .trim()
       .min(1, { message: 'O id da marca é umm campo obrigatório' })
