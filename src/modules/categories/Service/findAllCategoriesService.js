@@ -17,6 +17,8 @@ export const findAllCategoriesService = async () => {
         };
     }
   } catch (error) {
-    console.log(error);
+    throw {
+      message: 'Nenhuma categoria no sistema foi encontrado !',
+    };
   }
 };

@@ -3,8 +3,16 @@ import { findUserByIdRepo } from '../Repository/index.js';
 
 export const findUserById = async id => {
   try {
-    return await findUserByIdRepo(id);
+    const existsUser = await findUserByIdRepo(id);
+
+    if (!existsUser) {
+      throw {
+        message: 'Usuário não encontrado',
+        status: HttpStatusCode.NotFound,
+      };
+    }
+    return;
   } catch (error) {
-    throw new Error(error.message, HttpStatusCode.NotFound);
+    throw { message: error.message, status: error.status };
   }
 };
