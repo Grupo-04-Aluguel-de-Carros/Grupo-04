@@ -17,9 +17,6 @@ export const findAllCategoriesService = async () => {
         };
     }
   } catch (error) {
-    return {
-      message: 'Nenhuma categoria no sistema foi encontrado !',
-      data: resultFromRepo,
-    };
+    console.log(error);
   }
 };
