@@ -1,10 +1,14 @@
 import { db } from '../../../config/db.js';
+import { HttpStatusCode } from 'axios';
 
 export const findAllBrandsRepo = async () => {
   try {
     const brand = await db.brand.findMany();
     return brand;
   } catch (error) {
-    throw new Error('É necessário o preenchimento do campo nome');
+    throw {
+      message: 'Não foi possível conectar com o BD !',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

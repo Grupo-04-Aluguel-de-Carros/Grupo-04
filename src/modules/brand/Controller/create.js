@@ -7,22 +7,14 @@ export const create = async (req, res) => {
 
     const result = await createBrandService({ name });
 
-    switch (result.message) {
-      case 'Marca já registrada no sistema !':
-        return res.status(HttpStatusCode.Unauthorized).json({
-          message: 'Marca já registrada no sistema !',
-        });
-      case 'Marca nova no sistema !':
-        return res.status(HttpStatusCode.Ok).json({
-          status: true,
-          result: {
-            data: result.name,
-            message: 'Marca registrada com sucesso !',
-          },
-        });
-    }
+    return res.status(HttpStatusCode.Created).json({
+      status: true,
+      result: {
+        data: result.name,
+        message: 'Marca registrada com sucesso !',
+      },
+    });
   } catch (error) {
-    console.log('error', error);
-    return res.status(HttpStatusCode.BadRequest).json({ error: error.message });
+    return res.status(error.status).json({ error: error.message });
   }
 };
