@@ -62,7 +62,6 @@ model Store {
 model Brand {
   id        String          @id @unique @default(uuid())
   name      String
-  storeId   String
   Store     Store[]
   Car       Car[]
   createdAt DateTime        @default(now())
