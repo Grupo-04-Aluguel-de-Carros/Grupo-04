@@ -15,7 +15,7 @@ export const findAddressById = async id => {
   } catch (error) {
     throw {
       message: error.message,
-      status: error.status,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };

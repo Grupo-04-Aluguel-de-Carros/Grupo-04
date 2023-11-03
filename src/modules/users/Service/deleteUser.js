@@ -6,11 +6,14 @@ export const deleteUser = async id => {
   try {
     const existUser = await findUserById(id);
     if (!existUser) {
-      throw new Error('Usuário não cadastrado', HttpStatusCode.NotFound);
+      throw {
+        message: 'Usuário não cadastrado',
+        status: HttpStatusCode.NotFound,
+      };
     }
 
     return await deleteUserRepo(id);
   } catch (error) {
-    throw new Error(error.message, HttpStatusCode.BadRequest);
+    throw { message: error.message, status: error.status };
   }
 };

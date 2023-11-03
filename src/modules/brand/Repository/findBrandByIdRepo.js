@@ -9,6 +9,9 @@ export const findBrandByIdRepo = async id => {
       },
       select: {
         id: true,
+        name: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
     return brand;

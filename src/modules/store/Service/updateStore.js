@@ -6,19 +6,25 @@ export const updateStore = async (id, updateBody) => {
   try {
     const existsStore = await findStoreById(id);
     if (!existsStore) {
-      throw new Error(
-        'Não foi possivel encontrar o usuário pelo id',
-        HttpStatusCode.NotFound
-      );
+      throw {
+        message: 'Não foi possivel encontrar o usuário pelo id',
+        status: HttpStatusCode.NotFound,
+      };
     }
 
     const existsStoreName = await findStoreByNameRepo(updateBody);
     if (existsStoreName) {
-      throw new Error('Nome já cadastrado');
+      throw {
+        message: 'Nome já cadastrado',
+        status: HttpStatusCode.BadRequest,
+      };
     }
 
     return await updateStoreRepo(id, updateBody);
   } catch (error) {
-    throw new Error(error.message, HttpStatusCode.BadRequest);
+    throw {
+      message: error.message,
+      status: error.status,
+    };
   }
 };

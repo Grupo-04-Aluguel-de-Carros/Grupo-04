@@ -7,10 +7,16 @@ export const deleteStore = async id => {
     const existsStore = await findStoreById(id);
 
     if (!existsStore) {
-      throw new Error('Usuário não encontrado', HttpStatusCode.NotFound);
+      throw {
+        message: 'Usuário não encontrado',
+        status: HttpStatusCode.NotFound,
+      };
     }
     return await deleteStoreRepo(id);
   } catch (error) {
-    throw new Error(error.message, HttpStatusCode.BadRequest);
+    throw {
+      message: error.message,
+      status: error.status,
+    };
   }
 };

@@ -1,10 +1,12 @@
-import { HttpStatusCode } from 'axios';
 import { findManyStoreRepo } from '../Repository/index.js';
 
-export const findManyStore = async () => {
+export const findManyStore = async ({ offset, listPerPage, query, order }) => {
   try {
-    return await findManyStoreRepo();
+    return await findManyStoreRepo({ offset, listPerPage, query, order });
   } catch (error) {
-    throw new Error(error.message, HttpStatusCode.BadRequest);
+    throw {
+      message: error.message,
+      status: error.status,
+    };
   }
 };

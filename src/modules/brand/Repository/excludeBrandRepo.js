@@ -2,7 +2,6 @@ import { db } from '../../../config/db.js';
 import { HttpStatusCode } from 'axios';
 
 export const excludeBrandRepo = async id => {
-  console.log(id);
   try {
     const deleteBrand = await db.brand.delete({
       where: {

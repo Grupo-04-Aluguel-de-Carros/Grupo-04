@@ -13,8 +13,7 @@ export const authenticatedUserByEmailAndPassword = async ({
     return result;
   } catch (error) {
     throw {
-      message:
-        'Usuário ou senha incorreta, verifique os dados e tente novamente.',
+      message: error.message,
       status: error.status,
     };
   }
