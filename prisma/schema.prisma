@@ -85,7 +85,7 @@ model Car {
   id          String   @id @unique @default(uuid())
   name        String
   model       String
-  value       Int
+  value       Float
   color       String
   year        String
   available   Boolean

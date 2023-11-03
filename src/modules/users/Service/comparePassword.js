@@ -9,7 +9,7 @@ export const comparePassword = async ({ email, password }) => {
     if (!existsUser) {
       throw {
         message:
-          'Usuário ou senha incorreta, verifique os dados e tente novamente.',
+          'Usuário e/ou senha incorreta, verifique os dados e tente novamente.',
         status: HttpStatusCode.Unauthorized,
       };
     }
@@ -19,7 +19,7 @@ export const comparePassword = async ({ email, password }) => {
     if (!validPassword) {
       throw {
         message:
-          'Usuário ou senha incorreta, verifique os dados e tente novamente.',
+          'Usuário e/ou senha incorreta, verifique os dados e tente novamente.',
         status: HttpStatusCode.Unauthorized,
       };
     }
@@ -27,9 +27,8 @@ export const comparePassword = async ({ email, password }) => {
     return existsUser;
   } catch (error) {
     throw {
-      message:
-        'Usuário ou senha incorreta, verifique os dados e tente novamente.',
-      status: HttpStatusCode.Unauthorized,
+      message: error.message,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };

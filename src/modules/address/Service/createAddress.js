@@ -25,7 +25,7 @@ export const createAddress = async (
       const existsStore = await findStoreById(storeId);
       if (!existsStore) {
         throw {
-          message: 'loja não encontrada',
+          message: 'Loja não encontrada',
           status: HttpStatusCode.NotFound,
         };
       }
@@ -55,7 +55,7 @@ export const createAddress = async (
   } catch (error) {
     throw {
       message: error.message,
-      status: error.status,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };

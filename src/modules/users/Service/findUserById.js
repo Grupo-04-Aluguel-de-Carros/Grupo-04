@@ -11,7 +11,7 @@ export const findUserById = async id => {
         status: HttpStatusCode.NotFound,
       };
     }
-    return;
+    return existsUser;
   } catch (error) {
     throw { message: error.message, status: error.status };
   }

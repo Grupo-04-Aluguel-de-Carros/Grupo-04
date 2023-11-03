@@ -40,7 +40,7 @@ export const updateAddress = async (id, updateBody) => {
   } catch (error) {
     throw {
       message: error.message,
-      status: error.status,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };

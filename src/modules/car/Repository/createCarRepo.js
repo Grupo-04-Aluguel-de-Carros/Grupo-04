@@ -6,7 +6,12 @@ export const createCarRepo = async (
   color,
   imageUrl,
   storeId,
-  brandId
+  brandId,
+  available,
+  model,
+  value,
+  year,
+  description
 ) => {
   try {
     return await db.car.create({
@@ -14,11 +19,17 @@ export const createCarRepo = async (
         name,
         color,
         imageUrl,
+        available,
+        model,
+        value,
+        year,
+        description,
         Brand: { connect: { id: brandId } },
         Store: { connect: { id: storeId } },
       },
     });
   } catch (error) {
+    console.log('error', error);
     throw {
       message: 'Não foi possivel criar o carro',
       status: HttpStatusCode.InternalServerError,

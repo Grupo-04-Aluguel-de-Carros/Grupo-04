@@ -2,9 +2,12 @@ import { findManyStore } from '../Service/index.js';
 
 export const findMany = async (req, res) => {
   try {
-    const result = await findManyStore();
+    const { query, order } = req.query;
 
-    return res.json(result);
+    const { currentPage, listPerPage, offset } = req.pagination;
+    const result = await findManyStore({ listPerPage, offset, query, order });
+
+    return res.json({ data: result, meta: { page: currentPage } });
   } catch (error) {
     return res.status(error.status).json({ error: error.message });
   }
