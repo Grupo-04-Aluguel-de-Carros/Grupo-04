@@ -12,7 +12,6 @@ export const createStore = async ({ name, brands }) => {
     }
     return await createStoreRepo({ name, brands });
   } catch (error) {
-    console.log('error', error);
     throw {
       message: error.message,
       status: error.status || HttpStatusCode.InternalServerError,

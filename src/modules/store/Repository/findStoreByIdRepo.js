@@ -9,8 +9,20 @@ export const findStoreByIdRepo = id => {
         id: true,
         name: true,
         Address: { select: { id: true } },
-        Brand: { include: { Car: { where: { storeId: id } } } },
-        Car: { select: { name: true, brandId: true } },
+        brands: {
+          select: {
+            brand: {
+              select: {
+                id: true,
+                name: true,
+                Car: {
+                  select: { name: true, model: true, imageUrl: true },
+                  where: { storeId: id },
+                },
+              },
+            },
+          },
+        },
       },
     });
   } catch (error) {
