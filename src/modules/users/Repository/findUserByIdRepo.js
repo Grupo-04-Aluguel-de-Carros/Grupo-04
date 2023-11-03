@@ -15,6 +15,7 @@ export const findUserByIdRepo = async id => {
         age: true,
         createdAt: true,
         updatedAt: true,
+        Address: { select: { cep: true, state: true, city: true } },
       },
     });
   } catch (error) {

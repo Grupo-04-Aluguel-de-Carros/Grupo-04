@@ -14,6 +14,6 @@ export const deleteUser = async id => {
 
     return await deleteUserRepo(id);
   } catch (error) {
-    throw { message: error.message, status: HttpStatusCode.BadRequest };
+    throw { message: error.message, status: error.status };
   }
 };

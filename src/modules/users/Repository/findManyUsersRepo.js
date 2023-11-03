@@ -8,8 +8,10 @@ export const findManyUsersRepo = async ({
   order,
 }) => {
   try {
-    return await db.user.findMany({
-      where: {
+    let whereCondition = {};
+
+    if (query) {
+      whereCondition = {
         OR: [
           {
             email: { contains: query },
@@ -18,7 +20,10 @@ export const findManyUsersRepo = async ({
             cpf: { contains: query },
           },
         ],
-      },
+      };
+    }
+    return await db.user.findMany({
+      where: whereCondition,
       orderBy: {
         createdAt: order ? order : 'desc',
       },

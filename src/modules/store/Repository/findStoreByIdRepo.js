@@ -5,7 +5,13 @@ export const findStoreByIdRepo = id => {
   try {
     return db.store.findUnique({
       where: { id },
-      select: { id: true, name: true, Address: { select: { id: true } } },
+      select: {
+        id: true,
+        name: true,
+        Address: { select: { id: true } },
+        Brand: { include: { Car: { where: { storeId: id } } } },
+        Car: { select: { name: true, brandId: true } },
+      },
     });
   } catch (error) {
     throw {

@@ -1,9 +1,20 @@
 import { HttpStatusCode } from 'axios';
 import { createCarRepo } from '../Repository/index.js';
-import { findStoreById } from '../../store/Service/findStoreById.js';
+import { findStoreById } from '../../store/Service/index.js';
 import { findBrandById } from '../../brand/Service/findBrandById.js';
 
-export const createCar = async (name, color, imageUrl, storeId, brandId) => {
+export const createCar = async (
+  name,
+  color,
+  imageUrl,
+  storeId,
+  brandId,
+  available,
+  model,
+  value,
+  year,
+  description
+) => {
   const existsStore = await findStoreById(storeId);
   if (!existsStore) {
     throw {
@@ -21,7 +32,18 @@ export const createCar = async (name, color, imageUrl, storeId, brandId) => {
     };
   }
   try {
-    return await createCarRepo(name, color, imageUrl, storeId, brandId);
+    return await createCarRepo(
+      name,
+      color,
+      imageUrl,
+      storeId,
+      brandId,
+      available,
+      model,
+      value,
+      year,
+      description
+    );
   } catch (error) {
     throw {
       message: error.message,

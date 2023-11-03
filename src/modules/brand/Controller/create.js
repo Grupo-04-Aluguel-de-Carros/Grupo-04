@@ -22,6 +22,7 @@ export const create = async (req, res) => {
         });
     }
   } catch (error) {
-    return res.status(HttpStatusCode.BadRequest);
+    console.log('error', error);
+    return res.status(HttpStatusCode.BadRequest).json({ error: error.message });
   }
 };
