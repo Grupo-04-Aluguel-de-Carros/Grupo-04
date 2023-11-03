@@ -1,5 +1,4 @@
 import { HttpStatusCode } from 'axios';
-import { throwError } from '../../../utils/throwError.js';
 import { findAllBrandsRepo } from '../Repository/findAllBrandsRepo.js';
 
 export const findBrandService = async () => {

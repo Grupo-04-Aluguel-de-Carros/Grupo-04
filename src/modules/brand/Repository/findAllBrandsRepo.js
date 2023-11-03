@@ -1,4 +1,5 @@
 import { db } from '../../../config/db.js';
+import { HttpStatusCode } from 'axios';
 
 export const findAllBrandsRepo = async () => {
   try {

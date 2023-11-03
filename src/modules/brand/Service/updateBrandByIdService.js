@@ -1,5 +1,4 @@
 import { HttpStatusCode } from 'axios';
-import { throwError } from '../../../utils/throwError.js';
 import { findBrandByIdRepo } from '../Repository/findBrandByIdRepo.js';
 import { updateBrandByIdRepo } from '../Repository/updateBrandByIdRepo.js';
 
