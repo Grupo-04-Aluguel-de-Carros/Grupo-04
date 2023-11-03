@@ -12,6 +12,9 @@ export const updateBrandByIdRepo = async (name, id) => {
     });
     return updateUser;
   } catch (error) {
-    throw new Error('É necessário o preenchimento do campo nome e id !');
+    throw {
+      message: 'Não foi possível conectar com o BD',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

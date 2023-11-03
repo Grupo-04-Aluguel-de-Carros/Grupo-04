@@ -1,4 +1,6 @@
+import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
+import { throwError } from '../../../utils/throwError.js';
 
 export const findBrandByNameRepo = async name => {
   try {
@@ -12,6 +14,9 @@ export const findBrandByNameRepo = async name => {
     });
     return brand;
   } catch (error) {
-    throw new Error('É necessário o preenchimento do campo nome');
+    throw {
+      message: 'Não foi possível conectar com o BD !',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

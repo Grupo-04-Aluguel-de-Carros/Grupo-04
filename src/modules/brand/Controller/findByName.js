@@ -6,18 +6,11 @@ export const findByName = async (req, res) => {
     const { name } = req.params;
     const result = await findBrandByNameService(name);
 
-    switch (result.message) {
-      case 'Marca inexistente no sistema !':
-        return res.status(HttpStatusCode.NoContent).json();
-      case 'Marca encontrada':
-        return res.status(HttpStatusCode.Ok).json({
-          status: true,
-          result: {
-            data: result,
-          },
-        });
-    }
+    return res.status(HttpStatusCode.Ok).json({
+      status: true,
+      data: result,
+    });
   } catch (error) {
-    return res.status(HttpStatusCode.BadRequest);
+    return res.status(error.status).json({ error: error.message });
   }
 };

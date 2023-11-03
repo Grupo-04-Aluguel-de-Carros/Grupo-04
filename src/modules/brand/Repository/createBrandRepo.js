@@ -1,7 +1,7 @@
+import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
 export const createBrandRepo = async name => {
-  console.log(name);
   try {
     const brand = await db.brand.create({
       data: {
@@ -13,6 +13,9 @@ export const createBrandRepo = async name => {
     });
     return brand;
   } catch (error) {
-    throw new Error('É necessário o preenchimento do campo nome');
+    throw {
+      message: 'Não foi possível conectar com o BD !',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

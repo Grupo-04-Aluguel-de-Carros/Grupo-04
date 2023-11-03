@@ -12,6 +12,9 @@ export const findBrandByIdRepo = async id => {
     });
     return brand;
   } catch (error) {
-    throw new Error('É necessário o preenchimento do campo id');
+    throw {
+      message: 'Não foi possível conectar com o BD !',
+      status: HttpStatusCode.InternalServerError,
+    };
   }
 };

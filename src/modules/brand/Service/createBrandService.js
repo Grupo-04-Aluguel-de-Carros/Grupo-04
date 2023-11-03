@@ -1,17 +1,23 @@
+import { HttpStatusCode } from 'axios';
 import { createBrandRepo } from '../Repository/createBrandRepo.js';
 import { findBrandByNameRepo } from '../Repository/findBrandByNameRepo.js';
 
 export const createBrandService = async ({ name }) => {
-  const brandName = name;
-
-  const verifyBrand = await findBrandByNameRepo(brandName);
-  if (verifyBrand !== null) {
-    return {
-      message: 'Marca já registrada no sistema !',
-      name: verifyBrand.name,
+  try {
+    const verifyBrand = await findBrandByNameRepo(name);
+    if (verifyBrand) {
+      throw {
+        message: 'Marca já existente no sistema !',
+        status: HttpStatusCode.BadRequest,
+      };
+    } else {
+      const brandCreated = await createBrandRepo(name);
+      return brandCreated;
+    }
+  } catch (error) {
+    throw {
+      message: error.message,
+      status: error.status,
     };
-  } else {
-    const brandCreated = await createBrandRepo(brandName);
-    return { message: 'Marca nova no sistema !', name: brandCreated.name };
   }
 };
