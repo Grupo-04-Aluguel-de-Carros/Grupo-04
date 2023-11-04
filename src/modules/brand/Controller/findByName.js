@@ -4,7 +4,9 @@ import { findBrandByNameService } from '../Service/findBrandByNameService.js';
 export const findByName = async (req, res) => {
   try {
     const { name } = req.params;
-    const result = await findBrandByNameService(name);
+    const nameDesiarilized = name;
+    console.log(nameDesiarilized);
+    const result = await findBrandByNameService(nameDesiarilized);
 
     return res.status(HttpStatusCode.Ok).json({
       status: true,

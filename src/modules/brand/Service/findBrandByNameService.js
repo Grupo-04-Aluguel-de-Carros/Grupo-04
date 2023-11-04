@@ -3,6 +3,7 @@ import { findBrandByNameRepo } from '../Repository/findBrandByNameRepo.js';
 
 export const findBrandByNameService = async name => {
   const verifyBrand = await findBrandByNameRepo(name);
+  console.log(verifyBrand);
   try {
     if (!verifyBrand) {
       throw {

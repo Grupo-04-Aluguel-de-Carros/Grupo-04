@@ -8,10 +8,11 @@ import {
   findByName,
   update,
 } from './Controller/index.js';
+import { getBrandByName } from './Dto/getBrandByName.js';
 const brandRoutes = Router();
 
 brandRoutes.get('/', findAll);
-brandRoutes.get('/:name', findByName);
+brandRoutes.get('/:name', validate(getBrandByName), findByName);
 brandRoutes.post('/createBrand', validate(createBrandSchema), create);
 brandRoutes.put('/updateBrand', update);
 brandRoutes.delete('/deleteBrand/:id', excludeById);
