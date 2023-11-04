@@ -4,7 +4,6 @@ import { createBrandService } from '../Service/createBrandService.js';
 export const create = async (req, res) => {
   try {
     const { name } = req.body;
-
     const result = await createBrandService({ name });
 
     return res.status(HttpStatusCode.Created).json({

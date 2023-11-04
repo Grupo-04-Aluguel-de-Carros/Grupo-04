@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { hashSync } from 'bcrypt';
 const prisma = new PrismaClient();
-async function main() {
+export async function main() {
   try {
     await prisma.user.upsert({
       where: { email: 'admin@admin.com' },
