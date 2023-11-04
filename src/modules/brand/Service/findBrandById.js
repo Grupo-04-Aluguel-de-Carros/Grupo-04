@@ -5,7 +5,6 @@ export const findBrandById = async id => {
   try {
     const existsBrand = await findBrandByIdRepo(id);
 
-
     if (!existsBrand) {
       throw {
         message: 'Marca não encontrada',
