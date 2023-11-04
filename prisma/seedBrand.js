@@ -2,7 +2,6 @@ import { db } from '../src/config/db.js';
 import { v4 as uuidv4 } from 'uuid';
 
 const id = uuidv4();
-console.log(id);
 
 export const main = async name => {
   try {

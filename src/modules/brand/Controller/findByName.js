@@ -5,7 +5,6 @@ export const findByName = async (req, res) => {
   try {
     const { name } = req.params;
     const nameDesiarilized = name;
-    console.log(nameDesiarilized);
     const result = await findBrandByNameService(nameDesiarilized);
 
     return res.status(HttpStatusCode.Ok).json({
