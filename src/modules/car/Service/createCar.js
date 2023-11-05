@@ -24,8 +24,6 @@ export const createCar = async (
   }
 
   const existsBrand = await findBrandById(brandId);
-  console.log('brandId', brandId);
-  console.log('existsBrand ser car', existsBrand);
 
   if (!existsBrand) {
     throw {
