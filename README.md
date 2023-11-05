@@ -15,8 +15,4 @@ No terminal, instale os pacotes através do comando "npm i"
 
 Inicie o docker através do comando "docker-compose up -d"
 
-Atualize as tabelas com o comando "npx prisma migrate dev"
-
-Rode os seeds com o comando "npm run seed:run"
-
 Inicie o servidor através do comando "npm run dev"
