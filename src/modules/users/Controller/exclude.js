@@ -9,6 +9,6 @@ export const exclude = async (req, res) => {
 
     return res.status(HttpStatusCode.NoContent).end();
   } catch (error) {
-    return res.status(HttpStatusCode.BadRequest).json({ error: error.message });
+    return res.status(error.status).json({ error: error.message });
   }
 };
