@@ -1,3 +1,4 @@
+import { HttpStatusCode } from 'axios';
 import { findUserById } from '../Service/index.js';
 
 export const findById = async (req, res) => {
@@ -8,6 +9,6 @@ export const findById = async (req, res) => {
 
     return res.json({ message: result });
   } catch (error) {
-    return res.status(error.status).json({ error: error.message });
+    return res.status(HttpStatusCode.BadRequest).json({ error: error.message });
   }
 };
