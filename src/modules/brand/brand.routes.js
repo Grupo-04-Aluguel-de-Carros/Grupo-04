@@ -9,9 +9,10 @@ import {
   update,
 } from './Controller/index.js';
 import { getBrandByName } from './Dto/getBrandByName.js';
+import { getAllBrands } from './Dto/getAllBrands.js';
 const brandRoutes = Router();
 
-brandRoutes.get('/', findAll);
+brandRoutes.get('/', validate(getAllBrands), findAll);
 brandRoutes.get('/:name', validate(getBrandByName), findByName);
 brandRoutes.post('/createBrand', validate(createBrandSchema), create);
 brandRoutes.put('/updateBrand', update);
