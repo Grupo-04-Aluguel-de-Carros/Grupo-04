@@ -7,11 +7,19 @@ export const findBrandByIdRepo = async id => {
       where: {
         id: id,
       },
+      include: {
+        stores: {
+          include: {
+            store: true,
+          },
+        },
+      },
       select: {
         id: true,
         name: true,
         createdAt: true,
         updatedAt: true,
+        stores: true,
       },
     });
     return brand;

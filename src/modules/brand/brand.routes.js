@@ -10,9 +10,9 @@ import {
 } from './Controller/index.js';
 const brandRoutes = Router();
 
-brandRoutes.get('/', findAll);
-brandRoutes.get('/:name', findByName);
-brandRoutes.post('/createBrand', validate(createBrandSchema), create);
+brandRoutes.get('/', validate(getAllBrands), findAll);
+brandRoutes.get('/:name', validate(getBrandByName), findByName);
+brandRoutes.post('/', validate(createBrandSchema), create);
 brandRoutes.put('/updateBrand', update);
 brandRoutes.delete('/deleteBrand/:id', excludeById);
 
