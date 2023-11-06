@@ -8,6 +8,8 @@ import {
   findByName,
   update,
 } from './Controller/index.js';
+import { getBrandByName } from './Dto/getBrandByName.js';
+import { getAllBrands } from './Dto/getAllBrands.js';
 const brandRoutes = Router();
 
 brandRoutes.get('/', validate(getAllBrands), findAll);

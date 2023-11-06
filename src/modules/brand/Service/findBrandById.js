@@ -4,7 +4,6 @@ import { findBrandByIdRepo } from '../Repository/findBrandByIdRepo.js';
 export const findBrandById = async id => {
   try {
     const existsBrand = await findBrandByIdRepo(id);
-    console.log('existsBrand ser', existsBrand);
 
     if (!existsBrand) {
       throw {
