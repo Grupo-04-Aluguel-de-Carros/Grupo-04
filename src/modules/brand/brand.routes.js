@@ -15,7 +15,7 @@ const brandRoutes = Router();
 brandRoutes.get('/', validate(getAllBrands), findAll);
 brandRoutes.get('/:name', validate(getBrandByName), findByName);
 brandRoutes.post('/', validate(createBrandSchema), create);
-brandRoutes.put('/updateBrand', update);
-brandRoutes.delete('/deleteBrand/:id', excludeById);
+brandRoutes.put('/:id', update);
+brandRoutes.delete('/:id', excludeById);
 
 export default brandRoutes;
