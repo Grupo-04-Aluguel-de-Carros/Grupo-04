@@ -1,12 +1,12 @@
 import { db } from '../../../config/db.js';
 import { HttpStatusCode } from 'axios';
 
-export const findAllBrandsRepo = async (take, skip) => {
+export const findAllBrandsRepo = async (recordPerPage, page) => {
   try {
     const [brand, total] = await db.$transaction([
       db.brand.findMany({
-        take,
-        skip,
+        take: recordPerPage,
+        skip: page,
         include: {
           stores: {
             select: {

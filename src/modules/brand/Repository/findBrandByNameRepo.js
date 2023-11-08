@@ -7,8 +7,16 @@ export const findBrandByNameRepo = async name => {
       where: {
         name: name,
       },
-      select: {
-        name: true,
+      include: {
+        stores: {
+          select: {
+            store: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
       },
     });
     return brand;

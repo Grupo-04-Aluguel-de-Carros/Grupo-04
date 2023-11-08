@@ -13,7 +13,7 @@ import { getAllBrands } from './Dto/getAllBrands.js';
 const brandRoutes = Router();
 
 brandRoutes.get('/', validate(getAllBrands), findAll);
-brandRoutes.get('/:name', validate(getBrandByName), findByName);
+brandRoutes.get('/name', validate(getBrandByName), findByName);
 brandRoutes.post('/', validate(createBrandSchema), create);
 brandRoutes.put('/:id', update);
 brandRoutes.delete('/:id', excludeById);
