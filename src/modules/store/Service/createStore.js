@@ -3,6 +3,9 @@ import { createStoreRepo, findStoreByNameRepo } from '../Repository/index.js';
 
 export const createStore = async ({ name, brands }) => {
   try {
+    brands.map(test => {
+      console.log(test);
+    });
     const existsStore = await findStoreByNameRepo(name);
     if (existsStore) {
       throw {

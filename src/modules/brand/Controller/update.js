@@ -3,7 +3,8 @@ import { updateBrandByIdService } from '../Service/updateBrandByIdService.js';
 
 export const update = async (req, res) => {
   try {
-    const { name, id } = req.body;
+    const { id } = req.params;
+    const { name } = req.body;
     const result = await updateBrandByIdService(name, id);
 
     return res.status(HttpStatusCode.Ok).json({

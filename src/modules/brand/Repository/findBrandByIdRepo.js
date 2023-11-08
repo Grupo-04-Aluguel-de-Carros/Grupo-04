@@ -12,13 +12,15 @@ export const findBrandByIdRepo = async id => {
         name: true,
         createdAt: true,
         updatedAt: true,
+        stores: true,
       },
     });
     return brand;
   } catch (error) {
+    console.log('Error==>', error);
     throw {
-      message: 'Não foi possível conectar com o BD !',
-      status: HttpStatusCode.InternalServerError,
+      message: error.message,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };

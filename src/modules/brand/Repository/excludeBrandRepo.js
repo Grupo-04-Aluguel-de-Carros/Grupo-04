@@ -10,9 +10,10 @@ export const excludeBrandRepo = async id => {
     });
     return deleteBrand;
   } catch (error) {
+    console.log('Error==>', error);
     throw {
-      message: 'Não foi possível conectar com o BD !',
-      status: HttpStatusCode.InternalServerError,
+      message: error.message,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };
