@@ -1,15 +1,19 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const addBrandToStoreRepo = async (id, updateBody) => {
+export const addBrandToStoreRepo = async (id, brands) => {
   try {
-    return await db.store.update({
-      where: { id },
-      data: updateBody,
+    const result = await db.brandOnStores.create({
+      data: {
+        storeId: id,
+        brandId: brands,
+      },
     });
+
+    return result;
   } catch (error) {
     throw {
-      message: 'Não foi possivel atualizar a loja com as marcas',
+      message: 'Não foi possivel relacionar a marca à loja',
       status: HttpStatusCode.InternalServerError,
     };
   }

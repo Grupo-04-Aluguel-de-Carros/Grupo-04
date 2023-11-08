@@ -2,13 +2,13 @@ import { updateStore } from '../Service/index.js';
 
 export const update = async (req, res) => {
   const { id } = req.params;
-  const { name, brands } = req.body;
+  const { name } = req.body;
 
   try {
-    const result = await updateStore(id, { name, brands });
+    const result = await updateStore(id, name);
 
     return res.json(result);
   } catch (error) {
-    return res.status(error.status).json({ error: error.message });
+    return res.status(error.style).json({ error: error.message });
   }
 };

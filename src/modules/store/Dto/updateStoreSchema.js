@@ -6,7 +6,6 @@ export const updateStoreSchema = object({
       .trim()
       .min(2, { message: 'O campo nome deve ter ao menos 2 caracteres' })
       .optional(),
-    brands: string().array().nonempty().optional(),
   }),
   params: object({
     id: string(),
