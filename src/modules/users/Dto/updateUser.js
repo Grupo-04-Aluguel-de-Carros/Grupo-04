@@ -36,4 +36,7 @@ export const updateUserSchema = object({
       .min(6, { message: 'A senha deve ter ao menos 6 digitos' })
       .optional(),
   }),
+  params: object({
+    id: string(),
+  }),
 });

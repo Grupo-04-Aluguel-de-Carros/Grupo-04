@@ -5,12 +5,13 @@ import {
   findUserByEmailRepo,
   updateUserRepo,
 } from '../Repository/index.js';
+import { throwError } from '../../../utils/throwError.js';
 
 export const updateUser = async (id, updateBody) => {
   try {
     const existUser = await findUserById(id);
     if (!existUser) {
-      throw new Error('Usuário não cadastrado', HttpStatusCode.NotFound);
+      throwError('Usuário não cadastrado', HttpStatusCode.NotFound);
     }
 
     const { email, cpf } = updateBody;

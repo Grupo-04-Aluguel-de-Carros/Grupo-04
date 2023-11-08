@@ -4,3 +4,4 @@ export * from './findStoreByIdRepo.js';
 export * from './findManyStoreRepo.js';
 export * from './updateStoreRepo.js';
 export * from './deleteStoreRepo.js';
+export * from './addBrandToStoreRepo.js';
