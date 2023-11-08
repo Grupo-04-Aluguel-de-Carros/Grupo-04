@@ -94,9 +94,9 @@ model Car {
   Brand       Brand?   @relation(fields: [brandId], references: [id])
   storeId     String?
   Store       Store?   @relation(fields: [storeId], references: [id])
-  Images      Images[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt()
+  Images      Images[]
 }
 
 model Images {
