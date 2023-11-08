@@ -81,7 +81,7 @@ model BrandOnStores {
 }
 
 model Car {
-  id          String   @id @unique @default(uuid())
+  id          String           @id @unique @default(uuid())
   name        String
   model       String
   value       Float
@@ -91,9 +91,39 @@ model Car {
   description String?
   imageUrl    String
   brandId     String?
-  Brand       Brand?   @relation(fields: [brandId], references: [id])
+  Brand       Brand?           @relation(fields: [brandId], references: [id])
   storeId     String?
-  Store       Store?   @relation(fields: [storeId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt()
+  Store       Store?           @relation(fields: [storeId], references: [id])
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt()
+  Feature     Feature[]
+  features    FeaturesOnCars[]
+}
+
+model FeaturesOnCars {
+  featureId String
+  feature   Feature  @relation(fields: [featureId], references: [id])
+  carId     String
+  car       Car      @relation(fields: [carId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  @@id([carId, featureId])
+}
+
+model Feature {
+  id            String           @id @unique @default(uuid())
+  massageSystem Boolean
+  shielding     Boolean
+  sunroof       Boolean
+  gearLever     Boolean
+  selfDriving   Boolean
+  zeroToHundred String
+  displacement  String
+  power         String
+  velocity      String
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt()
+  Car           Car[]
+  cars          FeaturesOnCars[]
 }
