@@ -8,7 +8,7 @@ const userRoutes = Router();
 
 userRoutes.get('/', handlePagination, findMany);
 userRoutes.get('/:id', isAuthenticated, findById);
-userRoutes.put('/edit/:id', validate(updateUserSchema), update);
+userRoutes.put('/:id', validate(updateUserSchema), update);
 userRoutes.delete('/delete/:id', exclude);
 
 export default userRoutes;

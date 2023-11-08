@@ -42,7 +42,6 @@ export const findManyCarsRepo = async ({
       take: listPerPage,
     });
   } catch (error) {
-    console.log('error', error);
     throw {
       message: 'Não foi possivel buscar a lista de carros',
       status: HttpStatusCode.InternalServerError,
