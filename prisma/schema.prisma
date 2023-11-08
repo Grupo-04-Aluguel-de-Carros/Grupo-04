@@ -94,6 +94,7 @@ model Car {
   Brand       Brand?           @relation(fields: [brandId], references: [id])
   storeId     String?
   Store       Store?           @relation(fields: [storeId], references: [id])
+  Images      Images[]
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt()
   Feature     Feature[]
@@ -126,4 +127,14 @@ model Feature {
   updatedAt     DateTime         @updatedAt()
   Car           Car[]
   cars          FeaturesOnCars[]
+}
+
+model Images {
+  id        String   @id @unique @default(uuid())
+  title     String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  Car       Car?     @relation(fields: [carId], references: [id])
+  carId     String?
 }
