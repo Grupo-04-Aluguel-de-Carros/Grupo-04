@@ -7,9 +7,10 @@ export const createFeatureSchema = object({
     sunRoof: boolean(),
     gearLever: boolean(),
     selfDriving: boolean(),
-    zeroToHundred: string(),
-    displacement: string(),
-    power: string(),
-    velocity: boolean(),
+    zeroToHundred: string().trim(),
+    displacement: string().trim(),
+    power: string().trim(),
+    velocity: string().trim(),
+    carId: string().uuid()
   }),
 });

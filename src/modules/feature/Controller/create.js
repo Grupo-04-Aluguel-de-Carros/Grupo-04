@@ -14,7 +14,7 @@ export const create = async (req, res) => {
       power,
       velocity,
     } = req.body;
-    const resultFromService = createFeatureService(
+    const featureCreated = createFeatureService(
       massageSystem,
       shielding,
       sunRoof,
@@ -25,10 +25,9 @@ export const create = async (req, res) => {
       power,
       velocity
     );
-    // console.log(resultFromService);
-    return res.status(HttpStatusCode.Ok).json({
-      data: massageSystem,
-    });
+/*     return res.status(HttpStatusCode.Ok).json({
+      data: featureCreated,
+    }); */
   } catch (error) {
     console.log(error);
   }

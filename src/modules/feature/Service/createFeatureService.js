@@ -1,3 +1,5 @@
+import {createFeatureRepo} from '../Repository/createFeatureRepo.js'
+
 export const createFeatureService = async (
   massageSystem,
   shielding,
@@ -9,13 +11,12 @@ export const createFeatureService = async (
   power,
   velocity
 ) => {
-  console.log(massageSystem);
-  console.log(shielding);
-  console.log(sunRoof);
-  console.log(gearLever);
-  console.log(selfDriving);
-  console.log(zeroToHundred);
-  console.log(displacement);
-  console.log(power);
-  console.log(velocity);
+  try {
+    const featureFromRepo = await createFeatureRepo(massageSystem, shielding, sunRoof, gearLever, selfDriving, zeroToHundred, displacement, power, velocity)
+    console.log(featureFromRepo);
+  } catch (error) {
+    
+  }
+
+
 };
