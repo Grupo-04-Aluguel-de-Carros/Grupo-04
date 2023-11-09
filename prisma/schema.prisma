@@ -116,7 +116,7 @@ model Feature {
   id            String           @id @unique @default(uuid())
   massageSystem Boolean
   shielding     Boolean
-  sunroof       Boolean
+  sunRoof       Boolean
   gearLever     Boolean
   selfDriving   Boolean
   zeroToHundred String
