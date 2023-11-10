@@ -104,20 +104,21 @@ model FeaturesOnCars {
 }
 
 model Feature {
-  id            String           @id @unique @default(uuid())
+  id            String   @id @unique @default(uuid())
   massageSystem Boolean
   shielding     Boolean
-  sunroof       Boolean
-  gearLever     Boolean
   selfDriving   Boolean
+  sunRoof       Boolean
+  gearLever     String
   zeroToHundred String
   displacement  String
   power         String
   velocity      String
-  createdAt     DateTime         @default(now())
-  updatedAt     DateTime         @updatedAt
-  cars          FeaturesOnCars[]
-  Car           Car[]            @relation("CarToFeature")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  cars FeaturesOnCars[]
+  Car  Car[]            @relation("CarToFeature")
 }
 
 model Images {

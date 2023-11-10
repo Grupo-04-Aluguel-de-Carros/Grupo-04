@@ -13,8 +13,9 @@ export const create = async (req, res) => {
       displacement,
       power,
       velocity,
+      carId,
     } = req.body;
-    const featureCreated = createFeatureService(
+    const featureCreated = await createFeatureService(
       massageSystem,
       shielding,
       sunRoof,
@@ -23,12 +24,15 @@ export const create = async (req, res) => {
       zeroToHundred,
       displacement,
       power,
-      velocity
+      velocity,
+      carId
     );
-/*     return res.status(HttpStatusCode.Ok).json({
+    console.log(featureCreated);
+    return res.status(HttpStatusCode.Ok).json({
       data: featureCreated,
-    }); */
+    });
   } catch (error) {
     console.log(error);
+    return res.status(error.status).json({ error: error.message });
   }
 };

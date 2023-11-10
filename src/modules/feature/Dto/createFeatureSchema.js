@@ -5,12 +5,12 @@ export const createFeatureSchema = object({
     massageSystem: boolean(),
     shielding: boolean(),
     sunRoof: boolean(),
-    gearLever: boolean(),
+    gearLever: string(),
     selfDriving: boolean(),
     zeroToHundred: string().trim(),
     displacement: string().trim(),
     power: string().trim(),
     velocity: string().trim(),
-    carId: string().uuid()
+    carId: string().uuid(),
   }),
 });
