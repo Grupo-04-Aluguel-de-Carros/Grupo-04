@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { create } from '../feature/Controller/create.js';
+import { create, findAll } from '../feature/Controller/index.js';
 import { validate } from '../../middleware/validate.js';
 import { createFeatureSchema } from './Dto/createFeatureSchema.js';
 
 const featureRoutes = Router();
 
-/* featureRoutes.get("/", findAll);
-featureRoutes.get("/", findById); */
+featureRoutes.get('/', findAll);
+/* featureRoutes.get("/:id", findById); */
 featureRoutes.post('/', validate(createFeatureSchema), create);
-/* featureRoutes.put("/", updateById);
-featureRoutes.delete("/", excludeById); */
+/* featureRoutes.put("/:id", updateById);
+featureRoutes.delete("/:id", excludeById); */
 
 export default featureRoutes;

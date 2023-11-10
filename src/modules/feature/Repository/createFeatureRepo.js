@@ -26,11 +26,9 @@ export const createFeatureRepo = async (
         power,
         velocity,
         cars: {
-          create: [
-            {
-              carId: carId,
-            },
-          ],
+          create: {
+            carId: carId,
+          },
         },
       },
       /*         Car: {
