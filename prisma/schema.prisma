@@ -98,7 +98,7 @@ model FeaturesOnCars {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   car       Car      @relation(fields: [carId], references: [id])
-  feature   Feature  @relation(fields: [featureId], references: [id])
+  feature   Feature  @relation(fields: [featureId], references: [id], onDelete: Cascade)
 
   @@id([carId, featureId])
 }

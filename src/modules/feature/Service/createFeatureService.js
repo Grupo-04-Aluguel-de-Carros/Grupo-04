@@ -1,32 +1,10 @@
 import { HttpStatusCode } from 'axios';
 import { createFeatureRepo } from '../Repository/createFeatureRepo.js';
 
-export const createFeatureService = async (
-  massageSystem,
-  shielding,
-  sunRoof,
-  automatic,
-  selfDriving,
-  zeroToHundred,
-  displacement,
-  power,
-  velocity,
-  carId
-) => {
+export const createFeatureService = async (featureObject, carId) => {
   try {
     console.log('carId', carId);
-    const featureFromRepo = await createFeatureRepo(
-      massageSystem,
-      shielding,
-      sunRoof,
-      automatic,
-      selfDriving,
-      zeroToHundred,
-      displacement,
-      power,
-      velocity,
-      carId
-    );
+    const featureFromRepo = await createFeatureRepo(featureObject, carId);
     if (!featureFromRepo) {
       throw {
         message: 'Não foi possível criar a característica',

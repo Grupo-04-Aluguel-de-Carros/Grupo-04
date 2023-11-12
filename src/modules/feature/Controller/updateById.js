@@ -1,13 +1,38 @@
-import { HttpStatusCode } from "axios";
+import { HttpStatusCode } from 'axios';
+import { updateFeatureService } from '../Service/updateFeatureService.js';
 
-export const updateById = (req, res) => {
-    try {
-        const {id} = req.params;
-        return res.status(HttpStatusCode.Ok).json({
-            data: id
-        })
-    } catch (error) {
-        return res.status(error.status).json({error: error.message})
-    }
+export const updateById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      massageSystem,
+      shielding,
+      sunRoof,
+      automatic,
+      selfDriving,
+      zeroToHundred,
+      displacement,
+      power,
+      velocity,
+      carId,
+    } = req.body;
+    const resultFromService = await updateFeatureService(id, {
+      massageSystem,
+      shielding,
+      sunRoof,
+      automatic,
+      selfDriving,
+      zeroToHundred,
+      displacement,
+      power,
+      velocity,
+      carId,
+    });
 
-}
+    return res.status(HttpStatusCode.Ok).json({
+      data: resultFromService,
+    });
+  } catch (error) {
+    return res.status(error.status).json({ error: error.message });
+  }
+};

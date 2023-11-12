@@ -1,30 +1,20 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const createFeatureRepo = async (
-  massageSystem,
-  shielding,
-  sunRoof,
-  automatic,
-  selfDriving,
-  zeroToHundred,
-  displacement,
-  power,
-  velocity,
-  carId
-) => {
+export const createFeatureRepo = async (featureObject, carId) => {
+  console.log(featureObject);
   try {
     const result = await db.feature.create({
       data: {
-        massageSystem,
-        shielding,
-        sunRoof,
-        automatic,
-        selfDriving,
-        zeroToHundred,
-        displacement,
-        power,
-        velocity,
+        massageSystem: featureObject.massageSystem,
+        shielding: featureObject.shielding,
+        selfDriving: featureObject.selfDriving,
+        sunRoof: featureObject.sunRoof,
+        automatic: featureObject.automatic,
+        zeroToHundred: featureObject.zeroToHundred,
+        displacement: featureObject.displacement,
+        power: featureObject.power,
+        velocity: featureObject.velocity,
         cars: {
           create: carId.map(carData => ({
             car: {

@@ -16,15 +16,17 @@ export const create = async (req, res) => {
       carId,
     } = req.body;
     const featureCreated = await createFeatureService(
-      massageSystem,
-      shielding,
-      sunRoof,
-      automatic,
-      selfDriving,
-      zeroToHundred,
-      displacement,
-      power,
-      velocity,
+      {
+        massageSystem,
+        shielding,
+        sunRoof,
+        automatic,
+        selfDriving,
+        zeroToHundred,
+        displacement,
+        power,
+        velocity,
+      },
       carId
     );
 

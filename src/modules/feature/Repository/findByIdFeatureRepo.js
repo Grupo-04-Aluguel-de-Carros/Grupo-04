@@ -24,6 +24,7 @@ export const findByIdFeatureRepo = async id => {
         },
       },
     });
+    console.log(feature);
     return feature;
   } catch (error) {
     console.log('Error ==>', error.message);
