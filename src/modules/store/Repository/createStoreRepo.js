@@ -3,6 +3,7 @@ import { db } from '../../../config/db.js';
 
 export const createStoreRepo = async ({ name, brands }) => {
   try {
+    console.log('brands', brands);
     let brandBody = {};
     if (brands) {
       brandBody = {
@@ -26,11 +27,12 @@ export const createStoreRepo = async ({ name, brands }) => {
       select: {
         id: true,
         name: true,
-        brands: { select: { brand: { select: { name: true } } } },
+        // brands: { select: { brand: { select: { name: true } } } },
       },
     });
     return result;
   } catch (error) {
+    console.log('error', error);
     throw {
       message: 'Não foi possivel criar a loja',
       status: HttpStatusCode.InternalServerError,
