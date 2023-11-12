@@ -23,4 +23,7 @@ export const updateCarSchema = object({
       .min(1, { message: 'O id da marca é umm campo obrigatório' })
       .optional(),
   }),
+  params: object({
+    id: string(),
+  }),
 });

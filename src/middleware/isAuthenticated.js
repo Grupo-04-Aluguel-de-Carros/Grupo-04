@@ -6,15 +6,15 @@ export const isAuthenticated = (req, res, next) => {
 
   if (!authorization) {
     res.status(HttpStatusCode.Unauthorized).json({ message: 'Não autorizado' });
-    throw new Error('Não autorizado', HttpStatusCode.Unauthorized);
   }
 
   try {
     const [bearer, token] = authorization.split(' ');
 
     if (bearer !== 'Bearer') {
-      res.status(HttpStatusCode.Unauthorized);
-      throw new Error('Token mal formatado');
+      res
+        .status(HttpStatusCode.Unauthorized)
+        .json({ message: 'Token mal formatado' });
     }
 
     const payload = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
@@ -22,9 +22,13 @@ export const isAuthenticated = (req, res, next) => {
     req.payload = payload;
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
-      throw new Error(error.name);
+      return res
+        .status(HttpStatusCode.Unauthorized)
+        .json({ Error: error.name });
     }
-    throw new Error('Não autorizado');
+    return res
+      .status(HttpStatusCode.Unauthorized)
+      .json({ Error: 'Não autorizado' });
   }
   return next();
 };

@@ -38,4 +38,7 @@ export const updateAddressSchema = object({
       .min(4, { message: 'O campo "userId" precisa de ao menos 4 caracteres' })
       .optional(),
   }),
+  params: object({
+    id: string(),
+  }),
 });
