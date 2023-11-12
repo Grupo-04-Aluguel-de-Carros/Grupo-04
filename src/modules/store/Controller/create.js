@@ -3,7 +3,6 @@ import { createStore } from '../Service/index.js';
 
 export const create = async (req, res) => {
   try {
-    console.log('req.body', req.body);
     const { name, brands } = req.body;
     const result = await createStore({ name, brands });
 

@@ -7,7 +7,7 @@ export const create = async (req, res) => {
       massageSystem,
       shielding,
       sunRoof,
-      gearLever,
+      automatic,
       selfDriving,
       zeroToHundred,
       displacement,
@@ -19,7 +19,7 @@ export const create = async (req, res) => {
       massageSystem,
       shielding,
       sunRoof,
-      gearLever,
+      automatic,
       selfDriving,
       zeroToHundred,
       displacement,
@@ -27,8 +27,8 @@ export const create = async (req, res) => {
       velocity,
       carId
     );
-    console.log(featureCreated);
-    return res.status(HttpStatusCode.Ok).json({
+
+    return res.status(HttpStatusCode.Created).json({
       data: featureCreated,
     });
   } catch (error) {

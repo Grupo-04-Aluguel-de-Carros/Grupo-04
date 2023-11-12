@@ -109,7 +109,7 @@ model Feature {
   shielding     Boolean
   selfDriving   Boolean
   sunRoof       Boolean
-  gearLever     String
+  automatic     Boolean
   zeroToHundred String
   displacement  String
   power         String

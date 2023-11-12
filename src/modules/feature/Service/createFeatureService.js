@@ -5,7 +5,7 @@ export const createFeatureService = async (
   massageSystem,
   shielding,
   sunRoof,
-  gearLever,
+  automatic,
   selfDriving,
   zeroToHundred,
   displacement,
@@ -14,11 +14,12 @@ export const createFeatureService = async (
   carId
 ) => {
   try {
+    console.log('carId', carId);
     const featureFromRepo = await createFeatureRepo(
       massageSystem,
       shielding,
       sunRoof,
-      gearLever,
+      automatic,
       selfDriving,
       zeroToHundred,
       displacement,

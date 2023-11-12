@@ -5,7 +5,7 @@ export const createFeatureRepo = async (
   massageSystem,
   shielding,
   sunRoof,
-  gearLever,
+  automatic,
   selfDriving,
   zeroToHundred,
   displacement,
@@ -19,26 +19,25 @@ export const createFeatureRepo = async (
         massageSystem,
         shielding,
         sunRoof,
-        gearLever,
+        automatic,
         selfDriving,
         zeroToHundred,
         displacement,
         power,
         velocity,
         cars: {
-          create: {
-            carId: carId,
-          },
+          create: carId.map(carData => ({
+            car: {
+              connect: {
+                id: carData,
+              },
+            },
+          })),
         },
       },
-      /*         Car: {
-          connect: {
-            id: carId,
-          },
-        },
-      }, */
-      include: {
-        Car: true,
+      select: {
+        id: true,
+        cars: { select: { car: { select: { name: true } } } },
       },
     });
     return result;

@@ -22,7 +22,6 @@ export const createStoreRepo = async ({ name, brands }) => {
         brands: { select: { brand: { select: { name: true } } } },
       },
     });
-    console.log('result', result);
     return result;
   } catch (error) {
     throw {
