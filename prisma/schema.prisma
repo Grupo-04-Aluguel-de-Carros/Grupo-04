@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,15 +7,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  ADMIN
-  USER
-  CLIENT
-}
-
 model User {
   id          String    @id @unique @default(uuid())
-  role        Role      @default(CLIENT)
   name        String
   surname     String
   email       String    @unique
@@ -27,7 +17,8 @@ model User {
   age         String
   password    String
   createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt()
+  updatedAt   DateTime  @updatedAt
+  role        Role      @default(CLIENT)
   Address     Address[]
 }
 
@@ -40,42 +31,42 @@ model Address {
   number       String
   neighborhood String
   complement   String
-  Store        Store?   @relation(fields: [storeId], references: [id], onDelete: Cascade)
   storeId      String?
-  User         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       String?
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt()
+  updatedAt    DateTime @updatedAt
+  Store        Store?   @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  User         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Store {
   id        String          @id @unique @default(uuid())
   name      String
-  Address   Address[]
-  Car       Car[]
-  Brand     Brand[]
   createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt()
+  updatedAt DateTime        @updatedAt
+  Address   Address[]
   brands    BrandOnStores[]
+  Car       Car[]
+  Brand     Brand[]         @relation("BrandToStore")
 }
 
 model Brand {
   id        String          @id @unique @default(uuid())
   name      String
-  Store     Store[]
-  Car       Car[]
   createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt()
+  updatedAt DateTime        @updatedAt
   stores    BrandOnStores[]
+  Car       Car[]
+  Store     Store[]         @relation("BrandToStore")
 }
 
 model BrandOnStores {
-  store     Store    @relation(fields: [storeId], references: [id])
   storeId   String
-  brand     Brand    @relation(fields: [brandId], references: [id])
   brandId   String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
+  updatedAt DateTime @updatedAt
+  brand     Brand    @relation(fields: [brandId], references: [id])
+  store     Store    @relation(fields: [storeId], references: [id])
 
   @@id([storeId, brandId])
 }
@@ -83,59 +74,66 @@ model BrandOnStores {
 model Car {
   id          String           @id @unique @default(uuid())
   name        String
-  model       String
-  value       Float
   color       String
-  year        String
-  available   Boolean
-  description String?
   imageUrl    String
   brandId     String?
-  Brand       Brand?           @relation(fields: [brandId], references: [id])
   storeId     String?
-  Store       Store?           @relation(fields: [storeId], references: [id])
-  Images      Images[]
   createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt()
-  Feature     Feature[]
+  description String?
+  model       String
+  updatedAt   DateTime         @updatedAt
+  value       Float
+  year        String
+  available   Boolean
+  Brand       Brand?           @relation(fields: [brandId], references: [id])
+  Store       Store?           @relation(fields: [storeId], references: [id])
   features    FeaturesOnCars[]
+  Images      Images[]
+  Feature     Feature[]        @relation("CarToFeature")
 }
 
 model FeaturesOnCars {
   featureId String
-  feature   Feature  @relation(fields: [featureId], references: [id])
   carId     String
-  car       Car      @relation(fields: [carId], references: [id])
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
+  updatedAt DateTime @updatedAt
+  car       Car      @relation(fields: [carId], references: [id])
+  feature   Feature  @relation(fields: [featureId], references: [id], onDelete: Cascade)
 
   @@id([carId, featureId])
 }
 
 model Feature {
-  id            String           @id @unique @default(uuid())
+  id            String   @id @unique @default(uuid())
   massageSystem Boolean
   shielding     Boolean
-  sunroof       Boolean
-  gearLever     Boolean
   selfDriving   Boolean
+  sunRoof       Boolean
+  automatic     Boolean
   zeroToHundred String
   displacement  String
   power         String
   velocity      String
-  createdAt     DateTime         @default(now())
-  updatedAt     DateTime         @updatedAt()
-  Car           Car[]
-  cars          FeaturesOnCars[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  cars FeaturesOnCars[]
+  Car  Car[]            @relation("CarToFeature")
 }
 
 model Images {
   id        String   @id @unique @default(uuid())
   title     String
-  url       String
+  urlBrand  String
+  urlCar    String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  Car       Car?     @relation(fields: [carId], references: [id])
+  updatedAt DateTime @updatedAt
   carId     String?
+  Car       Car?     @relation(fields: [carId], references: [id])
 }
 
+enum Role {
+  ADMIN
+  USER
+  CLIENT
+}
