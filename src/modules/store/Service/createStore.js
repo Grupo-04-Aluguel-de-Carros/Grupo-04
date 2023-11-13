@@ -1,9 +1,7 @@
 import { HttpStatusCode } from 'axios';
 import { createStoreRepo, findStoreByNameRepo } from '../Repository/index.js';
-import { findBrandById } from '../../brand/Service/findBrandById.js';
-import { throwError } from '../../../utils/throwError.js';
 
-export const createStore = async ({ name, brands }) => {
+export const createStore = async ({ name }) => {
   try {
     const existsStore = await findStoreByNameRepo(name);
     if (existsStore) {
@@ -13,15 +11,7 @@ export const createStore = async ({ name, brands }) => {
       };
     }
 
-    if (brands) {
-      for (let brand of brands) {
-        const brandData = await findBrandById(brand);
-        if (!brandData) {
-          throwError('Marca não encontrada', HttpStatusCode.NotFound);
-        }
-      }
-    }
-    return await createStoreRepo({ name, brands });
+    return await createStoreRepo({ name });
   } catch (error) {
     throw {
       message: error.message,
