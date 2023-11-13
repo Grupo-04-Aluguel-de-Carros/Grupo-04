@@ -5,6 +5,7 @@ import brandRoutes from './modules/brand/brand.routes.js';
 import storeRoutes from './modules/store/store.routes.js';
 import carRoutes from './modules/car/car.routes.js';
 import addressRoutes from './modules/address/address.routes.js';
+import featureRoutes from './modules/feature/feature.routes.js';
 
 const routes = Router();
 
@@ -14,5 +15,6 @@ routes.use('/brand', brandRoutes);
 routes.use('/store', storeRoutes);
 routes.use('/car', carRoutes);
 routes.use('/address', addressRoutes);
+routes.use('/feature', featureRoutes);
 
 export default routes;
