@@ -3,18 +3,8 @@ import { createFeatureService } from '../Service/createFeatureService.js';
 
 export const create = async (req, res) => {
   try {
-    const {
-      massageSystem,
-      shielding,
-      sunRoof,
-      automatic,
-      selfDriving,
-      zeroToHundred,
-      displacement,
-      power,
-      velocity,
-      carId,
-    } = req.body;
+    const { massageSystem, shielding, sunRoof, automatic, selfDriving, carId } =
+      req.body;
     const featureCreated = await createFeatureService(
       {
         massageSystem,
@@ -22,10 +12,6 @@ export const create = async (req, res) => {
         sunRoof,
         automatic,
         selfDriving,
-        zeroToHundred,
-        displacement,
-        power,
-        velocity,
       },
       carId
     );

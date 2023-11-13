@@ -10,10 +10,6 @@ export const createFeatureRepo = async (featureObject, carId) => {
         selfDriving: featureObject.selfDriving,
         sunRoof: featureObject.sunRoof,
         automatic: featureObject.automatic,
-        zeroToHundred: featureObject.zeroToHundred,
-        displacement: featureObject.displacement,
-        power: featureObject.power,
-        velocity: featureObject.velocity,
         cars: {
           create: carId.map(carData => ({
             car: {

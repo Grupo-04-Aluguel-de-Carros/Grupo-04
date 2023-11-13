@@ -7,10 +7,6 @@ export const updateFeatureSchema = object({
     sunRoof: boolean().optional(),
     automatic: boolean().optional(),
     selfDriving: boolean().optional(),
-    zeroToHundred: string().trim().optional(),
-    displacement: string().trim().optional(),
-    power: string().trim().optional(),
-    velocity: string().trim().optional(),
   }),
   params: object({
     id: string().uuid(),
