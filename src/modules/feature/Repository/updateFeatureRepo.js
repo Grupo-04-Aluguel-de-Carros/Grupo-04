@@ -11,10 +11,10 @@ export const updateFeatureRepo = (id, updateBody) => {
     });
     return featureUpdated;
   } catch (error) {
-    console.log('Error ==> ', error);
+    console.log('Error==>', error);
     throw {
       message: error.message,
-      status: HttpStatusCode.InternalServerError,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };

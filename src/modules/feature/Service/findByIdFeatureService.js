@@ -6,7 +6,7 @@ export const findByIdFeatureService = async id => {
     const featureFromRepoById = await findByIdFeatureRepo(id);
     if (!featureFromRepoById) {
       throw {
-        message: 'Feature não encontrado',
+        message: 'Caracteristica não encontrada',
         status: HttpStatusCode.NotFound,
       };
     }

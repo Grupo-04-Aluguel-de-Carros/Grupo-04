@@ -24,13 +24,12 @@ export const findByIdFeatureRepo = async id => {
         },
       },
     });
-    console.log(feature);
     return feature;
   } catch (error) {
-    console.log('Error ==>', error.message);
+    console.log('Error==>', error);
     throw {
       message: error.message,
-      status: HttpStatusCode.InternalServerError,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };

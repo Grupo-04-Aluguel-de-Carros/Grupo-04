@@ -12,11 +12,12 @@ import {
   findFeatureByIdSchema,
   updateFeatureSchema,
   excluseFeatureSchema,
+  findAllFeaturesSchema,
 } from './Dto/indexDto.js';
 
 const featureRoutes = Router();
 
-featureRoutes.get('/', findAll);
+featureRoutes.get('/', validate(findAllFeaturesSchema), findAll);
 featureRoutes.get('/:id', validate(findFeatureByIdSchema), findById);
 featureRoutes.post('/', validate(createFeatureSchema), create);
 featureRoutes.put('/:id', validate(updateFeatureSchema), updateById);

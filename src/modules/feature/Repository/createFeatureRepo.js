@@ -2,7 +2,6 @@ import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
 export const createFeatureRepo = async (featureObject, carId) => {
-  console.log(featureObject);
   try {
     const result = await db.feature.create({
       data: {
@@ -32,10 +31,10 @@ export const createFeatureRepo = async (featureObject, carId) => {
     });
     return result;
   } catch (error) {
-    console.log('Error ==>', error);
+    console.log('Error==>', error);
     throw {
       message: error.message,
-      status: HttpStatusCode.InternalServerError,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };

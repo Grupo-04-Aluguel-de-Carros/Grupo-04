@@ -3,7 +3,6 @@ import { createFeatureRepo } from '../Repository/createFeatureRepo.js';
 
 export const createFeatureService = async (featureObject, carId) => {
   try {
-    console.log('carId', carId);
     const featureFromRepo = await createFeatureRepo(featureObject, carId);
     if (!featureFromRepo) {
       throw {

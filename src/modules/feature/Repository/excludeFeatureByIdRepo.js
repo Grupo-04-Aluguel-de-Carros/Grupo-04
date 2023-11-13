@@ -10,10 +10,10 @@ export const excludeFeatureByIdRepo = async id => {
     });
     return featureExcluded;
   } catch (error) {
-    console.log('Error ==> ', error.message);
+    console.log('Error==>', error);
     throw {
       message: error.message,
-      status: HttpStatusCode.InternalServerError,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };
