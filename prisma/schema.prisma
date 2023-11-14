@@ -105,6 +105,7 @@ model FeaturesOnCars {
 
 model Feature {
   id            String   @id @unique @default(uuid())
+  name          String
   massageSystem Boolean
   shielding     Boolean
   selfDriving   Boolean
