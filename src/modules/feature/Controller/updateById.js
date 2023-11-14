@@ -4,9 +4,17 @@ import { updateFeatureService } from '../Service/updateFeatureService.js';
 export const updateById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { massageSystem, shielding, sunRoof, automatic, selfDriving, carId } =
-      req.body;
+    const {
+      name,
+      massageSystem,
+      shielding,
+      sunRoof,
+      automatic,
+      selfDriving,
+      carId,
+    } = req.body;
     const resultFromService = await updateFeatureService(id, {
+      name,
       massageSystem,
       shielding,
       sunRoof,

@@ -5,6 +5,7 @@ export const createFeatureRepo = async (featureObject, carId) => {
   try {
     const result = await db.feature.create({
       data: {
+        name: featureObject.name,
         massageSystem: featureObject.massageSystem,
         shielding: featureObject.shielding,
         selfDriving: featureObject.selfDriving,
@@ -27,6 +28,7 @@ export const createFeatureRepo = async (featureObject, carId) => {
     });
     return result;
   } catch (error) {
+    console.log('Error==>', error);
     throw {
       message: error.message,
       status: error.status || HttpStatusCode.InternalServerError,

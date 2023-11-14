@@ -1,20 +1,19 @@
 import { db } from '../../../config/db.js';
 import { HttpStatusCode } from 'axios';
 
-export const updateFeatureRepo = (id, updateBody) => {
+export const findFeatureByName = async name => {
   try {
-    const featureUpdated = db.feature.update({
+    const findedFeatureName = await db.feature.findFirst({
       where: {
-        id,
+        name,
       },
-      data: updateBody,
     });
-    return featureUpdated;
+    return findedFeatureName;
   } catch (error) {
     console.log('Error==>', error);
     throw {
       message: error.message,
-      status: error.status || HttpStatusCode.InternalServerError,
+      status: HttpStatusCode.InternalServerError || error.status,
     };
   }
 };
