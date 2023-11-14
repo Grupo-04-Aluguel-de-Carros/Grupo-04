@@ -1,12 +1,16 @@
-import { HttpStatusCode } from "axios";
+import { HttpStatusCode } from 'axios';
+import { createServiceImage } from '../Service/createServiceImage.js';
 
 export const create = (req, res) => {
-try {
-    console.log(req.body);
+  try {
+    const { title, urlBrand, urlCar } = req.body;
+
+    const resultImageFromService = createServiceImage(title, urlBrand, urlCar);
 
     return res.status(HttpStatusCode.Created).json({
-        data: req.body
-    })
-} catch (error) {
-    return res.status(error.status).json({message: error.message})
-    }};
+      data: resultImageFromService,
+    });
+  } catch (error) {
+    return res.status(error.status).json({ message: error.message });
+  }
+};

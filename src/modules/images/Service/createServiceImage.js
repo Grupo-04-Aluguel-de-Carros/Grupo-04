@@ -1,1 +1,1 @@
-export const createServiceImage = () => {};
+export const createServiceImage = (title, urlBrand, urlCar) => {};
