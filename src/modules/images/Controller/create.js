@@ -1,11 +1,16 @@
 import { HttpStatusCode } from 'axios';
 import { createServiceImage } from '../Service/createServiceImage.js';
 
-export const create = (req, res) => {
+export const create = async (req, res) => {
   try {
-    const { title, urlBrand, urlCar } = req.body;
+    const { title, urlBrand, urlCar, carId } = req.body;
 
-    const resultImageFromService = createServiceImage(title, urlBrand, urlCar);
+    const resultImageFromService = await createServiceImage({
+      title,
+      urlBrand,
+      urlCar,
+      carId,
+    });
 
     return res.status(HttpStatusCode.Created).json({
       data: resultImageFromService,

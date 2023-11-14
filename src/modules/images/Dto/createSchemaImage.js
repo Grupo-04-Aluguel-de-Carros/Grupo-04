@@ -5,5 +5,6 @@ export const createSchemaImage = object({
     title: string().min(3).trim(),
     urlBrand: string(),
     urlCar: string(),
+    carId: string().uuid().trim(),
   }),
 });

@@ -120,7 +120,7 @@ model Feature {
 
 model Images {
   id        String   @id @unique @default(uuid())
-  title     String
+  name      String
   urlBrand  String
   urlCar    String
   createdAt DateTime @default(now())
