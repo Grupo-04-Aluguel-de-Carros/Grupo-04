@@ -3,7 +3,6 @@ import { db } from '../../../config/db.js';
 
 export const createStoreRepo = async ({ name }) => {
   try {
-
     const result = await db.store.create({
       data: {
         name,

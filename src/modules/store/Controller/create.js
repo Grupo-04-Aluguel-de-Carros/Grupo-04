@@ -8,7 +8,6 @@ export const create = async (req, res) => {
 
     return res.status(HttpStatusCode.Created).json({ message: result });
   } catch (error) {
-    console.log('Error ==> ', error);
     return res.status(error.status).json({ error: error.message });
   }
 };
