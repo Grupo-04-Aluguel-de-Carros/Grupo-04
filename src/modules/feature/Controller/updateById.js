@@ -4,28 +4,14 @@ import { updateFeatureService } from '../Service/updateFeatureService.js';
 export const updateById = async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      massageSystem,
-      shielding,
-      sunRoof,
-      automatic,
-      selfDriving,
-      zeroToHundred,
-      displacement,
-      power,
-      velocity,
-      carId,
-    } = req.body;
+    const { massageSystem, shielding, sunRoof, automatic, selfDriving, carId } =
+      req.body;
     const resultFromService = await updateFeatureService(id, {
       massageSystem,
       shielding,
       sunRoof,
       automatic,
       selfDriving,
-      zeroToHundred,
-      displacement,
-      power,
-      velocity,
       carId,
     });
 
