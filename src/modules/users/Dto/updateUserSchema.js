@@ -22,7 +22,7 @@ export const updateUserSchema = object({
       .trim()
       .regex(emailRegex, { message: 'Email inválido' })
       .email(),
-    cpf: string().trim().optional(),
+    cpf: string().trim().min(11, { message: 'Cpf inválido' }).optional(),
     phoneNumber: string()
       .trim()
       .regex(phoneRegex, { message: 'Telefone inválido' })

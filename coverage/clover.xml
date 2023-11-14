@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1699928327076" clover="3.2.0">
-  <project timestamp="1699928327076" name="All files">
+<coverage generated="1699970814268" clover="3.2.0">
+  <project timestamp="1699970814268" name="All files">
     <metrics statements="31" coveredstatements="31" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="31" coveredelements="31" complexity="0" loc="31" ncloc="31" packages="1" files="3" classes="3"/>
     <file name="addBrandToStoreSchema.js" path="C:\EstudosDH\Grupo-04-Back-End\src\modules\store\Dto\addBrandToStoreSchema.js">
       <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
