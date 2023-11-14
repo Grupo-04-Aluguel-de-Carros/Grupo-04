@@ -31,7 +31,6 @@ export const createFeatureRepo = async (featureObject, carId) => {
     });
     return result;
   } catch (error) {
-    console.log('Error==>', error);
     throw {
       message: error.message,
       status: error.status || HttpStatusCode.InternalServerError,

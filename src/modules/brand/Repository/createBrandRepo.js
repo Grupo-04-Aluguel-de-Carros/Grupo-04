@@ -13,7 +13,6 @@ export const createBrandRepo = async name => {
     });
     return brand;
   } catch (error) {
-    console.log('Error==>', error);
     throw {
       message: error.message,
       status: error.status || HttpStatusCode.InternalServerError,
