@@ -14,7 +14,6 @@ export const createStoreRepo = async ({ name }) => {
     });
     return result;
   } catch (error) {
-    console.log('Error ==> ', error);
     throw {
       message: 'Não foi possivel criar a loja',
       status: HttpStatusCode.InternalServerError,
