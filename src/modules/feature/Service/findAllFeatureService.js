@@ -3,8 +3,11 @@ import { findAllFeatureRepo } from '../Repository/findAllFeatureRepo.js';
 
 export const findAllFeatureService = async (take, skip) => {
   try {
-    const currentPage = (skip - 1) * 5 || 0;
-    const recordsPerPage = take || 5;
+    if (take == undefined) {
+      take = 5;
+    }
+    const currentPage = (skip - 1) * take;
+    const recordsPerPage = take;
     if (recordsPerPage > 5) {
       throw {
         message: 'Só podemos retornar 5 registros por página',
