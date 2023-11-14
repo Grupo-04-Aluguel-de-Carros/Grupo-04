@@ -5,6 +5,5 @@ export const createStoreSchema = object({
     name: string()
       .trim()
       .min(2, { message: 'O campo nome deve ter ao menos 2 caracteres' }),
-    brands: string().array().nonempty().optional(),
   }),
 });

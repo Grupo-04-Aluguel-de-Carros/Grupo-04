@@ -110,10 +110,6 @@ model Feature {
   selfDriving   Boolean
   sunRoof       Boolean
   automatic     Boolean
-  zeroToHundred String
-  displacement  String
-  power         String
-  velocity      String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
