@@ -13,7 +13,6 @@ export const updateBrandByIdRepo = async (name, id) => {
     });
     return updateUser;
   } catch (error) {
-    console.log('Error==>', error);
     throw {
       message: error.message,
       status: error.status || HttpStatusCode.InternalServerError,

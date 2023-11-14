@@ -20,7 +20,6 @@ export const create = async (req, res) => {
       data: featureCreated,
     });
   } catch (error) {
-    console.log('Error ==> ', error);
     return res.status(error.status).json({ error: error.message });
   }
 };

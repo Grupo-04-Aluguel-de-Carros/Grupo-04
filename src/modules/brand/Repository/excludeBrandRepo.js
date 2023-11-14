@@ -10,7 +10,6 @@ export const excludeBrandRepo = async id => {
     });
     return deleteBrand;
   } catch (error) {
-    console.log('Error==>', error);
     throw {
       message: error.message,
       status: error.status || HttpStatusCode.InternalServerError,
