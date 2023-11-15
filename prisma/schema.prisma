@@ -104,28 +104,27 @@ model FeaturesOnCars {
 }
 
 model Feature {
-  id            String   @id @unique @default(uuid())
-  name          String
+  id            String           @id @unique @default(uuid())
   massageSystem Boolean
   shielding     Boolean
   selfDriving   Boolean
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
   sunRoof       Boolean
   automatic     Boolean
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  cars FeaturesOnCars[]
-  Car  Car[]            @relation("CarToFeature")
+  name          String
+  cars          FeaturesOnCars[]
+  Car           Car[]            @relation("CarToFeature")
 }
 
 model Images {
   id        String   @id @unique @default(uuid())
   name      String
+  carId     String?
   urlBrand  String
   urlCar    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  carId     String?
   Car       Car?     @relation(fields: [carId], references: [id])
 }
 

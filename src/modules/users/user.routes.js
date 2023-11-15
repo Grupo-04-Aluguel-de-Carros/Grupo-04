@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { exclude, findById, findMany, update } from './Controller/index.js';
 import { isAuthenticated, validate } from '../../middleware/index.js';
-import { updateUserSchema } from './Dto/updateUser.js';
+import { updateUserSchema } from './Dto/updateUserSchema.js';
 import { handlePagination } from '../../middleware/handlePagination.js';
 
 const userRoutes = Router();

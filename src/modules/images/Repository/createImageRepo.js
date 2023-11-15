@@ -2,6 +2,7 @@ import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
 export const createImageRepo = async imageObject => {
+  console.log(imageObject);
   try {
     const imageCreated = db.images.create({
       data: imageObject,
