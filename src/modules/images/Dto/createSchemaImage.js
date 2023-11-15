@@ -3,9 +3,9 @@ import { urlRegex } from '../../../utils/index.js';
 
 export const createSchemaImage = object({
   body: object({
-    name: string().min(3).trim(),
+    name: string().trim().min(3),
     urlBrand: string().regex(urlRegex),
     urlCar: string().regex(urlRegex),
-    carId: string().uuid().trim(),
+    carId: string().trim().uuid(),
   }),
 });

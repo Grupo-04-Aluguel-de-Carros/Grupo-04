@@ -6,7 +6,7 @@ export const findAll = async (req, res) => {
     const { take, skip } = req.query;
 
     const featuresFinded = await findAllFeatureService(take, skip);
-    console.log(featuresFinded);
+
     return res.status(HttpStatusCode.Ok).json({
       data: {
         totalPages: featuresFinded.totalPages,

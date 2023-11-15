@@ -2,9 +2,9 @@ import { createImageRepo } from '../Repository/createImageRepo.js';
 
 export const createServiceImage = async imageObject => {
   try {
-    const imageFromRepo = await createImageRepo(imageObject);
+    const createdImageFromRepo = await createImageRepo(imageObject);
 
-    return imageFromRepo;
+    return createdImageFromRepo;
   } catch (error) {
     throw {
       message: error.message,
