@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { create } from './Controller/index.js';
 import { validate } from '../../middleware/index.js';
-import { registerUserSchema } from './Dto/registerUser.js';
+import { registerUserSchema } from './Dto/registerUserSchema.js';
 import { login } from './Controller/index.js';
-import { loginSchema } from './Dto/login.js';
+import { loginSchema } from './Dto/loginSchema.js';
 
 const authRoutes = Router();
 
