@@ -1,20 +1,17 @@
 import { HttpStatusCode } from 'axios';
-import { excludeServiceById } from '../Service/excludeServiceById.js';
+import { excludeServiceImageById } from '../Service/excludeServiceImageById.js';
 
 export const excludeById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const featureExcludedById = excludeServiceById(id);
+    const featureExcludedById = await excludeServiceImageById(id);
 
     return res.status(HttpStatusCode.NoContent).json({
       data: featureExcludedById,
     });
   } catch (error) {
     console.log('Error ', error);
-    throw {
-      message: error.message,
-      status: error.status,
-    };
+    return res.status(error.status).json({ message: error.message });
   }
 };

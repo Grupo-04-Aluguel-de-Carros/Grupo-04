@@ -1,14 +1,22 @@
-import { findImageByRepo } from "../Repository/findImageByIdRepo.js"
+import { HttpStatusCode } from 'axios';
+import { findImageByIdRepo } from '../Repository/findImageByIdRepo.js';
 
-export const findServiceById = async (id) => {
-    try {
-        const resultFromRepo = await findImageByRepo(id)
+export const findServiceById = async id => {
+  try {
+    const findedImageFromRepo = await findImageByIdRepo(id);
 
-        return resultFromRepo;
-    } catch (error) {
-        throw{
-            message: error.message,
-            status: error.status
-        }
+    if (!findedImageFromRepo) {
+      throw {
+        message: `Imagem de id ${id} não foi encontrada`,
+        status: HttpStatusCode.BadRequest,
+      };
     }
-}
+
+    return findedImageFromRepo;
+  } catch (error) {
+    throw {
+      message: error.message,
+      status: error.status,
+    };
+  }
+};
