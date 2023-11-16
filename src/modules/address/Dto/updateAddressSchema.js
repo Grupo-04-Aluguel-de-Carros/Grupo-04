@@ -21,8 +21,8 @@ export const updateAddressSchema = object({
       .optional(),
     number: string()
       .trim()
-      .min(1)
-      .regex(onlyNumbersRegex, { message: 'número inválido' })
+      .min(1, { message: 'O campo "numero" precisa de ao menos 1 caracter' })
+      .regex(onlyNumbersRegex, { message: 'Número inválido' })
       .optional(),
     neighborhood: string({ required_error: 'Campo obrigatório' })
       .trim()
