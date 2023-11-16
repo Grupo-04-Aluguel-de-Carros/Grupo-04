@@ -122,7 +122,7 @@ model Images {
   name      String
   carId     String?
   urlBrand  String
-  urlCar    String
+  urlCar    String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   Car       Car?     @relation(fields: [carId], references: [id])
