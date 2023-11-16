@@ -1,6 +1,6 @@
 import { createImageRepo } from '../Repository/createImageRepo.js';
 
-export const createServiceImage = async (imageObject) => {
+export const createServiceImage = async imageObject => {
   try {
     const createdImageFromRepo = await createImageRepo(imageObject);
 

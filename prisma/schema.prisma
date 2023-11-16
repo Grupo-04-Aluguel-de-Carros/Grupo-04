@@ -105,11 +105,10 @@ model FeaturesOnCars {
 
 model Feature {
   id            String           @id @unique @default(uuid())
-    name          String
+  name          String
   massageSystem Boolean
   shielding     Boolean
   selfDriving   Boolean
-
   sunRoof       Boolean
   automatic     Boolean
   createdAt     DateTime         @default(now())
