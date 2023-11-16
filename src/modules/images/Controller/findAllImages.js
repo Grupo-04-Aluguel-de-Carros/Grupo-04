@@ -3,10 +3,15 @@ import { findAllServiceImage } from '../Service/findAllServiceImage.js';
 
 export const findAllImages = async (req, res) => {
   try {
-    const resultFromFindAll = await findAllServiceImage();
+    const { take, skip } = req.query;
+    const resultFromFindAll = await findAllServiceImage(take, skip);
 
     return res.status(HttpStatusCode.Ok).json({
-      data: resultFromFindAll,
+      totalPages: resultFromFindAll.totalPages,
+      currentPage: skip,
+      totalRegisters: resultFromFindAll.resultFromRepo.total,
+      pageRecords: resultFromFindAll.resultFromRepo.resultFromRepo.length,
+      data: resultFromFindAll.resultFromRepo.resultFromRepo,
     });
   } catch (error) {
     console.log('Error ==> ', error);

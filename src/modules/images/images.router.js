@@ -5,6 +5,7 @@ import {
   deleteSchemaImage,
   findSchemaImageById,
   updateSchemaImage,
+  findAllSchemaImage,
 } from './Dto/indexDto.js';
 import {
   create,
@@ -18,7 +19,7 @@ const imageRoutes = Router();
 
 imageRoutes.post('/', validate(createSchemaImage), create);
 imageRoutes.delete('/:id', validate(deleteSchemaImage), excludeById);
-imageRoutes.get('/', findAllImages);
+imageRoutes.get('/', validate(findAllSchemaImage), findAllImages);
 imageRoutes.get('/:id', validate(findSchemaImageById), findImagesById);
 imageRoutes.put('/:id', validate(updateSchemaImage), updateById);
 
