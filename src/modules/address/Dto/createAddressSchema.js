@@ -6,40 +6,40 @@ export const createAddressSchema = object({
     cep: string({ required_error: 'Campo obrigatório' }).regex(cepRegex, {
       message: 'Cep inválido',
     }),
-    street: string().refine(value => value.trim().length > 0, {
-      message: 'O campo "rua" não pode estar vazio',
-    }),
-    city: string()
+    street: string({ required_error: 'Campo obrigatório' })
+      .min(2, { message: 'Campo obrigatório' })
+      .trim()
+      .refine(value => value.trim().length > 0, {
+        message: 'Campo obrigatório',
+      }),
+    city: string({ required_error: 'Campo obrigatório' })
       .min(2, { message: 'O campo "cidade" precisa de ao menos 2 caracteres' })
       .refine(value => value.trim().length > 0, {
-        message: 'O campo "cidade" não pode estar vazio',
+        message: 'Campo obrigatório',
       }),
-    state: string()
+    state: string({ required_error: 'Campo obrigatório' })
       .min(4, { message: 'O campo "estado" precisa de ao menos 4 caracteres' })
       .refine(value => value.trim().length > 0, {
-        message: 'O campo "estado" não pode estar vazio',
+        message: 'Campo obrigatório',
       }),
-    number: string()
-      .min(1, { message: 'O campo "number" precisa de ao menos 1 caractere' })
+    number: string({ required_error: 'Campo obrigatório' })
+      .min(1, { message: 'O campo "numero" precisa de ao menos 1 caracter' })
       .regex(onlyNumbersRegex, { message: 'Número inválido' })
       .refine(value => value.trim().length > 0, {
-        message: 'O campo "number" não pode estar vazio',
+        message: 'Campo obrigatório',
       }),
     neighborhood: string({ required_error: 'Campo obrigatório' })
       .min(2, { message: 'O campo "bairro" precisa de ao menos 2 caracteres' })
       .refine(value => value.trim().length > 0, {
-        message: 'O campo "bairro" não pode estar vazio',
+        message: 'Campo obrigatório',
       }),
     complement: string()
       .trim()
-      .min(1, {
-        message: 'O campo "complemento" precisa de ao menos 1 caractere',
-      })
       .refine(value => value.trim().length > 0, {
         message: 'O campo "complemento" não pode estar vazio',
       })
-      .nullable()
-      .optional(),
+      .optional()
+      .nullable(),
     storeId: string()
       .min(4, { message: 'O campo "storeId" precisa de ao menos 4 caracteres' })
       .refine(value => value.trim().length > 0, {

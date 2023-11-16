@@ -4,7 +4,7 @@ import { createStoreSchema } from '../createStoreSchema.js';
 
 describe('register store schema', () => {
   describe('when a valid body', () => {
-    test('should validates a body with all fields', () => {
+    it('should validates a body with all fields', () => {
       const validInput = {
         body: {
           name: 'Teste1',
