@@ -9,7 +9,6 @@ export const findCarByIdRepo = async id => {
         id: true,
         name: true,
         color: true,
-        imageUrl: true,
         Brand: { select: { id: true, name: true } },
         Store: { select: { id: true, name: true } },
       },

@@ -4,7 +4,6 @@ import { db } from '../../../config/db.js';
 export const createCarRepo = async (
   name,
   color,
-  imageUrl,
   storeId,
   brandId,
   available,
@@ -18,7 +17,6 @@ export const createCarRepo = async (
       data: {
         name,
         color,
-        imageUrl,
         available,
         model,
         value,
@@ -29,6 +27,7 @@ export const createCarRepo = async (
       },
     });
   } catch (error) {
+    console.log('error', error);
     throw {
       message: 'Não foi possivel criar o carro',
       status: HttpStatusCode.InternalServerError,
