@@ -30,10 +30,10 @@ describe('register store schema', () => {
         );
       }
     });
-    it('should return an error for a body with 2 caracteres in "name"', () => {
+    it('should return an error for a body with 1 caracteres in "name"', () => {
       const invalidInput = {
         body: {
-          name: 'ab',
+          name: 'a',
         },
       };
       const schema = createStoreSchema.safeParse(invalidInput);
