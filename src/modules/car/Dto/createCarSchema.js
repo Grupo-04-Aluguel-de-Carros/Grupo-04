@@ -9,9 +9,6 @@ export const createCarSchema = object({
     color: string()
       .trim()
       .min(1, { message: 'A cor deve ter ao menos 1 caractere' }),
-    imageUrl: string()
-      .trim()
-      .min(1, { message: 'A imageUrl deve ter ao menos 1 caractere' }),
     storeId: string()
       .trim()
       .min(1, { message: 'O id da loja é umm campo obrigatório' }),
