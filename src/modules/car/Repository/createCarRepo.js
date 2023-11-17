@@ -27,6 +27,7 @@ export const createCarRepo = async (
       },
     });
   } catch (error) {
+    console.log('error', error);
     throw {
       message: 'Não foi possivel criar o carro',
       status: HttpStatusCode.InternalServerError,
