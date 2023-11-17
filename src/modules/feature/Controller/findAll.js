@@ -3,14 +3,14 @@ import { findAllFeatureService } from '../Service/findAllFeatureService.js';
 
 export const findAll = async (req, res) => {
   try {
-    const { take, skip } = req.query;
+    const { currentPage, listPerPage, offset } = req.pagination;
 
-    const featuresFinded = await findAllFeatureService(take, skip);
+    const featuresFinded = await findAllFeatureService(listPerPage, offset);
 
     return res.status(HttpStatusCode.Ok).json({
       data: {
         totalPages: featuresFinded.totalPages,
-        currentPage: skip,
+        currentPage: currentPage,
         pageRecords: featuresFinded.featureFromRepo.featureFromDb.length,
         totalRegisters: featuresFinded.featureFromRepo.total,
         features: featuresFinded.featureFromRepo.featureFromDb,

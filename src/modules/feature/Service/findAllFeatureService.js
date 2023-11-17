@@ -1,25 +1,16 @@
 import { HttpStatusCode } from 'axios';
 import { findAllFeatureRepo } from '../Repository/findAllFeatureRepo.js';
 
-export const findAllFeatureService = async (take, skip) => {
+export const findAllFeatureService = async (listPerPage, offset) => {
   try {
-    if (take == undefined) {
-      take = 5;
-    }
-    const currentPage = (skip - 1) * take;
-    const recordsPerPage = take;
-    if (recordsPerPage > 5) {
+    if (listPerPage > 5) {
       throw {
         message: 'Só podemos retornar 5 registros por página',
         status: HttpStatusCode.BadRequest,
       };
     }
-
-    const featureFromRepo = await findAllFeatureRepo(
-      recordsPerPage,
-      currentPage
-    );
-    const totalPages = Math.ceil(featureFromRepo.total / recordsPerPage);
+    const featureFromRepo = await findAllFeatureRepo(listPerPage, offset);
+    const totalPages = Math.ceil(featureFromRepo.total / listPerPage);
     if (featureFromRepo.length === 0) {
       throw {
         message: 'Nenhuma caracteristica foi encontrada',
