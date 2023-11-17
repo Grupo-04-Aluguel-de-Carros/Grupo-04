@@ -33,9 +33,9 @@ export const main = async name => {
   }
 };
 
-main('Ferrari');
-main('McLaren');
-main('Lamborghini');
-main('Bugatti');
-main('Porsche');
-main('Koenigsegg');
+main('FERRARI');
+main('MCLAREN');
+main('LAMBORGHINI');
+main('BUGATTI');
+main('PORSCHE');
+main('KOENIGSEGG');
