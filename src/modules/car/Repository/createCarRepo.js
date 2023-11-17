@@ -4,7 +4,6 @@ import { db } from '../../../config/db.js';
 export const createCarRepo = async (
   name,
   color,
-  imageUrl,
   storeId,
   brandId,
   available,
@@ -18,7 +17,6 @@ export const createCarRepo = async (
       data: {
         name,
         color,
-        imageUrl,
         available,
         model,
         value,
