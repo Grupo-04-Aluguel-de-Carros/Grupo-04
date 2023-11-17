@@ -5,6 +5,7 @@ export const createBrandSchema = object({
     name: string({
       required_error: 'Nome da marca é obrigatório',
     })
+      .toUpperCase()
       .min(3)
       .trim(),
   }),
