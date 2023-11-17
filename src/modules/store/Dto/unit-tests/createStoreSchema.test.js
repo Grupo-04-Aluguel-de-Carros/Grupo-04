@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-// import { jest } from 'jest';
+
 import { createStoreSchema } from '../createStoreSchema.js';
 
 describe('register store schema', () => {
