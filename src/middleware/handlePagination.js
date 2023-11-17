@@ -12,7 +12,6 @@ export const handlePagination = (req, res, next) => {
   const currentPage = Number(page) || 1;
   const listPerPage = Number(limit) || 5;
   const offset = (currentPage - 1) * listPerPage;
-
   req.pagination = { currentPage, listPerPage, offset };
 
   next();
