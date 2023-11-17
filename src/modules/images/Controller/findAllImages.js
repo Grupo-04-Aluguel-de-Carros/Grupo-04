@@ -3,12 +3,12 @@ import { findAllServiceImage } from '../Service/findAllServiceImage.js';
 
 export const findAllImages = async (req, res) => {
   try {
-    const { take, skip } = req.query;
-    const resultFromFindAll = await findAllServiceImage(take, skip);
+    const { currentPage, listPerPage, offset } = req.pagination;
+    const resultFromFindAll = await findAllServiceImage( listPerPage, offset);
 
     return res.status(HttpStatusCode.Ok).json({
       totalPages: resultFromFindAll.totalPages,
-      currentPage: skip,
+      currentPage: currentPage,
       totalRegisters: resultFromFindAll.resultFromRepo.total,
       pageRecords: resultFromFindAll.resultFromRepo.resultFromRepo.length,
       data: resultFromFindAll.resultFromRepo.resultFromRepo,
