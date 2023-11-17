@@ -4,7 +4,7 @@ import { findAllServiceImage } from '../Service/findAllServiceImage.js';
 export const findAllImages = async (req, res) => {
   try {
     const { currentPage, listPerPage, offset } = req.pagination;
-    const resultFromFindAll = await findAllServiceImage( listPerPage, offset);
+    const resultFromFindAll = await findAllServiceImage(listPerPage, offset);
 
     return res.status(HttpStatusCode.Ok).json({
       totalPages: resultFromFindAll.totalPages,
