@@ -17,7 +17,7 @@ export const updateStoreRepo = async (id, updateBody) => {
                 id: true,
                 name: true,
                 Car: {
-                  select: { name: true, model: true, imageUrl: true },
+                  select: { name: true, model: true },
                   where: { storeId: id },
                 },
               },

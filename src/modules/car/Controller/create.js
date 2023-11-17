@@ -5,7 +5,6 @@ export const create = async (req, res) => {
   const {
     name,
     color,
-    imageUrl,
     storeId,
     brandId,
     available,
@@ -18,7 +17,6 @@ export const create = async (req, res) => {
     const result = await createCar(
       name,
       color,
-      imageUrl,
       storeId,
       brandId,
       available,
