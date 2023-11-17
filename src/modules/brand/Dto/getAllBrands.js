@@ -14,5 +14,6 @@ export const getAllBrands = object({
         return parsedSkip;
       })
       .optional(),
+    name: string().trim().min(3).optional(),
   }),
 });
