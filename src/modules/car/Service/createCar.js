@@ -6,7 +6,6 @@ import { findBrandById } from '../../brand/Service/findBrandById.js';
 export const createCar = async (
   name,
   color,
-  imageUrl,
   storeId,
   brandId,
   available,
@@ -35,7 +34,6 @@ export const createCar = async (
     return await createCarRepo(
       name,
       color,
-      imageUrl,
       storeId,
       brandId,
       available,
@@ -47,7 +45,7 @@ export const createCar = async (
   } catch (error) {
     throw {
       message: error.message,
-      status: error.status,
+      status: error.status || HttpStatusCode.InternalServerError,
     };
   }
 };

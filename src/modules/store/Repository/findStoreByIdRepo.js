@@ -16,7 +16,7 @@ export const findStoreByIdRepo = id => {
                 id: true,
                 name: true,
                 Car: {
-                  select: { name: true, model: true, imageUrl: true },
+                  select: { name: true, model: true },
                   where: { storeId: id },
                 },
               },

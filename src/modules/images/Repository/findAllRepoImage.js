@@ -1,12 +1,12 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findAllRepoImage = async (recordsPerPage, currentPage) => {
+export const findAllRepoImage = async (listPerPage, offset) => {
   try {
     const [resultFromRepo, total] = await db.$transaction([
       db.images.findMany({
-        take: recordsPerPage,
-        skip: currentPage,
+        take: listPerPage,
+        skip: offset,
       }),
       db.images.count(),
     ]);

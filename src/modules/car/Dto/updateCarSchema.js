@@ -10,10 +10,6 @@ export const updateCarSchema = object({
       .trim()
       .min(1, { message: 'A cor deve ter ao menos 1 caractere' })
       .optional(),
-    imageUrl: string()
-      .trim()
-      .min(1, { message: 'A imageUrl deve ter ao menos 1 caractere' })
-      .optional(),
     storeId: string()
       .trim()
       .min(1, { message: 'O id da loja é umm campo obrigatório' })

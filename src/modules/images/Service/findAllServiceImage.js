@@ -1,20 +1,15 @@
 import { HttpStatusCode } from 'axios';
 import { findAllRepoImage } from '../Repository/findAllRepoImage.js';
 
-export const findAllServiceImage = async (take, skip) => {
+export const findAllServiceImage = async (listPerPage, offset) => {
   try {
-    if (take == undefined) {
-      take = 5;
-    }
-    const recordsPerPage = take;
-    const currentPage = (skip - 1) * take;
-    if (recordsPerPage > 5) {
+    if (listPerPage > 5) {
       throw {
         message: 'Só podemos retornar 5 registros por página',
         status: HttpStatusCode.BadRequest,
       };
     }
-    const resultFromRepo = await findAllRepoImage(recordsPerPage, currentPage);
+    const resultFromRepo = await findAllRepoImage(listPerPage, offset);
 
     if (!resultFromRepo) {
       throw {
@@ -23,7 +18,7 @@ export const findAllServiceImage = async (take, skip) => {
       };
     }
 
-    const totalPages = Math.ceil(resultFromRepo.total / recordsPerPage);
+    const totalPages = Math.ceil(resultFromRepo.total / listPerPage);
 
     return { resultFromRepo, totalPages };
   } catch (error) {
