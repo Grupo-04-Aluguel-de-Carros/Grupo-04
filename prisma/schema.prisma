@@ -75,7 +75,6 @@ model Car {
   id          String           @id @unique @default(uuid())
   name        String
   color       String
-  imageUrl    String
   brandId     String?
   storeId     String?
   createdAt   DateTime         @default(now())
