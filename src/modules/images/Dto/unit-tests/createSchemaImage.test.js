@@ -4,7 +4,7 @@ import { createSchemaImage } from '../createSchemaImage';
 describe('Create an Image', () => {
   describe('When an invalid body', () => {
     it('Should return an error without a body object', () => {
-      const validBodyImage = {
+      const invalidBodyImage = {
         name: 'Imagem de uma Ferrari',
         urlBrand:
           'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
@@ -14,13 +14,13 @@ describe('Create an Image', () => {
         ],
         carId: '2a17f8eb-d502-4e3a-82f7-83daa70a0795',
       };
-      const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+      const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
       expect(imageBodyParsed.success).toBe(false);
     });
   });
 
   it('Should return an error of a payload without name', () => {
-    const validBodyImage = {
+    const invalidBodyImage = {
       body: {
         urlBrand:
           'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
@@ -31,12 +31,12 @@ describe('Create an Image', () => {
         carId: '2a17f8eb-d502-4e3a-82f7-83daa70a0795',
       },
     };
-    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
 
   it('Should return an error of a payload without urlBrand', () => {
-    const validBodyImage = {
+    const invalidBodyImage = {
       body: {
         name: 'Imagem de uma Ferrari',
         urlCar: [
@@ -46,12 +46,12 @@ describe('Create an Image', () => {
         carId: '2a17f8eb-d502-4e3a-82f7-83daa70a0795',
       },
     };
-    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
 
   it('Should return an error of a payload without urlCar', () => {
-    const validBodyImage = {
+    const invalidBodyImage = {
       body: {
         name: 'Imagem de uma Ferrari',
         urlBrand:
@@ -59,12 +59,12 @@ describe('Create an Image', () => {
         carId: '2a17f8eb-d502-4e3a-82f7-83daa70a0795',
       },
     };
-    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
 
   it('Should return an error of a payload without carId', () => {
-    const validBodyImage = {
+    const invalidBodyImage = {
       body: {
         name: 'Imagem de uma Ferrari',
         urlBrand:
@@ -75,12 +75,12 @@ describe('Create an Image', () => {
         ],
       },
     };
-    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
 
   it('Should return an error with a name with less than 3 words', () => {
-    const validBodyImage = {
+    const invalidBodyImage = {
       body: {
         name: 'Oi',
         urlBrand:
@@ -91,12 +91,12 @@ describe('Create an Image', () => {
         ],
       },
     };
-    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
 
   it('Should return an error of an url not valid', () => {
-    const validBodyImage = {
+    const invalidBodyImage = {
       body: {
         name: 'Imagem de uma Ferrari',
         urlBrand:
@@ -108,11 +108,11 @@ describe('Create an Image', () => {
         carId: '2a17f8eb-d502-4e3a-82f7-83daa70a0795',
       },
     };
-    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
   it('Should return an error of an empty url', () => {
-    const validBodyImage = {
+    const invalidBodyImage = {
       body: {
         name: 'Imagem de uma Ferrari',
         urlBrand: '',
@@ -120,11 +120,11 @@ describe('Create an Image', () => {
         carId: '2a17f8eb-d502-4e3a-82f7-83daa70a0795',
       },
     };
-    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
   it('Should return an error of urlCar outside an array', () => {
-    const validBodyImage = {
+    const invalidBodyImage = {
       body: {
         name: 'Imagem de uma Ferrari',
         urlBrand:
@@ -134,11 +134,11 @@ describe('Create an Image', () => {
         carId: '2a17f8eb-d502-4e3a-82f7-83daa70a0795',
       },
     };
-    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
   it('Should return an error of an invalid uuid', () => {
-    const validBodyImage = {
+    const invalidBodyImage = {
       body: {
         name: 'Imagem de uma Ferrari',
         urlBrand:
@@ -150,7 +150,40 @@ describe('Create an Image', () => {
         carId: '2a17f8eb-d502-4e3a-82f7',
       },
     };
-    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
+    expect(imageBodyParsed.success).toBe(false);
+  });
+  it('Should return an error of an empty carId', () => {
+    const invalidBodyImage = {
+      body: {
+        name: 'Imagem de uma Ferrari',
+        urlBrand:
+          'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
+        urlCar: [
+          'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
+          'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
+        ],
+        carId: '',
+      },
+    };
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
+    expect(imageBodyParsed.success).toBe(false);
+  });
+  it('Should return an error of an urlBrand inside an array', () => {
+    const invalidBodyImage = {
+      body: {
+        name: 'Imagem de uma Ferrari',
+        urlBrand: [
+          'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
+        ],
+        urlCar: [
+          'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
+          'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
+        ],
+        carId: '',
+      },
+    };
+    const imageBodyParsed = createSchemaImage.safeParse(invalidBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
   describe('When a valid body', () => {

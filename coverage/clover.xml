@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1700413893620" clover="3.2.0">
-  <project timestamp="1700413893621" name="All files">
-    <metrics statements="380" coveredstatements="298" conditionals="47" coveredconditionals="22" methods="54" coveredmethods="14" elements="481" coveredelements="334" complexity="0" loc="380" ncloc="380" packages="9" files="19" classes="19"/>
+<coverage generated="1700421931243" clover="3.2.0">
+  <project timestamp="1700421931243" name="All files">
+    <metrics statements="394" coveredstatements="312" conditionals="47" coveredconditionals="22" methods="54" coveredmethods="14" elements="495" coveredelements="348" complexity="0" loc="394" ncloc="394" packages="9" files="21" classes="21"/>
     <package name="config">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="db.js" path="C:\Users\user\OneDrive - MSFT\Área de Trabalho\Projeto Integrador DH - Back End\Grupo-04-Back-End\src\config\db.js">
@@ -180,7 +180,7 @@
       </file>
     </package>
     <package name="modules.images.Dto">
-      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="25" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="createSchemaImage.js" path="C:\Users\user\OneDrive - MSFT\Área de Trabalho\Projeto Integrador DH - Back End\Grupo-04-Back-End\src\modules\images\Dto\createSchemaImage.js">
         <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -194,6 +194,26 @@
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
+      </file>
+      <file name="deleteSchemaImage.js" path="C:\Users\user\OneDrive - MSFT\Área de Trabalho\Projeto Integrador DH - Back End\Grupo-04-Back-End\src\modules\images\Dto\deleteSchemaImage.js">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+      <file name="findSchemaImageById.js" path="C:\Users\user\OneDrive - MSFT\Área de Trabalho\Projeto Integrador DH - Back End\Grupo-04-Back-End\src\modules\images\Dto\findSchemaImageById.js">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
       </file>
     </package>
     <package name="modules.mocks">
