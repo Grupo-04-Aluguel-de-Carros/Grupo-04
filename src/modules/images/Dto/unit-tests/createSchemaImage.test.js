@@ -137,6 +137,22 @@ describe('Create an Image', () => {
     const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
     expect(imageBodyParsed.success).toBe(false);
   });
+  it('Should return an error of an invalid uuid', () => {
+    const validBodyImage = {
+      body: {
+        name: 'Imagem de uma Ferrari',
+        urlBrand:
+          'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
+        urlCar: [
+          'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
+          'https://upload.wikimedia.org/wikipedia/pt/f/fb/Logotipo_da_Scuderia_Ferrari.svg',
+        ],
+        carId: '2a17f8eb-d502-4e3a-82f7',
+      },
+    };
+    const imageBodyParsed = createSchemaImage.safeParse(validBodyImage);
+    expect(imageBodyParsed.success).toBe(false);
+  });
   describe('When a valid body', () => {
     it('Should validate a body with all fields', () => {
       const validBodyImage = {
