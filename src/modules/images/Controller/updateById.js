@@ -6,10 +6,10 @@ export const updateById = async (req, res) => {
     const { id } = req.params;
     const { name, urlBrand, urlCar } = req.body;
 
-    const resultUpdateFromService = await updateServiceImageById(id,{
+    const resultUpdateFromService = await updateServiceImageById(id, {
       name,
       urlBrand,
-      urlCar
+      urlCar,
     });
 
     return res.status(HttpStatusCode.Ok).json({

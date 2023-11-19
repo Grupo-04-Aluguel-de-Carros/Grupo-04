@@ -4,13 +4,13 @@ import { HttpStatusCode } from 'axios';
 
 export const createServiceImage = async imageObject => {
   try {
-    const carId = await findCarByIdRepo(imageObject.carId)
+    const carId = await findCarByIdRepo(imageObject.carId);
 
     if (!carId) {
-      throw{
+      throw {
         message: `Id do carro ${imageObject.carId} não encontrado ou não existe`,
-        status: HttpStatusCode.BadRequest
-      }
+        status: HttpStatusCode.BadRequest,
+      };
     }
 
     const createdImageFromRepo = await createImageRepo(imageObject);

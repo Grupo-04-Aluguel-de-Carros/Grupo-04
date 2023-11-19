@@ -7,10 +7,12 @@ export const updateImageRepo = async (id, objectToUpdate) => {
         id,
       },
       data: {
-      name: objectToUpdate.name,
-      urlBrand: objectToUpdate.urlBrand,
-      urlCar: objectToUpdate.urlCar ? objectToUpdate.urlCar.map(car => car) : undefined
-      }
+        name: objectToUpdate.name,
+        urlBrand: objectToUpdate.urlBrand,
+        urlCar: objectToUpdate.urlCar
+          ? objectToUpdate.urlCar.map(car => car)
+          : undefined,
+      },
     });
     return imageUpdated;
   } catch (error) {

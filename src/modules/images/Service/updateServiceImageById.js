@@ -2,7 +2,6 @@ import { HttpStatusCode } from 'axios';
 import { findImageByIdRepo } from '../Repository/findImageByIdRepo.js';
 import { updateImageRepo } from '../Repository/updateImageRepo.js';
 
-
 export const updateServiceImageById = async (id, objectToUpdate) => {
   try {
     const dataFindedFromRepo = await findImageByIdRepo(id);

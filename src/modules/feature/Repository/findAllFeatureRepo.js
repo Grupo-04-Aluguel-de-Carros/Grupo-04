@@ -1,12 +1,12 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findAllFeatureRepo = async (recordsPerPage, currentPage) => {
+export const findAllFeatureRepo = async (listPerPage, offset) => {
   try {
     const [featureFromDb, total] = await db.$transaction([
       db.feature.findMany({
-        skip: currentPage,
-        take: recordsPerPage,
+        skip: offset,
+        take: listPerPage,
       }),
       db.feature.count(),
     ]);

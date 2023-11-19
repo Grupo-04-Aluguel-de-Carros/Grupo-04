@@ -1,25 +1,17 @@
 import { HttpStatusCode } from 'axios';
 import { findAllBrandsRepo } from '../Repository/findAllBrandsRepo.js';
 
-export const findBrandService = async (recordPerPage, page, name) => {
+export const findBrandService = async (listPerPage, offset, name) => {
   try {
-    if (recordPerPage == undefined) {
-      recordPerPage = 5;
-    }
-    if (recordPerPage > 5) {
+    if (listPerPage > 5) {
       throw {
         message: 'Só podemos retornar 5 registros por página',
         status: HttpStatusCode.BadRequest,
       };
     }
-    const pageFromUser = (page - 1) * recordPerPage;
 
-    const result = await findAllBrandsRepo(
-      recordPerPage,
-      pageFromUser || 0,
-      name
-    );
-    const totalPages = Math.ceil(result.total / (recordPerPage || 3));
+    const result = await findAllBrandsRepo(listPerPage, offset, name);
+    const totalPages = Math.ceil(result.total / listPerPage);
 
     if (result.total === 0) {
       throw {
