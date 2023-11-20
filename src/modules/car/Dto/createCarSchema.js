@@ -3,28 +3,30 @@ import { onlyNumbersRegex } from '../../../utils/index.js';
 
 export const createCarSchema = object({
   body: object({
-    name: string()
+    name: string({ required_error: 'Campo obrigatório' })
       .trim()
-      .min(1, { message: 'O nome deve ter ao menos 1 caractere' }),
-    color: string()
+      .min(2, { message: 'O nome deve ter ao menos 2 caracteres' }),
+    color: string({ required_error: 'Campo obrigatório' })
       .trim()
       .min(1, { message: 'A cor deve ter ao menos 1 caractere' }),
-    storeId: string()
+    storeId: string({ required_error: 'Campo obrigatório' })
       .trim()
       .min(1, { message: 'O id da loja é umm campo obrigatório' }),
-    brandId: string()
+    brandId: string({ required_error: 'Campo obrigatório' })
       .trim()
       .min(1, { message: 'O id da marca é umm campo obrigatório' }),
-    available: boolean(),
-    model: string()
+    available: boolean({ required_error: 'Campo obrigatório' }),
+    model: string({ required_error: 'Campo obrigatório' })
       .trim()
       .min(1, { message: 'O modelo é um campo obrigatório' }),
-    value: number({ invalid_type_error: 'Adicione as casas decimais' }),
-    year: string()
+    value: number({ required_error: 'Campo obrigatório' }),
+    year: string({ required_error: 'Campo obrigatório' })
       .trim()
       .regex(onlyNumbersRegex, { message: 'Campo inválido' }),
-    description: string().trim().min(10, {
-      message: 'O campo de descrição precisa de ao menos 10 caracteres',
-    }),
+    description: string({ required_error: 'Campo obrigatório' })
+      .trim()
+      .min(10, {
+        message: 'O campo de descrição precisa de ao menos 10 caracteres',
+      }),
   }),
 });
