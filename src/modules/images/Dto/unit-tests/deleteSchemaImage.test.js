@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { deleteSchemaImage } from '../deleteSchemaImage.js';
 
 describe('Delete an Image', () => {

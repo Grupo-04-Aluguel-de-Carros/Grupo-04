@@ -1,7 +1,7 @@
 import { HttpStatusCode } from 'axios';
 import { findAllBrandsRepo } from '../Repository/findAllBrandsRepo.js';
 
-export const findBrandService = async (listPerPage, offset,name) => {
+export const findBrandService = async (listPerPage, offset, name) => {
   try {
     if (listPerPage > 5) {
       throw {
@@ -10,9 +10,7 @@ export const findBrandService = async (listPerPage, offset,name) => {
       };
     }
 
-    const result = await findAllBrandsRepo(
-      listPerPage, offset, name
-    );
+    const result = await findAllBrandsRepo(listPerPage, offset, name);
     const totalPages = Math.ceil(result.total / listPerPage);
 
     if (result.total === 0) {

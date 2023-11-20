@@ -4,7 +4,7 @@ import { HttpStatusCode } from 'axios';
 
 export const handlePagination = (req, res, next) => {
   const { page, limit } = req.query;
-  
+
   if (page && !Number.isInteger(+page)) {
     throw { message: 'Página inválida', status: HttpStatusCode.BadRequest };
   }
