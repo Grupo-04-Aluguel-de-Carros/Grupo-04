@@ -4,10 +4,12 @@ import { findBrandService } from '../Service/findBrandService.js';
 export const findAll = async (req, res) => {
   try {
     console.log(req.query);
-    const {currentPage, listPerPage, offset} = req.pagination;
+    const { currentPage, listPerPage, offset } = req.pagination;
     const { name } = await req.query;
     const { result, totalPages } = await findBrandService(
-      listPerPage, offset,name
+      listPerPage,
+      offset,
+      name
     );
 
     return res.status(HttpStatusCode.Ok).json({
