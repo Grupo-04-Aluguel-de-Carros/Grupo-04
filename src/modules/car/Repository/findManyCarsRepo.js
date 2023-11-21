@@ -31,7 +31,6 @@ export const findManyCarsRepo = async ({
         id: true,
         available: true,
         color: true,
-        imageUrl: true,
         name: true,
         model: true,
         value: true,

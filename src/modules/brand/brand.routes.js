@@ -1,19 +1,11 @@
 import { Router } from 'express';
-import { createBrandSchema } from './Dto/createBrandSchema.js';
 import { validate } from '../../middleware/validate.js';
-import {
-  create,
-  excludeById,
-  findAll,
-  findByName,
-  update,
-} from './Controller/index.js';
-import { getBrandByName } from './Dto/getBrandByName.js';
-import { getAllBrands } from './Dto/getAllBrands.js';
+import { create, excludeById, findAll, update } from './Controller/index.js';
+import { getAllBrands, createBrandSchema } from './Dto/indexDto.js';
+import { handlePagination } from '../../middleware/handlePagination.js';
 const brandRoutes = Router();
 
-brandRoutes.get('/', validate(getAllBrands), findAll);
-brandRoutes.get('/name', validate(getBrandByName), findByName);
+brandRoutes.get('/', handlePagination, validate(getAllBrands), findAll);
 brandRoutes.post('/', validate(createBrandSchema), create);
 brandRoutes.put('/:id', update);
 brandRoutes.delete('/:id', excludeById);

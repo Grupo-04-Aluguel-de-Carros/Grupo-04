@@ -5,7 +5,6 @@ export const create = async (req, res) => {
   const {
     name,
     color,
-    imageUrl,
     storeId,
     brandId,
     available,
@@ -18,7 +17,6 @@ export const create = async (req, res) => {
     const result = await createCar(
       name,
       color,
-      imageUrl,
       storeId,
       brandId,
       available,
@@ -30,6 +28,9 @@ export const create = async (req, res) => {
 
     return res.status(HttpStatusCode.Created).json(result);
   } catch (error) {
-    return res.status(error.status).json({ error: error.message });
+    console.log('error', error);
+    return res
+      .status(error.status || HttpStatusCode.InternalServerError)
+      .json({ error: error.message });
   }
 };

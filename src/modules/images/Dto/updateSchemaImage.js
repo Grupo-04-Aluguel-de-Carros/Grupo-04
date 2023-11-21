@@ -1,4 +1,4 @@
-import { object, string } from 'zod';
+import { array, object, string } from 'zod';
 import { urlRegex } from '../../../utils/index.js';
 
 export const updateSchemaImage = object({
@@ -8,6 +8,6 @@ export const updateSchemaImage = object({
   body: object({
     name: string().trim().min(3).optional(),
     urlBrand: string().regex(urlRegex).optional(),
-    urlCar: string().regex(urlRegex).optional(),
+    urlCar: array(string().regex(urlRegex)).optional(),
   }),
 });

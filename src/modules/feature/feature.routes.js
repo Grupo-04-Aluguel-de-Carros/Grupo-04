@@ -12,12 +12,12 @@ import {
   findFeatureByIdSchema,
   updateFeatureSchema,
   excluseFeatureSchema,
-  findAllFeaturesSchema,
 } from './Dto/indexDto.js';
+import { handlePagination } from '../../middleware/handlePagination.js';
 
 const featureRoutes = Router();
 
-featureRoutes.get('/', validate(findAllFeaturesSchema), findAll);
+featureRoutes.get('/', handlePagination, findAll);
 featureRoutes.get('/:id', validate(findFeatureByIdSchema), findById);
 featureRoutes.post('/', validate(createFeatureSchema), create);
 featureRoutes.put('/:id', validate(updateFeatureSchema), updateById);
