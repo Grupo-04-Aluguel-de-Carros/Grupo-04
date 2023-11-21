@@ -21,7 +21,7 @@ describe('Create brand', () => {
       const validatedBody = createBrandSchema.safeParse(validBody);
       expect(validatedBody.success).toBe(false);
     });
-    it('Should not validate an empty name', () => {
+    it('Should not validate a name with only 2 caracters', () => {
       const validBody = {
         body: {
           name: 'Oi',
