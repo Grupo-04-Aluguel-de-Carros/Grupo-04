@@ -272,5 +272,19 @@ describe('Create feature', () => {
       const validatedBody = createFeatureSchema.safeParse(validBody);
       expect(validatedBody.success).toBe(false);
     });
+    it('Should return an error when name attribute is empty', () => {
+      const validBody = {
+        body: {
+          name: '',
+          massageSystem: true,
+          shielding: true,
+          sunRoof: true,
+          automatic: true,
+          selfDriving: false,
+        },
+      };
+      const validatedBody = createFeatureSchema.safeParse(validBody);
+      expect(validatedBody.success).toBe(false);
+    });
   });
 });

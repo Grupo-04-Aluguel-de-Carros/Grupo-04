@@ -6,7 +6,7 @@ describe('Create a brand', () => {
     it('Should return a validated query', () => {
       const validQuery = {
         query: {
-          name: 'Borio',
+          name: 'Porsche',
         },
       };
       const validatedQuery = getAllBrands.safeParse(validQuery);
