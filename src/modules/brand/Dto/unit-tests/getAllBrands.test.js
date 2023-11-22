@@ -8,7 +8,7 @@ describe('Create a brand', () => {
         query: {
           name: 'Porsche',
           page: undefined,
-          limit: undefined
+          limit: undefined,
         },
       };
       const validatedQueryParsed = getAllBrands.safeParse(validQuery);
@@ -19,7 +19,7 @@ describe('Create a brand', () => {
         query: {
           name: undefined,
           page: undefined,
-          limit: undefined
+          limit: undefined,
         },
       };
       const validatedQueryParsed = getAllBrands.safeParse(validQuery);
@@ -29,7 +29,7 @@ describe('Create a brand', () => {
       const validQuery = {
         query: {
           name: undefined,
-          limit: 2
+          limit: 2,
         },
       };
       const validatedQueryParsed = getAllBrands.safeParse(validQuery);
@@ -39,7 +39,7 @@ describe('Create a brand', () => {
       const validQuery = {
         query: {
           name: undefined,
-          page: 2
+          page: 2,
         },
       };
       const validatedQueryParsed = getAllBrands.safeParse(validQuery);
@@ -48,9 +48,9 @@ describe('Create a brand', () => {
     it('Should return a validated query just passing all informations on page 1', () => {
       const validQuery = {
         query: {
-          name: "porsche",
+          name: 'porsche',
           page: 1,
-          limit: 1
+          limit: 1,
         },
       };
       const validatedQueryParsed = getAllBrands.safeParse(validQuery);
@@ -60,34 +60,67 @@ describe('Create a brand', () => {
   describe('When an invalid query', () => {
     it('Should return an invalid query when passing all informations on body', () => {
       const invalidQuery = {
-        body : {
-          name: "porsche",
+        body: {
+          name: 'porsche',
           limit: 1,
-          page: 1
-        }
-      }
+          page: 1,
+        },
+      };
       const invalidQueryParsed = getAllBrands.safeParse(invalidQuery);
-      expect(invalidQueryParsed.success).toBe(false)
-    })
+      expect(invalidQueryParsed.success).toBe(false);
+    });
     it('Should return an invalid query when passing all informations on params', () => {
       const invalidQuery = {
-        params : {
-          name: "porsche",
+        params: {
+          name: 'porsche',
           limit: 1,
-          page: 1
-        }
-      }
+          page: 1,
+        },
+      };
       const invalidQueryParsed = getAllBrands.safeParse(invalidQuery);
-      expect(invalidQueryParsed.success).toBe(false)
-    })
+      expect(invalidQueryParsed.success).toBe(false);
+    });
     it('Should return an invalid query when passing an empty brand name', () => {
       const invalidQuery = {
-        params : {
-          name: ""
-        }
-      }
+        params: {
+          name: '',
+        },
+      };
       const invalidQueryParsed = getAllBrands.safeParse(invalidQuery);
-      expect(invalidQueryParsed.success).toBe(false)
-    })
-  })
+      expect(invalidQueryParsed.success).toBe(false);
+    });
+  });
+  describe('When an invalid query', () => {
+    it('Should return an invalid query when passing all informations on body', () => {
+      const invalidQuery = {
+        body: {
+          name: 'porsche',
+          limit: 1,
+          page: 1,
+        },
+      };
+      const invalidQueryParsed = getAllBrands.safeParse(invalidQuery);
+      expect(invalidQueryParsed.success).toBe(false);
+    });
+    it('Should return an invalid query when passing all informations on params', () => {
+      const invalidQuery = {
+        params: {
+          name: 'porsche',
+          limit: 1,
+          page: 1,
+        },
+      };
+      const invalidQueryParsed = getAllBrands.safeParse(invalidQuery);
+      expect(invalidQueryParsed.success).toBe(false);
+    });
+    it('Should return an invalid query when passing an empty brand name', () => {
+      const invalidQuery = {
+        params: {
+          name: '',
+        },
+      };
+      const invalidQueryParsed = getAllBrands.safeParse(invalidQuery);
+      expect(invalidQueryParsed.success).toBe(false);
+    });
+  });
 });
