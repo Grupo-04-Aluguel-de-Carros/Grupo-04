@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1700567583590" clover="3.2.0">
-  <project timestamp="1700567583590" name="All files">
-    <metrics statements="522" coveredstatements="440" conditionals="47" coveredconditionals="22" methods="54" coveredmethods="14" elements="623" coveredelements="476" complexity="0" loc="522" ncloc="522" packages="12" files="28" classes="28"/>
+<coverage generated="1700608302239" clover="3.2.0">
+  <project timestamp="1700608302239" name="All files">
+    <metrics statements="537" coveredstatements="455" conditionals="47" coveredconditionals="22" methods="54" coveredmethods="14" elements="638" coveredelements="491" complexity="0" loc="537" ncloc="537" packages="12" files="29" classes="29"/>
     <package name="config">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="db.js" path="C:\Users\User\Desktop\PI DH Back End\Grupo-04-Back-End\src\config\db.js">
@@ -291,7 +291,7 @@
       </file>
     </package>
     <package name="modules.feature.Dto">
-      <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="37" coveredstatements="37" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="createFeatureSchema.js" path="C:\Users\User\Desktop\PI DH Back End\Grupo-04-Back-End\src\modules\feature\Dto\createFeatureSchema.js">
         <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -319,6 +319,24 @@
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
+      </file>
+      <file name="updateFeatureSchema.js" path="C:\Users\User\Desktop\PI DH Back End\Grupo-04-Back-End\src\modules\feature\Dto\updateFeatureSchema.js">
+        <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
       </file>
     </package>
     <package name="modules.images.Dto">
