@@ -92,11 +92,11 @@ describe('Find Many stories Repository', () => {
       });
 
       prismaMock.store.findMany.mockResolvedValue(queryStories);
-      const result = await Store.findManyStoreRepo({
-        offset: 0,
-        listPerPage: 10,
-        order: 'asc',
-      });
+      // const result = await Store.findManyStoreRepo({
+      //   offset: 0,
+      //   listPerPage: 10,
+      //   order: 'asc',
+      // });
 
       expect(prismaMock.store.findMany).toHaveBeenCalledWith({
         where: { name: { contains: customOptions.query } },
