@@ -20,3 +20,7 @@ Atualize as tabelas com o comando "npx prisma migrate dev"
 Rode os seeds com o comando "npm run seed:run"
 
 Inicie o servidor através do comando "npm run dev"
+
+# Link para relatório de testes manuais:
+
+https://docs.google.com/spreadsheets/d/1Cg1gyeV1nhw0V4Eptn5mtPTndwZMGhtI/edit?usp=sharing&ouid=106801916350074951145&rtpof=true&sd=true
