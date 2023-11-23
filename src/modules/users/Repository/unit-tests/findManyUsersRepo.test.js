@@ -166,7 +166,7 @@ describe('Find Many Users Repository', () => {
     });
 
     it('should handle errors and throw a default exception if status is not provided', async () => {
-      const errorMessage = 'An unexpected error occurred.';
+      const errorMessage = 'Não foi possível procurar os usuários.';
       const error = new Error(errorMessage);
 
       prismaMock.user.findMany.mockRejectedValue(error);
