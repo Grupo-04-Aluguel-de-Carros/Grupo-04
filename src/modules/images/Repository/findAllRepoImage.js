@@ -12,7 +12,6 @@ export const findAllRepoImage = async (listPerPage, offset) => {
     ]);
     return { resultFromRepo, total };
   } catch (error) {
-    console.log('Error ==>', error);
     throw {
       message: error.message,
       status: HttpStatusCode.InternalServerError || error.status,

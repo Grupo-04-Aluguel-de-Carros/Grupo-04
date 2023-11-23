@@ -11,7 +11,6 @@ export const findImagesById = async (req, res) => {
       data: resultFromImageById,
     });
   } catch (error) {
-    console.log('Error ==> ', error);
     return res.status(error.status).json({
       message: error.message,
     });

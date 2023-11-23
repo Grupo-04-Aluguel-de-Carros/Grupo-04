@@ -22,7 +22,6 @@ export const findAllBrandsRepo = async (listPerPage, offset, name) => {
     ]);
     return { total, brand };
   } catch (error) {
-    console.log('Error==>', error);
     throw {
       message: error.message,
       status: error.status || HttpStatusCode.InternalServerError,

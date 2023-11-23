@@ -14,7 +14,6 @@ export const findAllImages = async (req, res) => {
       data: resultFromFindAll.resultFromRepo.resultFromRepo,
     });
   } catch (error) {
-    console.log('Error ==> ', error);
     return res.status(error.status).json({
       message: error.message,
     });

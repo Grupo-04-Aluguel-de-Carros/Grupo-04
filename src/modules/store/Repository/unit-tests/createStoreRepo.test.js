@@ -1,46 +1,45 @@
 /* eslint-disable no-undef */
 import * as Store from '../createStoreRepo.js';
+import { HttpStatusCode } from 'axios';
 import { createDataMock } from '../../../mocks/store.mock.js';
 
-const prismaMock = {
+const dbMock = {
   store: {
     create: jest.fn(),
   },
 };
 
-describe('Create Store Repository', () => {
+describe('Create store repository', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  describe('when creating a new store', () => {
-    it('should return the store with correct properties', async () => {
-      jest.spyOn(Store, 'createStoreRepo').mockImplementation(async () => {
-        const store = await prismaMock.store.create({
-          data: createDataMock,
-        });
-        return store;
-      });
-      prismaMock.store.create.mockResolvedValue(createDataMock);
-      const result = await Store.createStoreRepo(createDataMock);
+  describe('when creating a store', () => {
+    it('should create a store successfully', async () => {
+      dbMock.store.create.mockResolvedValue(createDataMock);
 
-      expect(prismaMock.store.create).toHaveBeenCalledWith({
-        data: createDataMock,
-      });
-      expect(result).toHaveProperty('name');
-      expect(result).toHaveProperty('createdAt');
-      expect(result).toHaveProperty('updatedAt');
+      const result = await Store.createStoreRepo(createDataMock, dbMock);
+
       expect(result).toEqual(createDataMock);
+      expect(dbMock.store.create).toHaveBeenCalledWith({
+        data: { name: 'teste' },
+        select: { createdAt: true, id: true, name: true, updatedAt: true },
+      });
     });
 
-    it('should return an error if create request fails', async () => {
-      prismaMock.store.create.mockRejectedValue(
-        new Error('Não foi possivel criar a loja')
-      );
+    it('should handle error and throw custom exception', async () => {
+      const customError = new Error('Custom error message');
 
-      await expect(Store.createStoreRepo(createDataMock)).rejects.toThrow(
-        'Não foi possivel criar a loja'
-      );
+      dbMock.store.create.mockRejectedValue(customError);
+
+      try {
+        await Store.createStoreRepo(createDataMock.name, dbMock);
+      } catch (error) {
+        expect(error).toEqual({
+          message: 'Não foi possivel criar a loja',
+          status: HttpStatusCode.InternalServerError,
+        });
+      }
     });
   });
 });

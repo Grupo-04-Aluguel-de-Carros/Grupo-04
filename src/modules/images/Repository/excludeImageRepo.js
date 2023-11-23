@@ -10,7 +10,6 @@ export const excludeImageRepo = async id => {
     });
     return imageExcluded;
   } catch (error) {
-    console.log('Error==>', error);
     throw {
       message: error.message,
       status: error.status || HttpStatusCode.InternalServerError,

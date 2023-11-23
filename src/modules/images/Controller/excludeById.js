@@ -11,7 +11,6 @@ export const excludeById = async (req, res) => {
       data: featureExcludedById,
     });
   } catch (error) {
-    console.log('Error ', error);
     return res.status(error.status).json({ message: error.message });
   }
 };

@@ -16,7 +16,6 @@ export const updateImageRepo = async (id, objectToUpdate) => {
     });
     return imageUpdated;
   } catch (error) {
-    console.log('Error ==>', error);
     throw {
       message: error.message,
       status: error.status,

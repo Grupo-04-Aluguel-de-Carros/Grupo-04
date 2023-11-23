@@ -26,7 +26,6 @@ export const findByIdFeatureRepo = async id => {
     });
     return feature;
   } catch (error) {
-    console.log('Error==>', error);
     throw {
       message: error.message,
       status: error.status || HttpStatusCode.InternalServerError,
