@@ -7,15 +7,15 @@ import {
 } from '../Repository/index.js';
 import { removeSpecialCharacters, validateCPF } from '../../../utils/index.js';
 
-export const createUser = async (
+export const createUser = async ({
   name,
   surname,
   email,
   cpf,
   phoneNumber,
   age,
-  password
-) => {
+  password,
+}) => {
   try {
     password = hashSync(password, 12);
     cpf = removeSpecialCharacters(cpf);

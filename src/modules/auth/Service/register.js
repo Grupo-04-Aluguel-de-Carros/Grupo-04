@@ -1,4 +1,5 @@
-import { createUser } from '../users/user.service.js';
+import { generateToken } from '../../../utils/jwt.js';
+import { createUser } from '../../users/Service/createUser.js';
 
 export const register = async ({
   name,
@@ -20,7 +21,9 @@ export const register = async ({
       password,
     });
 
-    return user;
+    const result = generateToken(user);
+
+    return { user: user, token: result };
   } catch (error) {
     throw { message: error.message, status: error.status };
   }
