@@ -8,10 +8,11 @@ export const createUserRepo = (
   cpf,
   phoneNumber,
   age,
-  password
+  password,
+  dbClient = db
 ) => {
   try {
-    return db.user.create({
+    return dbClient.user.create({
       data: {
         name,
         surname,
