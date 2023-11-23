@@ -17,7 +17,6 @@ export const updateServiceImageById = async (id, objectToUpdate) => {
 
     return dataUpdatedFromRepo;
   } catch (error) {
-    console.log('Error ==>', error);
     throw {
       message: error.message,
       status: error.status,

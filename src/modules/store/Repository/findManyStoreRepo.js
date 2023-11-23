@@ -1,9 +1,12 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findManyStoreRepo = ({ offset, listPerPage, query, order }) => {
+export const findManyStoreRepo = (
+  { offset, listPerPage, query, order },
+  dbClient = db
+) => {
   try {
-    return db.store.findMany({
+    return dbClient.store.findMany({
       where: { name: { contains: query } },
       orderBy: {
         createdAt: order ? order : 'desc',

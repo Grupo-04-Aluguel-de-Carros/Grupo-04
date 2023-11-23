@@ -1,9 +1,9 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const updateStoreRepo = async (id, updateBody) => {
+export const updateStoreRepo = async (id, updateBody, dbClient = db) => {
   try {
-    const result = await db.store.update({
+    const result = await dbClient.store.update({
       data: { name: updateBody },
       where: { id },
       select: {
@@ -29,7 +29,7 @@ export const updateStoreRepo = async (id, updateBody) => {
     return result;
   } catch (error) {
     throw {
-      message: 'Não foi possivel atualizar a loja',
+      message: 'Não foi possível atualizar a loja',
       status: HttpStatusCode.InternalServerError,
     };
   }

@@ -16,7 +16,6 @@ export const updateById = async (req, res) => {
       data: resultUpdateFromService,
     });
   } catch (error) {
-    console.log('Error ==>', error);
     return res.status(error.status).json({ message: error.message });
   }
 };

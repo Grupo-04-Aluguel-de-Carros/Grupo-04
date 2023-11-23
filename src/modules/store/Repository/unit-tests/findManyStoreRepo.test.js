@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
+// findManyStoreRepo.test.js
 import * as Store from '../findManyStoreRepo.js';
-import { queryStories } from '../../../mocks/store.mock.js';
+import { HttpStatusCode } from 'axios';
 
 const prismaMock = {
   store: {
@@ -13,109 +14,74 @@ describe('Find Many stories Repository', () => {
     jest.clearAllMocks();
   });
 
-  describe('when quering stories', () => {
-    it('should query stories with default options', async () => {
-      jest.spyOn(Store, 'findManyStoreRepo').mockImplementation(async () => {
-        const store = await prismaMock.store.findMany({
-          skip: 0,
-          take: 10,
-          orderBy: undefined,
-        });
-        return store;
-      });
-
-      prismaMock.store.findMany.mockResolvedValue(queryStories);
-
-      const result = await Store.findManyStoreRepo({
-        skip: 0,
-        take: 10,
-        orderBy: undefined,
-      });
-
-      expect(prismaMock.store.findMany).toHaveBeenCalledWith({
-        skip: 0,
-        take: 10,
-        orderBy: undefined,
-      });
-      expect(result).toEqual(queryStories);
-    });
-
-    it('should return an empty array if no store is found', async () => {
+  describe('when querying stores', () => {
+    it('should query stores with default options', async () => {
       prismaMock.store.findMany.mockResolvedValue([]);
 
-      const result = await Store.findManyStoreRepo();
+      const result = await Store.findManyStoreRepo(
+        {
+          offset: 0,
+          listPerPage: 10,
+          query: undefined,
+          order: 'desc',
+        },
+        prismaMock
+      );
+
+      expect(prismaMock.store.findMany).toHaveBeenCalledWith({
+        where: { name: { contains: undefined } },
+        orderBy: { createdAt: 'desc' },
+        skip: 0,
+        take: 10,
+      });
       expect(result).toEqual([]);
-    });
-  });
-
-  describe('teste gpt', () => {
-    const customOptions = {
-      offset: 5,
-      listPerPage: 20,
-      query: 'customQuery',
-      order: 'asc',
-    };
-    it('should query stories with custom options', async () => {
-      jest.spyOn(Store, 'findManyStoreRepo').mockImplementation(async () => {
-        const store = await prismaMock.store.findMany({
-          where: { name: { contains: customOptions.query } },
-          orderBy: { createdAt: customOptions.order },
-          skip: customOptions.offset,
-          take: customOptions.listPerPage,
-        });
-        return store;
-      });
-
-      prismaMock.store.findMany.mockResolvedValue(queryStories);
-
-      const result = await Store.findManyStoreRepo(customOptions);
-      console.log('result', result);
-
-      expect(prismaMock.store.findMany).toHaveBeenCalledWith({
-        where: { name: { contains: customOptions.query } },
-        orderBy: { createdAt: customOptions.order },
-        skip: customOptions.offset,
-        take: customOptions.listPerPage,
-      });
-      expect(result).toEqual(queryStories);
-    });
-
-    it('should handle the case when no query is provided', async () => {
-      jest.spyOn(Store, 'findManyStoreRepo').mockImplementation(async () => {
-        const store = await prismaMock.store.findMany({
-          where: { name: { contains: customOptions.query } },
-          orderBy: { createdAt: customOptions.order },
-          skip: customOptions.offset,
-          take: customOptions.listPerPage,
-        });
-        return store;
-      });
-
-      prismaMock.store.findMany.mockResolvedValue(queryStories);
-      const result = await Store.findManyStoreRepo({
-        offset: 0,
-        listPerPage: 10,
-        order: 'asc',
-      });
-
-      expect(prismaMock.store.findMany).toHaveBeenCalledWith({
-        where: { name: { contains: customOptions.query } },
-        orderBy: { createdAt: customOptions.order },
-        skip: customOptions.offset,
-        take: customOptions.listPerPage,
-      });
-      // expect(result).toEqual([]);
     });
 
     it('should handle errors and throw an exception', async () => {
       prismaMock.store.findMany.mockRejectedValue(
-        new Error('Não foi possivel buscar as lojas')
+        new Error(
+          'Não foi possível buscar as lojas',
+          HttpStatusCode.InternalServerError
+        )
       );
 
-      // Certifique-se de que o erro é capturado e uma exceção é lançada
-      await expect(Store.findManyStoreRepo()).rejects.toThrow(
-        new Error('Não foi possivel buscar as lojas')
+      await expect(
+        Store.findManyStoreRepo(
+          {
+            offset: 0,
+            listPerPage: 10,
+            query: undefined,
+            order: 'desc',
+          },
+          prismaMock
+        )
+      ).rejects.toThrow(
+        new Error(
+          'Não foi possível buscar as lojas',
+          HttpStatusCode.InternalServerError
+        )
       );
+    });
+
+    it('should handle errors and throw a default exception if status is not provided', async () => {
+      const errorMessage = 'An unexpected error occurred.';
+      const error = new Error(errorMessage);
+      prismaMock.store.findMany.mockRejectedValue(error);
+
+      await expect(
+        Store.findManyStoreRepo(
+          {
+            offset: 0,
+            listPerPage: 10,
+            query: undefined,
+            order: 'desc',
+          },
+          prismaMock
+        )
+      ).rejects.toThrowError({
+        message: errorMessage,
+        status: HttpStatusCode.InternalServerError,
+      });
     });
   });
 });
