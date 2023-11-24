@@ -2,8 +2,7 @@
 import jwt from 'jsonwebtoken';
 import { generateAccessToken, generateToken } from '../jwt.js';
 
-// Mocking the process.env.JWT_ACCESS_SECRET for testing purposes
-process.env.JWT_ACCESS_SECRET = 'yourSecretKey';
+process.env.JWT_ACCESS_SECRET = 'SecretKey';
 
 const mockUser = { id: '123', username: 'testUser' };
 
