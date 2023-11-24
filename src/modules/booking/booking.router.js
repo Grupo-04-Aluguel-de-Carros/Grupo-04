@@ -1,7 +1,7 @@
 import { validate } from '../../middleware/validate.js';
 import { createBooking } from './Controller/index.js';
 import { createBookingSchema } from './Dto/index.js';
-import { dateValidation } from '../../middleware/dateValidation.js';
+import { dateValidation } from '../../middleware/dateHandle.js';
 
 import { Router } from 'express';
 
