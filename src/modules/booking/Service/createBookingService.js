@@ -7,6 +7,8 @@ export const createBookingService = async bookingPages => {
   try {
     let bookingPagesToArray = [];
     let bookingsEncoutered = [];
+    let existingBookingToCompare;
+    let bookingsToArray;
     bookingPagesToArray.push(bookingPages);
     const existentBookingRepo = await findBookingByCarIdRepo(bookingPages);
     if (existentBookingRepo.length > 0) {
@@ -17,15 +19,26 @@ export const createBookingService = async bookingPages => {
         x.inicialDateParsed.toLocaleDateString()
       );
       for (let i = 0; i < arrayOfExistingBookings.length; i++) {
-        const found = arrayOfExistingBookings[i].matchAll(
-          arrayOfBookingsToMark[i]
-        );
-        for (const match of found) {
-          bookingsEncoutered.push(match[0]);
+        existingBookingToCompare = arrayOfExistingBookings[i];
+      }
+        for (let i = 0; i < arrayOfBookingsToMark.length; i++) {
+         bookingsToArray = arrayOfBookingsToMark[i];
         }
+          for (let i = 0; i < arrayOfExistingBookings.length; i++) {
+            const found = existingBookingToCompare.matchAll(
+              bookingsToArray
+            );
+              for (const match of found) {
+                bookingsEncoutered.push(match[0]);
+              }
+            }
+          }
+    if (bookingsEncoutered.length > 0){
+      throw{
+        message: "Datas encontradas",
+        status: HttpStatusCode.BadRequest
       }
     }
-    console.log(bookingsEncoutered.map(x => x));
     const bookingFromRepo = createBookingRepo(bookingPages);
     if (!bookingFromRepo) {
       throw {
