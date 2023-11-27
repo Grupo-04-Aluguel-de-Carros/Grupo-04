@@ -1,7 +1,7 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const createBookingRepository = async bookingDates => {
+export const createBookingRepo = async bookingDates => {
   try {
     const booking = await db.booking.create({
       data: {
@@ -15,7 +15,7 @@ export const createBookingRepository = async bookingDates => {
   } catch (error) {
     console.log('Error ==>', error);
     throw {
-      message: error.message,
+      message: 'Não foi possível criar a reserva',
       status: HttpStatusCode.InternalServerError || error.status,
     };
   }

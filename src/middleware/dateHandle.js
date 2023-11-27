@@ -9,20 +9,22 @@ export const dateValidation = (req, res, next) => {
     const localTime = dayjs.utc().local().toDate();
 
     const { inicialDate, finalDate } = req.body;
-
     if (!dateRegex.test(inicialDate) || !dateRegex.test(finalDate)) {
       throw {
-        message: 'Insira uma data valida',
+        message: 'Insira uma data valida, modelo de data é YYYY-MM-DD',
         status: HttpStatusCode.BadRequest,
       };
     }
     // Analisar data no mesmo dia corrente no postman, está retornando erro de vez em quando de data mais antiga sendo que não faz sentido.
-    const finalDateParsed = dayjs(finalDate).toDate();
+    const utcNormalizer = `T${localTime.getHours()}:${localTime.getMinutes()}:${localTime.getSeconds()}:${localTime.getMilliseconds()}`;
+    console.log(utcNormalizer);
+    const finalDateNormalized = `${finalDate}${utcNormalizer}`;
 
-    const transformingToUTC = `${inicialDate}T${localTime.getHours()}:${localTime.getMinutes()}:${localTime.getSeconds()}:${localTime.getMilliseconds()}`;
+    const inicialDateNormalized = `${inicialDate}${utcNormalizer}`;
 
-    const inicialDateParsed = dayjs(transformingToUTC).toDate();
+    const finalDateParsed = dayjs(finalDateNormalized).toDate();
 
+    const inicialDateParsed = dayjs(inicialDateNormalized).toDate();
     if (dayjs().isAfter(dayjs(inicialDateParsed))) {
       throw {
         message: 'Data inserida é mais antiga que a data atual',

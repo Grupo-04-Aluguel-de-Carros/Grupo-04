@@ -1,7 +1,7 @@
 import { HttpStatusCode } from 'axios';
 import { createBookingService } from '../Service/createBookingService.js';
 
-export const createBooking = async (req, res) => {
+export const create = async (req, res) => {
   try {
     const { inicialDateParsed, finalDateParsed } = req.date;
     const { carId, userId } = req.body;
