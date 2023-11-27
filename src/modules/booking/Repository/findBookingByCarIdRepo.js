@@ -1,3 +1,4 @@
+import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
 export const findBookingByCarIdRepo = async bookingObject => {

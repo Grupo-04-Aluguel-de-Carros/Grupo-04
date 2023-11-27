@@ -1,5 +1,5 @@
+import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
-import { throwError } from '../../../utils/throwError.js';
 
 export const excludeBookingByIdRepo = async id => {
   try {
