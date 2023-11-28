@@ -7,14 +7,17 @@ import timezone from 'dayjs/plugin/timezone.js';
 export const dateValidation = (req, res, next) => {
   try {
     dayjs.extend(utc);
-    dayjs.extend(timezone)
+    dayjs.extend(timezone);
 
-    const brazilTime = `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}`;
-    const d1 = dayjs.tz(brazilTime, 'Etc/GMT-0')
-    d1.format() // => 2013-11-18T11:55:00+08:00
-    console.log(d1.toDate().getHours()); 
+    const brazilTime = `${new Date().getFullYear()}-${
+      new Date().getMonth() + 1
+    }-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}`;
+
+    const localTime = dayjs.tz(brazilTime, 'Etc/GMT-0');
+    localTime.format();
 
     const { inicialDate, finalDate } = req.body;
+
     if (!dateRegex.test(inicialDate) || !dateRegex.test(finalDate)) {
       throw {
         message: 'Insira uma data valida, modelo de data é YYYY-MM-DD',
@@ -22,7 +25,11 @@ export const dateValidation = (req, res, next) => {
       };
     }
     // Analisar data no mesmo dia corrente no postman, está retornando erro de vez em quando de data mais antiga sendo que não faz sentido.
-    const utcNormalizer = `T${d1.toDate().getHours()}:${localTime.getMinutes()}:${localTime.getSeconds()}:${localTime.getMilliseconds()}`;
+    const utcNormalizer = `T${localTime.toDate().getHours()}:${localTime
+      .toDate()
+      .getMinutes()}:${localTime.toDate().getSeconds()}:${localTime
+      .toDate()
+      .getMilliseconds()}`;
 
     const finalDateNormalized = `${finalDate}${utcNormalizer}`;
 
@@ -31,7 +38,7 @@ export const dateValidation = (req, res, next) => {
     const finalDateParsed = dayjs(finalDateNormalized).toDate();
 
     const inicialDateParsed = dayjs(inicialDateNormalized).toDate();
-    console.log(inicialDateParsed);
+
     if (dayjs().isAfter(dayjs(inicialDateParsed))) {
       throw {
         message: 'Data inserida é mais antiga que a data atual',

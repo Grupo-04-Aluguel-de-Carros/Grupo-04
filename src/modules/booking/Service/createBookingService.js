@@ -1,44 +1,52 @@
 import { createBookingRepo } from '../Repository/createBookingRepo.js';
 import { findBookingByCarIdRepo } from '../Repository/findBookingByCarIdRepo.js';
 import { HttpStatusCode } from 'axios';
+import { obtainDatesOnInterval } from '../../../utils/index.js';
+import dayjs from 'dayjs';
 
 export const createBookingService = async bookingPages => {
-  /* Array não está retornando os matchs corretamente */
   try {
-    let bookingPagesToArray = [];
-    let bookingsEncoutered = [];
-    let existingBookingToCompare;
-    let bookingsToArray;
-    bookingPagesToArray.push(bookingPages);
     const existentBookingRepo = await findBookingByCarIdRepo(bookingPages);
-    if (existentBookingRepo.length > 0) {
-      const arrayOfExistingBookings = existentBookingRepo.map(x =>
-        x.inicialDate.toLocaleDateString()
-      );
-      const arrayOfBookingsToMark = bookingPagesToArray.map(x =>
-        x.inicialDateParsed.toLocaleDateString()
-      );
-      for (let i = 0; i < arrayOfExistingBookings.length; i++) {
-        existingBookingToCompare = arrayOfExistingBookings[i];
-      }
-        for (let i = 0; i < arrayOfBookingsToMark.length; i++) {
-         bookingsToArray = arrayOfBookingsToMark[i];
-        }
-          for (let i = 0; i < arrayOfExistingBookings.length; i++) {
-            const found = existingBookingToCompare.matchAll(
-              bookingsToArray
-            );
-              for (const match of found) {
-                bookingsEncoutered.push(match[0]);
-              }
-            }
-          }
-    if (bookingsEncoutered.length > 0){
-      throw{
-        message: "Datas encontradas",
-        status: HttpStatusCode.BadRequest
-      }
+
+    const existentInicialDatesRepos = existentBookingRepo.map(
+      existentBookingRepo => existentBookingRepo.inicialDate
+    );
+
+    const existentFinalDatesRepos = existentBookingRepo.map(
+      existentBookingRepo => existentBookingRepo.finalDate
+    );
+
+    const minimalDateToLockTheCalendar = new Date(
+      Math.min(...existentInicialDatesRepos)
+    );
+
+    const maximumDateToLockTheCalendarnew = new Date(
+      Math.max(...existentFinalDatesRepos)
+    );
+    const existentsDates = obtainDatesOnInterval(
+      minimalDateToLockTheCalendar,
+      maximumDateToLockTheCalendarnew
+    );
+
+    const datesToMark = obtainDatesOnInterval(
+      bookingPages.inicialDateParsed,
+      bookingPages.finalDateParsed
+    );
+
+    console.log('existentsDates', existentsDates);
+    console.log('datesToMark', datesToMark);
+
+    let returnOnlyLetters = '(d+)s*:s*([^,[]]+)';
+    for (let i = 0; i < existentsDates.length; i++) {
+      const sameDates = existentsDates[i].match(datesToMark[i]);
+      console.log(sameDates[0]);
     }
+    // if (bookingsEncoutered.length > 0) {
+    //   throw {
+    //     message: 'Datas encontradas',
+    //     status: HttpStatusCode.BadRequest,
+    //   };
+    // }
     const bookingFromRepo = createBookingRepo(bookingPages);
     if (!bookingFromRepo) {
       throw {
