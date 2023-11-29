@@ -23,6 +23,7 @@ export const createBookingService = async bookingPages => {
     const maximumDateToLockTheCalendarnew = new Date(
       Math.max(...existentFinalDatesRepos)
     );
+
     const existentsDates = obtainDatesOnInterval(
       minimalDateToLockTheCalendar,
       maximumDateToLockTheCalendarnew
@@ -33,20 +34,27 @@ export const createBookingService = async bookingPages => {
       bookingPages.finalDateParsed
     );
 
-    console.log('existentsDates', existentsDates);
-    console.log('datesToMark', datesToMark);
+    console.log(datesToMark.length);
+    const valoresComuns = existentsDates.filter(valor =>
+      datesToMark.includes(valor)
+    );
 
-    let returnOnlyLetters = '(d+)s*:s*([^,[]]+)';
-    for (let i = 0; i < existentsDates.length; i++) {
-      const sameDates = existentsDates[i].match(datesToMark[i]);
-      console.log(sameDates[0]);
+    if (valoresComuns.length > 0) {
+      throw {
+        message: `Reserva marcada entre o dia ${dayjs(
+          bookingPages.inicialDateParsed
+        ).format('DD-MM-YYYY')} até o dia ${dayjs(
+          bookingPages.finalDateParsed
+        ).format('DD-MM-YYYY')} não disponivel`,
+        status: HttpStatusCode.BadRequest,
+      };
     }
-    // if (bookingsEncoutered.length > 0) {
-    //   throw {
-    //     message: 'Datas encontradas',
-    //     status: HttpStatusCode.BadRequest,
-    //   };
-    // }
+    if (datesToMark.length - 1 > 7) {
+      throw {
+        message: 'Só é possível marcar reservas de 7 dias ao máximo',
+        status: HttpStatusCode.BadRequest,
+      };
+    }
     const bookingFromRepo = createBookingRepo(bookingPages);
     if (!bookingFromRepo) {
       throw {
