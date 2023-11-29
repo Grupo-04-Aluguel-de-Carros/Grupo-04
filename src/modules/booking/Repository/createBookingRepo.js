@@ -1,14 +1,14 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const createBookingRepo = async bookingDates => {
+export const createBookingRepo = async bookingObject => {
   try {
     const booking = await db.booking.create({
       data: {
-        inicialDate: bookingDates.inicialDateParsed,
-        finalDate: bookingDates.finalDateParsed,
-        carId: bookingDates.carId,
-        userId: bookingDates.userId,
+        inicialDate: bookingObject.inicialDateParsed,
+        finalDate: bookingObject.finalDateParsed,
+        carId: bookingObject.carId,
+        userId: bookingObject.userId,
       },
     });
     return booking;

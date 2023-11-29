@@ -4,9 +4,9 @@ import { HttpStatusCode } from 'axios';
 import { obtainDatesOnInterval } from '../../../utils/index.js';
 import dayjs from 'dayjs';
 
-export const createBookingService = async bookingPages => {
+export const createBookingService = async bookingObject => {
   try {
-    const existentBookingRepo = await findBookingByCarIdRepo(bookingPages);
+    const existentBookingRepo = await findBookingByCarIdRepo(bookingObject);
 
     const existentInicialDatesRepos = existentBookingRepo.map(
       existentBookingRepo => existentBookingRepo.inicialDate
@@ -30,11 +30,10 @@ export const createBookingService = async bookingPages => {
     );
 
     const datesToMark = obtainDatesOnInterval(
-      bookingPages.inicialDateParsed,
-      bookingPages.finalDateParsed
+      bookingObject.inicialDateParsed,
+      bookingObject.finalDateParsed
     );
 
-    console.log(datesToMark.length);
     const valoresComuns = existentsDates.filter(valor =>
       datesToMark.includes(valor)
     );
@@ -42,9 +41,9 @@ export const createBookingService = async bookingPages => {
     if (valoresComuns.length > 0) {
       throw {
         message: `Reserva marcada entre o dia ${dayjs(
-          bookingPages.inicialDateParsed
+          bookingObject.inicialDateParsed
         ).format('DD-MM-YYYY')} até o dia ${dayjs(
-          bookingPages.finalDateParsed
+          bookingObject.finalDateParsed
         ).format('DD-MM-YYYY')} não disponivel`,
         status: HttpStatusCode.BadRequest,
       };
@@ -55,13 +54,7 @@ export const createBookingService = async bookingPages => {
         status: HttpStatusCode.BadRequest,
       };
     }
-    const bookingFromRepo = createBookingRepo(bookingPages);
-    if (!bookingFromRepo) {
-      throw {
-        message: 'Erro ao tratar os dados',
-        status: HttpStatusCode.BadRequest,
-      };
-    }
+    const bookingFromRepo = createBookingRepo(bookingObject);
     return bookingFromRepo;
   } catch (error) {
     throw {

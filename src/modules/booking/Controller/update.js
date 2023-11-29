@@ -1,13 +1,13 @@
 import { HttpStatusCode } from 'axios';
 import { updateBookingByIdService } from '../Service/updateBookingByIdService.js';
 
-export const update = (req, res) => {
+export const update = async (req, res) => {
   try {
     const { id } = req.params;
 
     const { inicialDateParsed, finalDateParsed } = req.date;
 
-    const bookingResult = updateBookingByIdService({
+    const bookingResult = await updateBookingByIdService({
       id,
       inicialDateParsed,
       finalDateParsed,

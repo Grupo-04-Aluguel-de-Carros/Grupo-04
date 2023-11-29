@@ -1,7 +1,18 @@
+import { HttpStatusCode } from 'axios';
 import { excludeBookingByIdRepo } from '../Repository/excludeBookingByIdRepo.js';
+import { findBookingByIdRepo } from '../Repository/findBookingByIdRepo.js';
 
 export const excludeBookingByIdService = async id => {
   try {
+    const bookingById = await findBookingByIdRepo(id);
+
+    if (!bookingById) {
+      throw {
+        message: 'Reserva não existe ou já foi excluida',
+        status: HttpStatusCode.BadRequest,
+      };
+    }
+
     const bookingExcludedRepo = await excludeBookingByIdRepo(id);
     return bookingExcludedRepo;
   } catch (error) {
