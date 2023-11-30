@@ -7,6 +7,7 @@ import carRoutes from './modules/car/car.routes.js';
 import addressRoutes from './modules/address/address.routes.js';
 import featureRoutes from './modules/feature/feature.routes.js';
 import imageRoutes from './modules/images/images.router.js';
+import bookingRoutes from './modules/booking/booking.router.js';
 
 const routes = Router();
 
@@ -18,5 +19,6 @@ routes.use('/car', carRoutes);
 routes.use('/address', addressRoutes);
 routes.use('/feature', featureRoutes);
 routes.use('/image', imageRoutes);
+routes.use('/booking', bookingRoutes);
 
 export default routes;

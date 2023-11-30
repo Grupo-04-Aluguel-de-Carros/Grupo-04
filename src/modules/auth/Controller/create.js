@@ -17,7 +17,7 @@ export const create = async (req, res) => {
 
     return res.status(HttpStatusCode.Created).json(result);
   } catch (error) {
-    console.log('error ==>', error);
+    console.log('Error ==>', error);
     return res.status(error.status).json({ error: error.message });
   }
 };
