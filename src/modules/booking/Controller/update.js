@@ -7,10 +7,13 @@ export const update = async (req, res) => {
 
     const { inicialDateParsed, finalDateParsed } = req.date;
 
+    const { carId } = req.body;
+
     const bookingResult = await updateBookingByIdService({
       id,
       inicialDateParsed,
       finalDateParsed,
+      carId,
     });
 
     return res.status(HttpStatusCode.Ok).json({

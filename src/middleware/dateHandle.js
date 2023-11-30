@@ -45,6 +45,13 @@ export const dateValidation = (req, res, next) => {
         status: HttpStatusCode.BadRequest,
       };
     }
+
+    if (dayjs(inicialDate).toDate() > dayjs(finalDate).toDate()) {
+      throw {
+        message: 'Data inicial não pode ser maior que a data final',
+        status: HttpStatusCode.BadRequest,
+      };
+    }
     req.date = { inicialDateParsed, finalDateParsed };
     next();
   } catch (error) {

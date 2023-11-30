@@ -10,6 +10,7 @@ export const updateBookingByIdRepo = async bookingObject => {
       data: {
         inicialDate: bookingObject.inicialDateParsed,
         finalDate: bookingObject.finalDateParsed,
+        carId: bookingObject.carId,
       },
     });
     return booking;
