@@ -13,6 +13,7 @@ export const findBookingByCarIdRepo = async bookingObject => {
         finalDate: true,
         carId: true,
         createdAt: true,
+        Car: { select: { available: true } },
       },
     });
     return bookings;

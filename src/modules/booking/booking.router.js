@@ -6,12 +6,13 @@ import {
   updateBookingSchema,
 } from './Dto/index.js';
 import { dateValidation } from '../../middleware/dateHandle.js';
+import { handlePagination } from '../../middleware/handlePagination.js';
 import { Router } from 'express';
 
 const bookingRoutes = Router();
 
 bookingRoutes.post('/', dateValidation, validate(createBookingSchema), create);
-bookingRoutes.get('/', findAll);
+bookingRoutes.get('/', handlePagination, findAll);
 bookingRoutes.delete('/:id', validate(excludeBookingSchema), exclude);
 bookingRoutes.put(
   '/:id',

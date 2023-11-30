@@ -24,7 +24,7 @@ export const dateValidation = (req, res, next) => {
         status: HttpStatusCode.BadRequest,
       };
     }
-    // Analisar data no mesmo dia corrente no postman, está retornando erro de vez em quando de data mais antiga sendo que não faz sentido.
+
     const utcNormalizer = `T${localTime.toDate().getHours()}:${localTime
       .toDate()
       .getMinutes()}:${localTime.toDate().getSeconds()}:${localTime

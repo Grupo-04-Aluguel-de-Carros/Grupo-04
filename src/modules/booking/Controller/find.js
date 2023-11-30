@@ -3,10 +3,21 @@ import { findAllBookingService } from '../Service/findAllBookingService.js';
 
 export const findAll = async (req, res) => {
   try {
-    const bookingResult = await findAllBookingService();
+    const { currentPage, listPerPage, offset } = req.pagination;
+
+    const bookingResult = await findAllBookingService({
+      currentPage,
+      listPerPage,
+      offset,
+    });
+
     return {
       data: res.status(HttpStatusCode.Ok).json({
-        allBookings: bookingResult,
+        pageRecords: bookingResult.bookingResultFromRepo.booking.length,
+        currentPage: currentPage,
+        totalPages: bookingResult.totalPages,
+        totalRegisters: bookingResult.bookingResultFromRepo.total,
+        allBookings: bookingResult.bookingResultFromRepo.booking,
       }),
     };
   } catch (error) {

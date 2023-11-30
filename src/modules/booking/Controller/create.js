@@ -11,8 +11,10 @@ export const create = async (req, res) => {
       carId,
       userId,
     });
+
     res.status(HttpStatusCode.Created).json({
-      data: bookingResult,
+      booking: bookingResult.booking,
+      carAvailable: bookingResult.car.available,
     });
   } catch (error) {
     return res.status(error.status).json({ error: error.message });

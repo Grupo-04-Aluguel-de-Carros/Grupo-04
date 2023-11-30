@@ -76,8 +76,11 @@ export const createBookingService = async bookingObject => {
         status: HttpStatusCode.BadRequest,
       };
     }
-    const bookingFromRepo = createBookingRepo(bookingObject);
-    return bookingFromRepo;
+    const bookingFromRepo = await createBookingRepo(bookingObject);
+    return {
+      booking: bookingFromRepo,
+      car: existentBookingRepo[0].Car,
+    };
   } catch (error) {
     throw {
       message: error.message,
