@@ -13,6 +13,7 @@ export const findUserByIdRepo = async (id, dbClient = db) => {
         cpf: true,
         phoneNumber: true,
         age: true,
+        role: true,
         createdAt: true,
         updatedAt: true,
         Address: { select: { cep: true, state: true, city: true } },
