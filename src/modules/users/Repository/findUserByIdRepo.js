@@ -1,9 +1,9 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findUserByIdRepo = async id => {
+export const findUserByIdRepo = async (id, dbClient = db) => {
   try {
-    return await db.user.findUnique({
+    return await dbClient.user.findUnique({
       where: { id },
       select: {
         id: true,

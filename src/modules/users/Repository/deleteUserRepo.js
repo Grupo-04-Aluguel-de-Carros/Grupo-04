@@ -1,14 +1,14 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const deleteUserRepo = async id => {
+export const deleteUserRepo = async (id, dbClient = db) => {
   try {
-    return await db.user.delete({
+    return await dbClient.user.delete({
       where: { id },
     });
   } catch (error) {
     throw {
-      message: 'Não foi possível deletetar o usuário.',
+      message: 'Não foi possível deletar o usuário.',
       status: HttpStatusCode.InternalServerError,
     };
   }
