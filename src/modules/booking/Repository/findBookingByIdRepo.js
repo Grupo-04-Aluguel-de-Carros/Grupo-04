@@ -1,10 +1,17 @@
+import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findBookingByIdRepo = async id => {
+export const findBookingByIdRepo = async bookingObject => {
   try {
     const booking = await db.booking.findUnique({
       where: {
-        id,
+        id: bookingObject.id,
+      },
+      select: {
+        inicialDate: true,
+        finalDate: true,
+        carId: true,
+        userId: true,
       },
     });
     return booking;

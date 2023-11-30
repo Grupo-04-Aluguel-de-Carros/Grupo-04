@@ -20,13 +20,13 @@ export const createBookingService = async bookingObject => {
       Math.min(...existentInicialDatesRepos)
     );
 
-    const maximumDateToLockTheCalendarnew = new Date(
+    const maximumDateToLockTheCalendar = new Date(
       Math.max(...existentFinalDatesRepos)
     );
 
     const existentsDates = obtainDatesOnInterval(
       minimalDateToLockTheCalendar,
-      maximumDateToLockTheCalendarnew
+      maximumDateToLockTheCalendar
     );
 
     const datesToMark = obtainDatesOnInterval(
@@ -44,7 +44,13 @@ export const createBookingService = async bookingObject => {
           bookingObject.inicialDateParsed
         ).format('DD-MM-YYYY')} até o dia ${dayjs(
           bookingObject.finalDateParsed
-        ).format('DD-MM-YYYY')} não disponivel`,
+        ).format(
+          'DD-MM-YYYY'
+        )} não disponivel. Temos reservas a partir do dia ${dayjs(
+          maximumDateToLockTheCalendar
+        )
+          .add(2, 'day')
+          .format('DD-MM-YYYY')}`,
         status: HttpStatusCode.BadRequest,
       };
     }

@@ -7,36 +7,44 @@ import dayjs from 'dayjs';
 
 export const updateBookingByIdService = async bookingObject => {
   try {
-    const existingBookingById = await findBookingByIdRepo(bookingObject.id);
+    const existentBookingById = await findBookingByIdRepo(bookingObject);
 
-    if (!existingBookingById) {
+    if (!existentBookingById) {
       throw {
         message: 'Reserva não existente',
         status: HttpStatusCode.BadRequest,
       };
     }
 
-    const existentBookingRepo = await findBookingByCarIdRepo(bookingObject);
-
-    const existentInicialDatesRepos = existentBookingRepo.map(
-      existentBookingRepo => existentBookingRepo.inicialDate
+    const allBookingsWithCarIdFromUpdate = await findBookingByCarIdRepo(
+      existentBookingById.carId
     );
 
-    const existentFinalDatesRepos = existentBookingRepo.map(
-      existentBookingRepo => existentBookingRepo.finalDate
+    const existentInicialDatesRepos = allBookingsWithCarIdFromUpdate.map(
+      allBookingsWithCarIdFromUpdate =>
+        allBookingsWithCarIdFromUpdate.inicialDate
+    );
+
+    const existentFinalDatesRepos = allBookingsWithCarIdFromUpdate.map(
+      allBookingsWithCarIdFromUpdate => allBookingsWithCarIdFromUpdate.finalDate
     );
 
     const minimalDateToLockTheCalendar = new Date(
       Math.min(...existentInicialDatesRepos)
     );
 
-    const maximumDateToLockTheCalendarnew = new Date(
+    const maximumDateToLockTheCalendar = new Date(
       Math.max(...existentFinalDatesRepos)
+    );
+
+    const bookingAlreadyCreated = obtainDatesOnInterval(
+      existentBookingById.inicialDate,
+      existentBookingById.finalDate
     );
 
     const existentsDates = obtainDatesOnInterval(
       minimalDateToLockTheCalendar,
-      maximumDateToLockTheCalendarnew
+      maximumDateToLockTheCalendar
     );
 
     const datesToMark = obtainDatesOnInterval(
@@ -44,23 +52,36 @@ export const updateBookingByIdService = async bookingObject => {
       bookingObject.finalDateParsed
     );
 
-    const valoresComuns = existentsDates.filter(valor =>
-      datesToMark.includes(valor)
+    const resultFromDateToMark = datesToMark.filter(
+      date => !bookingAlreadyCreated.includes(date)
     );
 
-    if (valoresComuns.length > 0) {
+    if (resultFromDateToMark.length > 0) {
+      const verifyDaysAlreadyMarked = resultFromDateToMark.filter(date =>
+        existentsDates.includes(date)
+      );
+
+      if (verifyDaysAlreadyMarked.length > 0) {
+        throw {
+          message: `Já existe uma reserva marcada para os dias escolhidos, escolha uma data a partir do dia `,
+          status: HttpStatusCode.BadRequest,
+        };
+      }
+    }
+
+    if (datesToMark.length > 7) {
+      throw {
+        message: 'Só é possível marcar reservas de 7 dias no máximo',
+        status: HttpStatusCode.BadRequest,
+      };
+    }
+    if (datesToMark.length > existentsDates.length && datesToMark.length > 7) {
       throw {
         message: `Reserva marcada entre o dia ${dayjs(
           bookingObject.inicialDateParsed
         ).format('DD-MM-YYYY')} até o dia ${dayjs(
           bookingObject.finalDateParsed
-        ).format('DD-MM-YYYY')} não disponivel`,
-        status: HttpStatusCode.BadRequest,
-      };
-    }
-    if (datesToMark.length - 1 > 7) {
-      throw {
-        message: 'Só é possível marcar reservas de 7 dias ao máximo',
+        ).format('DD-MM-YYYY')} não disponivel.`,
         status: HttpStatusCode.BadRequest,
       };
     }
