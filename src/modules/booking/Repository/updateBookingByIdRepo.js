@@ -16,7 +16,7 @@ export const updateBookingByIdRepo = async bookingObject => {
   } catch (error) {
     console.log('Error ==>', error);
     throw {
-      message: 'Não foi possível criar a reserva',
+      message: 'Não foi possível atualizar a reserva',
       status: HttpStatusCode.InternalServerError || error.status,
     };
   }

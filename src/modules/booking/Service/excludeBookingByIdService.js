@@ -2,9 +2,9 @@ import { HttpStatusCode } from 'axios';
 import { excludeBookingByIdRepo } from '../Repository/excludeBookingByIdRepo.js';
 import { findBookingByIdRepo } from '../Repository/findBookingByIdRepo.js';
 
-export const excludeBookingByIdService = async id => {
+export const excludeBookingByIdService = async bookingObject => {
   try {
-    const bookingById = await findBookingByIdRepo(id);
+    const bookingById = await findBookingByIdRepo(bookingObject);
 
     if (!bookingById) {
       throw {
@@ -13,7 +13,7 @@ export const excludeBookingByIdService = async id => {
       };
     }
 
-    const bookingExcludedRepo = await excludeBookingByIdRepo(id);
+    const bookingExcludedRepo = await excludeBookingByIdRepo(bookingObject);
     return bookingExcludedRepo;
   } catch (error) {
     console.log('Error ', error);

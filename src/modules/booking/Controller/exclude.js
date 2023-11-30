@@ -4,7 +4,7 @@ import { excludeBookingByIdService } from '../Service/excludeBookingByIdService.
 export const exclude = async (req, res) => {
   try {
     const { id } = req.params;
-    await excludeBookingByIdService(id);
+    await excludeBookingByIdService({ id });
 
     return res.status(HttpStatusCode.NoContent).end();
   } catch (error) {

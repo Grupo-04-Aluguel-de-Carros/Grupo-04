@@ -63,7 +63,17 @@ export const updateBookingByIdService = async bookingObject => {
 
       if (verifyDaysAlreadyMarked.length > 0) {
         throw {
-          message: `Já existe uma reserva marcada para os dias escolhidos, escolha uma data a partir do dia `,
+          message: `A sua reserva vai do dia ${dayjs(
+            existentBookingById.inicialDate
+          ).format('DD/MM/YYYY')} ao dia ${dayjs(
+            existentBookingById.finalDate
+          ).format(
+            'DD/MM/YYYY'
+          )} .Já existe uma reserva marcada para os dias escolhidos, caso queria outra data, escolha uma data a partir do dia ${dayjs(
+            maximumDateToLockTheCalendar
+          )
+            .add(2, 'day')
+            .format('DD/MM/YYYY')}`,
           status: HttpStatusCode.BadRequest,
         };
       }
