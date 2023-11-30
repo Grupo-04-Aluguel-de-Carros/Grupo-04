@@ -14,6 +14,7 @@ export const updateUserRepo = async (id, updateBody, dbClient = db) => {
         cpf: true,
         phoneNumber: true,
         age: true,
+        role: true,
         createdAt: true,
         updatedAt: true,
       },
