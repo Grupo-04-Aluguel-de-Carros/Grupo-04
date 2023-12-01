@@ -36,17 +36,17 @@ export const updateBookingByIdService = async bookingObject => {
     const maximumDateToLockTheCalendar = new Date(
       Math.max(...existentFinalDatesRepos)
     );
-
+    // Intervalo de todas as datas de reservas do sistema
     const bookingAlreadyCreated = obtainDatesOnInterval(
       existentBookingById.inicialDate,
       existentBookingById.finalDate
     );
-
+    // Intervalo de todas as datas de reservas referente ao carro reservado
     const existentsDates = obtainDatesOnInterval(
       minimalDateToLockTheCalendar,
       maximumDateToLockTheCalendar
     );
-
+    // Intervalo de todas datas passadas para atualizar do usuario
     const datesToMark = obtainDatesOnInterval(
       bookingObject.inicialDateParsed,
       bookingObject.finalDateParsed
@@ -57,6 +57,8 @@ export const updateBookingByIdService = async bookingObject => {
     );
 
     if (resultFromDateToMark.length > 0) {
+      existentsDates.pop();
+
       const verifyDaysAlreadyMarked = resultFromDateToMark.filter(date =>
         existentsDates.includes(date)
       );
@@ -73,7 +75,9 @@ export const updateBookingByIdService = async bookingObject => {
             maximumDateToLockTheCalendar
           )
             .add(2, 'day')
-            .format('DD-MM-YYYY')}`,
+            .format(
+              'DD-MM-YYYY'
+            )} ou altere os dias da sua reserva, só podemos marcar até 7 dias.`,
           status: HttpStatusCode.BadRequest,
         };
       }
@@ -82,16 +86,6 @@ export const updateBookingByIdService = async bookingObject => {
     if (datesToMark.length > 7) {
       throw {
         message: 'Só é possível marcar reservas de 7 dias no máximo',
-        status: HttpStatusCode.BadRequest,
-      };
-    }
-    if (datesToMark.length > existentsDates.length && datesToMark.length > 7) {
-      throw {
-        message: `Reserva marcada entre o dia ${dayjs(
-          bookingObject.inicialDateParsed
-        ).format('DD-MM-YYYY')} até o dia ${dayjs(
-          bookingObject.finalDateParsed
-        ).format('DD-MM-YYYY')} não disponivel.`,
         status: HttpStatusCode.BadRequest,
       };
     }
