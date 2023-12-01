@@ -30,6 +30,7 @@ export const createUserRepo = (
         cpf: true,
         phoneNumber: true,
         age: true,
+        role: true,
         createdAt: true,
         updatedAt: true,
       },
