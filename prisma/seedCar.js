@@ -1,26 +1,27 @@
 import { db } from '../src/config/db.js';
 import { v4 as uuidv4 } from 'uuid';
 import { mainStore } from './seedStore.js';
+import { mainBrand } from './seedBrand.js';
 
 const id = uuidv4();
 
 export async function main() {
-  const test = await mainStore('Dh Rental');
-  console.log(test);
   try {
+    const store = await mainStore('Dh Rental');
+    const brand = await mainBrand('AUDI')
     await db.car.upsert({
       where: { id: id },
       update: {},
       create: {
-        name: 'Gol',
-        color: 'azul',
-        storeId: id,
-        brandId: id,
+        name: 'AUDI TT',
+        color: 'cinza',
+        storeId: store.id,
+        brandId: brand.id,
         available: true,
-        model: 'ferrari',
+        model: 'TT',
         value: 1900.0,
         year: '2022',
-        description: 'ferrari bonita',
+        description: 'audi cinza',
       },
     });
   } catch (error) {

@@ -12,7 +12,6 @@ export const mainStore = async name => {
         name: name,
       },
     });
-    console.log(storeObject);
     return storeObject;
   } catch (error) {
     await db.$disconnect();
@@ -25,3 +24,5 @@ export const mainStore = async name => {
     await db.$disconnect();
   }
 };
+
+/* mainStore('Dh Rent') */
