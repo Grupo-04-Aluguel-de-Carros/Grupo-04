@@ -5,7 +5,7 @@ export const findById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const bookingFound = await findBookingByIdService({id});
+    const bookingFound = await findBookingByIdService({ id });
 
     return res.status(HttpStatusCode.Ok).json({
       message: bookingFound,

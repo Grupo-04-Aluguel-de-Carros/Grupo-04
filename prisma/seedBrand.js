@@ -22,7 +22,6 @@ export const main = async name => {
       },
     });
   } catch (error) {
-    await db.$disconnect();
     console.log({
       message: error.message,
       status: error.status,
