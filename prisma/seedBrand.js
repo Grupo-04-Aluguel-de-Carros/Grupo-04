@@ -5,24 +5,24 @@ import { HttpStatusCode } from 'axios';
 
 const id = uuidv4();
 
-export const main = async name => {
+export const mainBrand = async name => {
   try {
-    const brandCreated = await findBrandByNameRepo(name);
+/*     const brandCreated = await findBrandByNameRepo(name);
     if (brandCreated) {
       throw {
         message: 'Marcas ja criadas no sistema, verifique seu banco de dados !',
         status: HttpStatusCode.BadRequest,
       };
-    }
-    await db.brand.upsert({
+    } */
+    const brand = await db.brand.upsert({
       where: { id: id },
       update: {},
       create: {
         name: name,
       },
     });
+    return brand;
   } catch (error) {
-    await db.$disconnect();
     console.log({
       message: error.message,
       status: error.status,
@@ -33,9 +33,9 @@ export const main = async name => {
   }
 };
 
-main('FERRARI');
-main('MCLAREN');
-main('LAMBORGHINI');
-main('BUGATTI');
-main('PORSCHE');
-main('KOENIGSEGG');
+mainBrand('FERRARI');
+mainBrand('MCLAREN');
+mainBrand('LAMBORGHINI');
+mainBrand('BUGATTI');
+mainBrand('PORSCHE');
+mainBrand('KOENIGSEGG');
