@@ -9,7 +9,7 @@ export async function mainCar() {
   try {
     const storeDhRentalGramado = await mainStore('Dh Rental Gramado');
     const brandAudi = await mainBrand('AUDI');
-    await db.car.upsert({
+    const storeAddress = await db.car.upsert({
       where: { id: id },
       update: {},
       create: {
@@ -73,6 +73,7 @@ export async function mainCar() {
         description: 'lamborghini cinza',
       },
     });
+    return storeAddress;
   } catch (error) {
     console.error(error);
     process.exit(1);
@@ -80,5 +81,3 @@ export async function mainCar() {
     await db.$disconnect();
   }
 }
-
-mainCar();
