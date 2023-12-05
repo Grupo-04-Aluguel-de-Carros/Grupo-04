@@ -24,7 +24,3 @@ export const mainStore = async name => {
     await db.$disconnect();
   }
 };
-
-const dhRentalGramado = mainStore('Dh Rental Gramado');
-
-export default { dhRentalGramado };
