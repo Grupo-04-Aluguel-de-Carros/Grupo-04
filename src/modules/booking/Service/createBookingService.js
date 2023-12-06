@@ -3,6 +3,7 @@ import { findBookingByCarIdRepo } from '../Repository/findBookingByCarIdRepo.js'
 import { HttpStatusCode } from 'axios';
 import { obtainDatesOnInterval } from '../../../utils/index.js';
 import { findUserByIdRepo } from '../../users/Repository/findUserByIdRepo.js';
+import { findCarByIdRepo } from '../../car/Repository/findCarByIdRepo.js';
 import dayjs from 'dayjs';
 
 export const createBookingService = async bookingObject => {
@@ -15,14 +16,15 @@ export const createBookingService = async bookingObject => {
         status: HttpStatusCode.BadRequest,
       };
     }
-    const existentBookingRepo = await findBookingByCarIdRepo(bookingObject);
+    const existentCarFromId = await findCarByIdRepo(bookingObject.carId);
 
-    if (!existentBookingRepo.length) {
+    if (!existentCarFromId) {
       throw {
         message: 'Car id não existente',
         status: HttpStatusCode.BadRequest,
       };
     }
+    const existentBookingRepo = await findBookingByCarIdRepo(bookingObject);
 
     const existentInicialDatesRepos = existentBookingRepo.map(
       existentBookingRepo => existentBookingRepo.inicialDate
