@@ -7,7 +7,7 @@ const id = uuidv4();
 
 export const mainBrand = async name => {
   try {
-/*     const brandCreated = await findBrandByNameRepo(name);
+    /*     const brandCreated = await findBrandByNameRepo(name);
     if (brandCreated) {
       throw {
         message: 'Marcas ja criadas no sistema, verifique seu banco de dados !',

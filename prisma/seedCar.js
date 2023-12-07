@@ -8,7 +8,7 @@ const id = uuidv4();
 export async function main() {
   try {
     const store = await mainStore('Dh Rental');
-    const brand = await mainBrand('AUDI')
+    const brand = await mainBrand('AUDI');
     await db.car.upsert({
       where: { id: id },
       update: {},
