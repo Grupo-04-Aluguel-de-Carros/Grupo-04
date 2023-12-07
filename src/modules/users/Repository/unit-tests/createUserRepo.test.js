@@ -23,6 +23,7 @@ describe('Create User Repository', () => {
         phoneNumber: '123456789',
         age: 25,
         password: 'securepassword',
+        role: 'CLIENT',
       };
 
       const createUserResult = {
@@ -68,6 +69,7 @@ describe('Create User Repository', () => {
           cpf: true,
           phoneNumber: true,
           age: true,
+          role: true,
           createdAt: true,
           updatedAt: true,
         },
