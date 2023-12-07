@@ -7,7 +7,7 @@ export const hasRole = roles => async (req, res, next) => {
     const user = await findUserById(userId);
 
     if (!roles.includes(user.role))
-      res.status(401).json({ message: 'Not authorized' });
+      res.status(401).json({ message: 'Não autorizado' });
 
     return next();
   } catch (error) {
