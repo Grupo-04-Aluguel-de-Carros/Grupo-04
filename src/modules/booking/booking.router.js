@@ -17,13 +17,21 @@ import {
 import { dateValidation } from '../../middleware/dateHandle.js';
 import { handlePagination } from '../../middleware/handlePagination.js';
 import { Router } from 'express';
+import { isAuthenticated } from '../../middleware/isAuthenticated.js';
+import { hasRole } from '../../middleware/hasRole.js';
 
 const bookingRoutes = Router();
 
 bookingRoutes.post('/', dateValidation, validate(createBookingSchema), create);
 bookingRoutes.get('/', handlePagination, findAll);
 bookingRoutes.get('/:id', validate(findBookingByIdSchema), findById);
-bookingRoutes.get('/user/:id', validate(findBookingByUserId), findUserById);
+bookingRoutes.get(
+  '/user/:id',
+  isAuthenticated,
+  hasRole(['ADMIN']),
+  validate(findBookingByUserId),
+  findUserById
+);
 bookingRoutes.delete('/:id', validate(excludeBookingSchema), exclude);
 bookingRoutes.put(
   '/:id',
