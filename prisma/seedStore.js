@@ -24,5 +24,3 @@ export const mainStore = async name => {
     await db.$disconnect();
   }
 };
-
-/* mainStore('Dh Rent') */
