@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 import timezone from 'dayjs/plugin/timezone.js';
 
-export const dateValidation = (req, res, next) => {
+export const dateHandle = (req, res, next) => {
   try {
     dayjs.extend(utc);
     dayjs.extend(timezone);
@@ -53,7 +53,7 @@ export const dateValidation = (req, res, next) => {
       };
     }
     req.date = { inicialDateParsed, finalDateParsed };
-    next();
+    return req.date;
   } catch (error) {
     console.log('Error ==> ', error);
     return res.status(error.status).json({ message: error.message });
