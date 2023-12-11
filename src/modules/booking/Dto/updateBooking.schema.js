@@ -6,5 +6,5 @@ export const updateBookingSchema = object({
   }),
   body: object({
     carId: string().uuid().optional(),
-  }),
+  }).optional(),
 });
