@@ -76,6 +76,6 @@ export const dateHandle = (req, res) => {
     return req.date;
   } catch (error) {
     console.log('Error ==> ', error);
-    return { status: res.status(HttpStatusCode.BadRequest), message: false };
+    return false;
   }
 };
