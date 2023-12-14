@@ -13,6 +13,7 @@ export const findUserByCpfRepo = async cpf => {
         cpf: true,
         phoneNumber: true,
         age: true,
+        role: true,
         createdAt: true,
         updatedAt: true,
       },

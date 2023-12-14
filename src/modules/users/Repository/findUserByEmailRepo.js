@@ -13,6 +13,7 @@ export const findUserByEmailRepo = async email => {
         cpf: true,
         phoneNumber: true,
         age: true,
+        role: true,
         password: true,
         createdAt: true,
         updatedAt: true,
