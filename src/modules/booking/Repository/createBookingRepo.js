@@ -1,9 +1,9 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const createBookingRepo = async bookingObject => {
+export const createBookingRepo = async (bookingObject, dbClient = db) => {
   try {
-    const booking = await db.booking.create({
+    const booking = await dbClient.booking.create({
       data: {
         inicialDate: bookingObject.inicialDateParsed,
         finalDate: bookingObject.finalDateParsed,

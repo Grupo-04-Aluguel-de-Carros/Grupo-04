@@ -1,24 +1,11 @@
 import { HttpStatusCode } from 'axios';
 import { dateRegex } from '../../utils/index.js';
-import { findBookingByIdRepo } from '../../modules/booking/Repository/findBookingByIdRepo.js';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 import timezone from 'dayjs/plugin/timezone.js';
 
 export const dateHandle = (req, res) => {
   try {
-    /*     let userBookingFinded;
-    if (req.params) {
-      const { id } = req.params;
-      userBookingFinded = await findBookingByIdRepo({ id });
-      if (!userBookingFinded) {
-        throw {
-          message: 'Booking não encontrado',
-          status: HttpStatusCode.BadRequest,
-        };
-      }
-    }
- */
     dayjs.extend(utc);
     dayjs.extend(timezone);
 
@@ -31,13 +18,6 @@ export const dateHandle = (req, res) => {
 
     const { inicialDate, finalDate } = req.body;
 
-    /*     if (!inicialDate) {
-      inicialDate = userBookingFinded.inicialDate;
-    }
-    if (!finalDate) {
-      finalDate = userBookingFinded.finalDate;
-    }
- */
     if (!dateRegex.test(inicialDate) || !dateRegex.test(finalDate)) {
       throw {
         message: 'Insira uma data valida, modelo de data é YYYY-MM-DD',

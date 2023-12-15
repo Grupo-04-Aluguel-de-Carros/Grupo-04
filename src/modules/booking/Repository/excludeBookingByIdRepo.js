@@ -1,9 +1,9 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const excludeBookingByIdRepo = async bookingObject => {
+export const excludeBookingByIdRepo = async (bookingObject, dbClient = db) => {
   try {
-    const bookingExcluded = await db.booking.delete({
+    const bookingExcluded = await dbClient.booking.delete({
       where: {
         id: bookingObject.id,
       },
