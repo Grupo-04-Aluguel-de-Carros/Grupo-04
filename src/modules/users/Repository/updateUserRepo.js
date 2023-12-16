@@ -1,9 +1,9 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const updateUserRepo = async (id, updateBody) => {
+export const updateUserRepo = async (id, updateBody, dbClient = db) => {
   try {
-    return await db.user.update({
+    return await dbClient.user.update({
       data: updateBody,
       where: { id },
       select: {
@@ -14,6 +14,7 @@ export const updateUserRepo = async (id, updateBody) => {
         cpf: true,
         phoneNumber: true,
         age: true,
+        role: true,
         createdAt: true,
         updatedAt: true,
       },

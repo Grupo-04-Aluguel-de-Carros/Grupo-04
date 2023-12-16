@@ -12,7 +12,6 @@ export const findById = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    console.log('Error ==>', error);
     return res.status(error.status).json({ error: error.message });
   }
 };

@@ -1,12 +1,10 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findManyCarsRepo = async ({
-  offset,
-  listPerPage,
-  query,
-  order,
-}) => {
+export const findManyCarsRepo = async (
+  { offset, listPerPage, query, order },
+  dbClient = db
+) => {
   try {
     let whereCondition = {};
 
@@ -22,7 +20,7 @@ export const findManyCarsRepo = async ({
         ],
       };
     }
-    return await db.car.findMany({
+    return await dbClient.car.findMany({
       where: whereCondition,
       orderBy: {
         createdAt: order ? order : 'desc',
@@ -43,7 +41,7 @@ export const findManyCarsRepo = async ({
     });
   } catch (error) {
     throw {
-      message: 'Não foi possivel buscar a lista de carros',
+      message: 'Não foi possível buscar a lista de carros.',
       status: HttpStatusCode.InternalServerError,
     };
   }

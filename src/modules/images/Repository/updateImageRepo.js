@@ -6,11 +6,16 @@ export const updateImageRepo = async (id, objectToUpdate) => {
       where: {
         id,
       },
-      data: objectToUpdate,
+      data: {
+        name: objectToUpdate.name,
+        urlBrand: objectToUpdate.urlBrand,
+        urlCar: objectToUpdate.urlCar
+          ? objectToUpdate.urlCar.map(car => car)
+          : undefined,
+      },
     });
     return imageUpdated;
   } catch (error) {
-    console.log('Error ==>', error);
     throw {
       message: error.message,
       status: error.status,

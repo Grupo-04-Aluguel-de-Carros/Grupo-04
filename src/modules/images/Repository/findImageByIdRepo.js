@@ -10,7 +10,6 @@ export const findImageByIdRepo = async id => {
     });
     return imageById;
   } catch (error) {
-    console.log('Error ==> ', error);
     throw {
       message: error.message,
       status: HttpStatusCode.InternalServerError || error.status,

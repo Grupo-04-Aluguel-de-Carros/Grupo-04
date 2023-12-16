@@ -20,6 +20,7 @@ model User {
   updatedAt   DateTime  @updatedAt
   role        Role      @default(CLIENT)
   Address     Address[]
+  Booking     Booking[]
 }
 
 model Address {
@@ -84,11 +85,24 @@ model Car {
   value       Float
   year        String
   available   Boolean
+  Booking     Booking[]
   Brand       Brand?           @relation(fields: [brandId], references: [id])
   Store       Store?           @relation(fields: [storeId], references: [id])
   features    FeaturesOnCars[]
   Images      Images[]
   Feature     Feature[]        @relation("CarToFeature")
+}
+
+model Booking {
+  id          String   @id @unique @default(uuid())
+  inicialDate DateTime
+  finalDate   DateTime
+  carId       String?
+  userId      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Car         Car?     @relation(fields: [carId], references: [id])
+  User        User?    @relation(fields: [userId], references: [id])
 }
 
 model FeaturesOnCars {
@@ -104,26 +118,26 @@ model FeaturesOnCars {
 
 model Feature {
   id            String           @id @unique @default(uuid())
-  name          String
   massageSystem Boolean
   shielding     Boolean
   selfDriving   Boolean
-  sunRoof       Boolean
-  automatic     Boolean
   createdAt     DateTime         @default(now())
   updatedAt     DateTime         @updatedAt
+  sunRoof       Boolean
+  automatic     Boolean
+  name          String
   cars          FeaturesOnCars[]
   Car           Car[]            @relation("CarToFeature")
 }
 
 model Images {
   id        String   @id @unique @default(uuid())
-  name      String
-  carId     String?
-  urlBrand  String
-  urlCar    String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  carId     String?
+  urlBrand  String
+  name      String
+  urlCar    String[]
   Car       Car?     @relation(fields: [carId], references: [id])
 }
 

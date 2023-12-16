@@ -1,9 +1,9 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findStoreByIdRepo = id => {
+export const findStoreByIdRepo = async (id, dbClient = db) => {
   try {
-    return db.store.findUnique({
+    return await dbClient.store.findUnique({
       where: { id },
       select: {
         id: true,
@@ -27,7 +27,7 @@ export const findStoreByIdRepo = id => {
     });
   } catch (error) {
     throw {
-      message: 'Não foi possivel buscar a loja pelo id',
+      message: 'Não foi possível buscar a loja pelo id',
       status: HttpStatusCode.InternalServerError,
     };
   }

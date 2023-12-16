@@ -1,12 +1,10 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findManyUsersRepo = async ({
-  offset,
-  listPerPage,
-  query,
-  order,
-}) => {
+export const findManyUsersRepo = async (
+  { offset, listPerPage, query, order },
+  dbClient = db
+) => {
   try {
     let whereCondition = {};
 
@@ -22,7 +20,7 @@ export const findManyUsersRepo = async ({
         ],
       };
     }
-    return await db.user.findMany({
+    return await dbClient.user.findMany({
       where: whereCondition,
       orderBy: {
         createdAt: order ? order : 'desc',
@@ -35,6 +33,7 @@ export const findManyUsersRepo = async ({
         cpf: true,
         phoneNumber: true,
         age: true,
+        role: true,
         createdAt: true,
         updatedAt: true,
       },

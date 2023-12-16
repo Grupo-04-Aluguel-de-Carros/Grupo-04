@@ -3,17 +3,22 @@
 import { HttpStatusCode } from 'axios';
 
 export const handlePagination = (req, res, next) => {
-  const { page, limit } = req.query;
+  try {
+    const { page, limit } = req.query;
 
-  if (page && !Number.isInteger(+page)) {
-    throw { message: 'Página inválida', status: HttpStatusCode.BadRequest };
+    if (page && !Number.isInteger(+page)) {
+      throw { message: 'Página inválida', status: HttpStatusCode.BadRequest };
+    }
+
+    const currentPage = Number(page) || 1;
+    const listPerPage = Number(limit) || 5;
+    const offset = (currentPage - 1) * listPerPage;
+    req.pagination = { currentPage, listPerPage, offset };
+    next();
+  } catch (error) {
+    throw {
+      message: error.message,
+      status: error.status,
+    };
   }
-
-  const currentPage = Number(page) || 1;
-  const listPerPage = Number(limit) || 5;
-  const offset = (currentPage - 1) * listPerPage;
-
-  req.pagination = { currentPage, listPerPage, offset };
-
-  next();
 };

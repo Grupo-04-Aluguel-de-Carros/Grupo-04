@@ -10,10 +10,11 @@ export const createCarRepo = async (
   model,
   value,
   year,
-  description
+  description,
+  dbClient = db
 ) => {
   try {
-    return await db.car.create({
+    return await dbClient.car.create({
       data: {
         name,
         color,
@@ -28,7 +29,7 @@ export const createCarRepo = async (
     });
   } catch (error) {
     throw {
-      message: 'Não foi possivel criar o carro',
+      message: 'Não foi possível criar o carro.',
       status: HttpStatusCode.InternalServerError,
     };
   }

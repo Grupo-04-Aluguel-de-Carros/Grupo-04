@@ -4,6 +4,7 @@ import { findByIdFeatureRepo } from '../Repository/findByIdFeatureRepo.js';
 export const findByIdFeatureService = async id => {
   try {
     const featureFromRepoById = await findByIdFeatureRepo(id);
+
     if (!featureFromRepoById) {
       throw {
         message: 'Caracteristica não encontrada',

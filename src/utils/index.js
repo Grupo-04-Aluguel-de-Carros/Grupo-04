@@ -3,3 +3,4 @@ export * from './jwt.js';
 export * from './regex.js';
 export * from './removeSpecialCharacters.js';
 export * from './throwError.js';
+export * from './datesOnInterval.js';

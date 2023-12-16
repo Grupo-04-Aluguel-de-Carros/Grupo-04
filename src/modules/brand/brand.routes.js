@@ -1,13 +1,19 @@
 import { Router } from 'express';
-import { createBrandSchema } from './Dto/createBrandSchema.js';
-import { validate } from '../../middleware/validate.js';
+import { hasRole, isAuthenticated, validate } from '../../middleware/index.js';
 import { create, excludeById, findAll, update } from './Controller/index.js';
-import { getAllBrands } from './Dto/getAllBrands.js';
+import { getAllBrands, createBrandSchema } from './Dto/indexDto.js';
+import { handlePagination } from '../../middleware/handlePagination.js';
 const brandRoutes = Router();
 
-brandRoutes.get('/', validate(getAllBrands), findAll);
-brandRoutes.post('/', validate(createBrandSchema), create);
-brandRoutes.put('/:id', update);
-brandRoutes.delete('/:id', excludeById);
+brandRoutes.get('/', handlePagination, validate(getAllBrands), findAll);
+brandRoutes.post(
+  '/',
+  isAuthenticated,
+  hasRole(['ADMIN']),
+  validate(createBrandSchema),
+  create
+);
+brandRoutes.put('/:id', isAuthenticated, hasRole(['ADMIN']), update);
+brandRoutes.delete('/:id', isAuthenticated, hasRole(['ADMIN']), excludeById);
 
 export default brandRoutes;

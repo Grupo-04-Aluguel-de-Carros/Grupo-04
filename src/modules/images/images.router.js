@@ -5,7 +5,6 @@ import {
   deleteSchemaImage,
   findSchemaImageById,
   updateSchemaImage,
-  findAllSchemaImage,
 } from './Dto/indexDto.js';
 import {
   create,
@@ -14,12 +13,13 @@ import {
   findImagesById,
   updateById,
 } from './Controller/index.js';
+import { handlePagination } from '../../middleware/handlePagination.js';
 
 const imageRoutes = Router();
 
 imageRoutes.post('/', validate(createSchemaImage), create);
 imageRoutes.delete('/:id', validate(deleteSchemaImage), excludeById);
-imageRoutes.get('/', validate(findAllSchemaImage), findAllImages);
+imageRoutes.get('/', handlePagination, findAllImages);
 imageRoutes.get('/:id', validate(findSchemaImageById), findImagesById);
 imageRoutes.put('/:id', validate(updateSchemaImage), updateById);
 

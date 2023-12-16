@@ -22,3 +22,10 @@ export const queryStories = [
     updatedAt: new Date(),
   },
 ];
+
+export const queryStoreById = {
+  id: '598641f1-1b95-45c0-a11a-37958de2b63c',
+  name: 'teste',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+};

@@ -1,15 +1,17 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const createStoreRepo = async ({ name }) => {
+export const createStoreRepo = async ({ name }, dbClient = db) => {
   try {
-    const result = await db.store.create({
+    const result = await dbClient.store.create({
       data: {
         name,
       },
       select: {
         id: true,
         name: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
     return result;

@@ -1,9 +1,9 @@
 import { HttpStatusCode } from 'axios';
 import { db } from '../../../config/db.js';
 
-export const findCarByIdRepo = async id => {
+export const findCarByIdRepo = async (id, dbClient = db) => {
   try {
-    return db.car.findUnique({
+    return dbClient.car.findUnique({
       where: { id },
       select: {
         id: true,

@@ -4,6 +4,3 @@ package-lock.json
 src/logs/*
 uploads/*
 coverage/*
-coverage/clover.xml
-coverage/coverage-final.json
-coverage/Icov.info

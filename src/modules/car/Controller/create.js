@@ -28,6 +28,8 @@ export const create = async (req, res) => {
 
     return res.status(HttpStatusCode.Created).json(result);
   } catch (error) {
-    return res.status(error.status).json({ error: error.message });
+    return res
+      .status(error.status || HttpStatusCode.InternalServerError)
+      .json({ error: error.message });
   }
 };

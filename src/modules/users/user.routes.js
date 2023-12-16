@@ -1,14 +1,26 @@
 import { Router } from 'express';
 import { exclude, findById, findMany, update } from './Controller/index.js';
-import { isAuthenticated, validate } from '../../middleware/index.js';
+import { hasRole, isAuthenticated, validate } from '../../middleware/index.js';
 import { updateUserSchema } from './Dto/updateUserSchema.js';
 import { handlePagination } from '../../middleware/handlePagination.js';
 
 const userRoutes = Router();
 
 userRoutes.get('/', handlePagination, findMany);
-userRoutes.get('/:id', isAuthenticated, findById);
-userRoutes.put('/:id', validate(updateUserSchema), update);
-userRoutes.delete('/delete/:id', exclude);
+userRoutes.get(
+  '/:id',
+  isAuthenticated,
+  hasRole(['CLIENT']),
+  isAuthenticated,
+  findById
+);
+userRoutes.put(
+  '/:id',
+  isAuthenticated,
+  hasRole(['CLIENT']),
+  validate(updateUserSchema),
+  update
+);
+userRoutes.delete('/delete/:id', isAuthenticated, hasRole(['CLIENT']), exclude);
 
 export default userRoutes;
