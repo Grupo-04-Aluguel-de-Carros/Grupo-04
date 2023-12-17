@@ -2,7 +2,18 @@ import { updateCar } from '../Service/index.js';
 
 export const update = async (req, res) => {
   const { id } = req.params;
-  const { name, color, storeId, categoryId, brandId } = req.body;
+  const {
+    name,
+    color,
+    storeId,
+    categoryId,
+    brandId,
+    description,
+    model,
+    value,
+    year,
+    available,
+  } = req.body;
   try {
     const result = await updateCar(id, {
       name,
@@ -10,6 +21,11 @@ export const update = async (req, res) => {
       storeId,
       categoryId,
       brandId,
+      description,
+      model,
+      value,
+      year,
+      available,
     });
 
     return res.json(result);
