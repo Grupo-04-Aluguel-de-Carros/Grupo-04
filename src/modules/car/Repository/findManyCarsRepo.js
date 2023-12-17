@@ -34,6 +34,7 @@ export const findManyCarsRepo = async (
         value: true,
         year: true,
         description: true,
+        Store: { select: { id: true, name: true } },
       },
       skip: offset,
       take: listPerPage,
