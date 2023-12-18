@@ -16,15 +16,15 @@ describe('Create Booking Repository', () => {
   describe('When creating a booking', () => {
     it('Should create a booking sucessfully', async () => {
       const bookingData = {
-        inicialDate: new Date('2024-08-08'),
-        finalDate: new Date('2024-08-13'),
+        inicialDateParsed: new Date('2024-08-08'),
+        finalDateParsed: new Date('2024-08-13'),
         carId: 1,
         userId: 1,
       };
       const createBookingResult = {
         id: 'booking-id',
-        inicialDate: bookingData.inicialDate,
-        finalDate: bookingData.finalDate,
+        inicialDate: bookingData.inicialDateParsed,
+        finalDate: bookingData.finalDateParsed,
         carId: bookingData.carId,
         userId: bookingData.userId,
         createdAt: new Date(),
@@ -34,19 +34,16 @@ describe('Create Booking Repository', () => {
       prismaMock.booking.create.mockResolvedValue(createBookingResult);
 
       const result = await BookingRepo.createBookingRepo(
-        bookingData.inicialDate,
-        bookingData.finalDate,
-        bookingData.carId,
-        bookingData.userId,
+        bookingData,
         prismaMock
       );
 
       expect(prismaMock.booking.create).toHaveBeenCalledWith({
         data: {
-          inicialDate: bookingData.inicialDate,
-          finalDate: bookingData.finalDate,
-          Car: { connect: { id: bookingData.carId } },
-          User: { connect: { id: bookingData.userId } },
+          inicialDate: bookingData.inicialDateParsed,
+          finalDate: bookingData.finalDateParsed,
+          carId : bookingData.carId,
+          userId: bookingData.userId
         },
       });
       expect(result).toEqual(createBookingResult);

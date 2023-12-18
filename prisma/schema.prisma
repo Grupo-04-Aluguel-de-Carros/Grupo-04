@@ -48,6 +48,7 @@ model Store {
   Address   Address[]
   brands    BrandOnStores[]
   Car       Car[]
+  Booking   Booking[]
   Brand     Brand[]         @relation("BrandToStore")
 }
 
@@ -99,8 +100,10 @@ model Booking {
   finalDate   DateTime
   carId       String?
   userId      String?
+  storeId     String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  Store       Store?   @relation(fields: [storeId], references: [id])
   Car         Car?     @relation(fields: [carId], references: [id])
   User        User?    @relation(fields: [userId], references: [id])
 }
