@@ -12,6 +12,7 @@ export const findBookingByIdRepo = async bookingObject => {
         finalDate: true,
         carId: true,
         userId: true,
+        User: {select: {name: true}}
       },
     });
     return booking;
