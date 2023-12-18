@@ -18,7 +18,7 @@ export const findById = async (req, res) => {
       imagesCar: result.Images[0]?.urlCar,
       imageBrandLogo: result.Images[0]?.urlBrand,
       Brand: result.Brand,
-      Store: result.Store
+      Store: result.Store,
     });
   } catch (error) {
     return res.status(error.status).json({ error: error.message });

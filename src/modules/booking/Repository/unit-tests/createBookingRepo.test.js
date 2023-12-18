@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-import { HttpStatusCode } from 'axios';
 import * as BookingRepo from '../createBookingRepo.js';
 
 const prismaMock = {
@@ -43,7 +42,7 @@ describe('Create Booking Repository', () => {
           inicialDate: bookingData.inicialDateParsed,
           finalDate: bookingData.finalDateParsed,
           carId: bookingData.carId,
-          userId: bookingData.userId
+          userId: bookingData.userId,
         },
       });
       expect(result).toEqual(createBookingResult);
