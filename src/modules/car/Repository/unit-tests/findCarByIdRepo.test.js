@@ -46,7 +46,7 @@ describe('Find Car By ID Repository', () => {
           model: true,
           value: true,
           year: true,
-          Images: { select: { urlCar: true } },
+          Images: { select: { urlCar: true, urlBrand: true } },
           Brand: { select: { id: true, name: true } },
           Store: { select: { id: true, name: true } },
         },
