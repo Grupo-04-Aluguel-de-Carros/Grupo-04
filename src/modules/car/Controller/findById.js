@@ -15,8 +15,8 @@ export const findById = async (req, res) => {
       description: result.description,
       value: result.value,
       year: result.year,
-      imagesCar: result.Images[0].urlCar,
-      imageBrandLogo: result.Images[0].urlBrand,
+      imagesCar: result.Images[0]?.urlCar,
+      imageBrandLogo: result.Images[0]?.urlBrand,
       Brand: result.Brand,
       Store: result.Store
     });
